@@ -1,0 +1,15 @@
+# Local archive of pre-launch reference files (kept on disk, not deployed).
+_archive/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+.vscode/
+.idea/
+
+# Build/runtime artefacts
+.cache/
+node_modules/

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  NOTE TEMPLATE. Duplicate this file to create a new note.
+  See notes/README.md for the full publishing workflow.
+
+  Slots to fill (marked with TODO):
+    1. title                            (browser tab title)
+    2. meta description                 (one-line description, ~150 chars)
+    3. og:title                         (same as title)
+    4. og:description                   (same as meta description)
+    5. og:url                           (absolute URL of this article)
+    6. canonical                        (absolute URL of this article)
+    7. .article-eyebrow                 (category: Pre-Construction / Land / Business / Private Client)
+    8. .article-title                   (the note title)
+    9. .article-date                    (publication date, e.g. "2026-06-14")
+    10. .article-pdf-link               (uncomment AFTER generating the PDF and uploading to /notes/assets/pdf/[slug].pdf)
+    11. .article-body                   (the prose)
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- TODO: description -->
+  <meta name="description" content="[One-line description of the note, ~150 chars]" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- TODO: title -->
+  <title>[Note title]. Primegate Notes.</title>
+
+  <!-- TODO: og tags -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="[Note title]. Primegate." />
+  <meta property="og:description" content="[One-line description]" />
+  <meta property="og:url" content="https://primegaterealty.com/notes/[slug]" />
+  <meta property="og:image" content="https://primegaterealty.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <!-- TODO: canonical -->
+  <link rel="canonical" href="https://primegaterealty.com/notes/[slug]" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ============================== TOP BAR ============================== -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a href="../" class="brand" aria-label="Primegate, personal practice of Taran Aujla">
+        <svg class="brand-mark" viewBox="73 243 108 108" aria-hidden="true" focusable="false">
+          <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+          <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+        </svg>
+        <span class="brand-wordmark">
+          <span class="brand-name">Primegate</span>
+          <span class="brand-sub">A personal practice of Taran Aujla</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="../#practice">The Practice</a></li>
+          <li><a href="../#how">How We Work</a></li>
+          <li><a href="../#about">About</a></li>
+          <li><a href="./">Notes</a></li>
+          <li><a href="../#intake" class="nav-cta">Begin</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <ul>
+        <li><a href="../#practice">The Practice</a></li>
+        <li><a href="../#how">How We Work</a></li>
+        <li><a href="../#about">About</a></li>
+        <li><a href="./">Notes</a></li>
+        <li><a href="../#intake">Begin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+      <div class="article-container">
+
+        <a href="./" class="article-return">&larr; Return to Notes</a>
+
+        <header class="article-meta">
+          <!-- TODO: category (one of: Pre-Construction / Land / Business / Private Client) -->
+          <p class="article-eyebrow">[Category]</p>
+
+          <!-- TODO: title -->
+          <h1 class="article-title">[Note Title]</h1>
+
+          <!-- TODO: publication date -->
+          <p class="article-date">[YYYY-MM-DD]</p>
+
+          <!--
+            PDF DOWNLOAD LINK
+            Uncomment this block AFTER generating the PDF and placing it at:
+              /notes/assets/pdf/[slug].pdf
+            Replace [slug] in the href with the actual filename stem.
+            If no PDF exists, leave this block commented and no link will display.
+
+          <p class="article-pdf-link">
+            <a href="assets/pdf/[slug].pdf" download>Download as PDF</a>
+          </p>
+          -->
+        </header>
+
+        <hr class="article-divider" aria-hidden="true" />
+
+        <div class="article-body">
+
+          <!-- TODO: replace everything below with the real note body.
+               Supported elements:
+                 - Paragraphs
+                 - H2 subheadings
+                 - H3 sub-subheadings
+                 - Unordered lists (ul, li)
+                 - Ordered lists (ol, li)
+                 - Blockquotes
+                 - Inline strong and em
+                 - Inline links
+                 - Note callout:     <div class="callout"><span class="callout-label">Note</span><p>...</p></div>
+                 - Caution callout:  <div class="callout callout-caution"><span class="callout-label">Caution</span><p>...</p></div>
+          -->
+
+          <p>[First paragraph.]</p>
+
+          <p>[Second paragraph.]</p>
+
+        </div>
+
+        <hr class="article-divider is-full" aria-hidden="true" />
+
+        <p class="article-disclaimer">
+          This piece is a written observation from the practice. Not legal advice. Legal opinions stay with your lawyer.
+        </p>
+
+        <a href="./" class="article-return article-return-bottom">&larr; Return to Notes</a>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="footer-mark" viewBox="73 243 108 108" aria-hidden="true" focusable="false">
+          <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+          <polygon fill="currentColor" opacity="0.5" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+        </svg>
+        <span class="footer-brandname">Primegate</span>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Practice</h4>
+          <p>A personal practice mark of Taran Aujla, Salesperson.</p>
+          <p>All real estate transactions are conducted through HomeLife G1 Realty Inc., Brokerage.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Brokerage</h4>
+          <p><strong>HomeLife G1 Realty Inc., Brokerage</strong></p>
+          <p>Independently Owned and Operated</p>
+          <p>2260 Bovaird Dr. E., Suite 202<br/>Brampton, ON L6R 3J5</p>
+          <p>Office: <a href="tel:+19057937797">(905) 793-7797</a></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Taran Aujla, Salesperson</p>
+          <p>Direct: <a href="tel:#">[cell to add]</a></p>
+          <p>Email: <a href="mailto:taran@homelifeg1realty.com">taran@homelifeg1realty.com</a></p>
+          <p><a href="../#intake" class="footer-cta">Submit an inquiry &rarr;</a></p>
+          <p><a href="./" class="footer-cta">Read the notes &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="disclosure-block">
+        <p>
+          <strong>Regulatory disclosure.</strong> Taran Aujla is registered with the Real Estate Council of Ontario (RECO) as a Salesperson employed by HomeLife G1 Realty Inc., Brokerage. "Primegate" is a personal practice identifier used by the registrant and is not itself a registered brokerage or real estate trade name of a separate entity. All offers, representations, and real estate transactions are made on behalf of and through HomeLife G1 Realty Inc., Brokerage, in accordance with the Trust in Real Estate Services Act, 2002 (TRESA) and applicable RECO rules.
+        </p>
+        <p>
+          <strong>Not legal or financial advice.</strong> Content on this site is general information about real estate transactions and does not constitute legal, accounting, or financial advice. Prospective clients should engage independent counsel and qualified professionals for transaction-specific advice.
+        </p>
+        <p class="regnum">RECO Registration No.: <span class="regnum-value">[pending registration]</span></p>
+        <p class="copyright">&copy; 2026 Taran Aujla &middot; All rights reserved &middot; Ontario, Canada</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var panel = document.getElementById('mobile-nav');
+      if (btn && panel) {
+        btn.addEventListener('click', function(){
+          var open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          if (open) { panel.setAttribute('hidden', ''); } else { panel.removeAttribute('hidden'); }
+        });
+        panel.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click', function(){
+            btn.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('hidden', '');
+          });
+        });
+      }
+    })();
+    (function(){
+      var bar = document.querySelector('.topbar');
+      if (!bar) return;
+      var threshold = 40;
+      var lightPanels = Array.prototype.slice.call(document.querySelectorAll('.panel-light'));
+      var apply = function(){
+        if (window.scrollY > threshold) { bar.classList.add('scrolled'); } else { bar.classList.remove('scrolled'); }
+        var barRect = bar.getBoundingClientRect();
+        var probeY = barRect.bottom;
+        var overLight = false;
+        for (var i = 0; i < lightPanels.length; i++) {
+          var r = lightPanels[i].getBoundingClientRect();
+          if (r.top <= probeY && r.bottom >= 0) { overLight = true; break; }
+        }
+        if (overLight) { bar.classList.add('over-light'); } else { bar.classList.remove('over-light'); }
+      };
+      apply();
+      window.addEventListener('scroll', apply, { passive: true });
+      window.addEventListener('resize', apply, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
