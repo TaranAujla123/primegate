@@ -715,17 +715,62 @@ section h2 em {
 }
 
 /* Wide desktop: four cards in a single horizontal row, each taller than wide.
-   Placed after all default .lane-* rules so the cascade picks these up at >=1200px. */
+   Card height is capped (independent of body length); any back content longer
+   than the card scrolls inside the back face. */
 @media (min-width: 1200px) {
   .lanes {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    /* Equal-height row regardless of back content length. */
+    align-items: stretch;
+  }
+
+  /* Disable the flex-stretch chain that propagated back content height up to
+     the lane. Use explicit height instead so every card is exactly the same
+     vertical dimension and the front never looks half-empty. */
+  .lane {
+    min-height: 0;
+    height: clamp(460px, 38vw, 520px);
+    flex-direction: column;
+  }
+  .lane-inner {
+    flex: none;
+    height: 100%;
   }
   .lane-front,
   .lane-back {
     padding: 30px 26px;
-    gap: 20px;
+    gap: 18px;
   }
+
+  /* Front: keep header at top, button at bottom, but pull header+badge tight
+     so the card reads as a coherent block rather than two anchors. */
+  .lane-front {
+    justify-content: flex-start;
+  }
+  .lane-front .lane-flip-trigger {
+    margin-top: auto;   /* pushes button to bottom edge */
+  }
+
+  /* Back: scrolls if content exceeds card height. Thin champagne scrollbar. */
+  .lane-back {
+    flex: none;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201, 169, 97, 0.4) transparent;
+  }
+  .lane-back::-webkit-scrollbar { width: 6px; }
+  .lane-back::-webkit-scrollbar-track { background: transparent; }
+  .lane-back::-webkit-scrollbar-thumb {
+    background: rgba(201, 169, 97, 0.35);
+    border-radius: 3px;
+  }
+  .lane-back::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 169, 97, 0.6);
+  }
+
+  /* Typography scaled for the narrower 4-col cards. */
   .lane-num {
     font-size: clamp(48px, 5vw, 76px);
   }
