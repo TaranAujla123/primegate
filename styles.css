@@ -14,10 +14,14 @@
   --bone:         #EDE8DC;   /* Warm ivory, never pure white */
   --bone-soft:    #D9D3C2;
   --bone-muted:   rgba(237, 232, 220, 0.62);
-  --bone-faint:   rgba(237, 232, 220, 0.42);
+  /* Bumped from 0.42 to 0.58 to clear WCAG AA on dark ink (was 3.54:1, now ~5.1:1). */
+  --bone-faint:   rgba(237, 232, 220, 0.58);
 
-  --gold:         #C9A961;   /* Champagne signature */
-  --gold-deep:    #A8863E;
+  --gold:         #C9A961;   /* Champagne signature, used on dark ink. */
+  --gold-deep:    #A8863E;   /* Decorative use only on paper (rules, bars, dividers). */
+  /* Gold dark enough to clear WCAG AA when used as TEXT on the paper panel.
+     Used on .panel-light for section labels, form labels, intake-path labels. */
+  --gold-darkest: #6B5320;
   --gold-soft:    rgba(201, 169, 97, 0.18);
 
   /* Light panel (About, Intake) */
@@ -730,7 +734,9 @@ section h2 em {
      vertical dimension and the front never looks half-empty. */
   .lane {
     min-height: 0;
-    height: clamp(460px, 38vw, 520px);
+    /* Bumped from (460, 38vw, 520) to (480, 42vw, 560) so the trimmed Cat 02
+       body fits without any scroll at 1280-1440px viewports. */
+    height: clamp(480px, 42vw, 560px);
     flex-direction: column;
   }
   .lane-inner {
@@ -892,13 +898,14 @@ section h2 em {
 }
 .pillar h4 {
   font-family: var(--ff-display);
-  font-size: clamp(22px, 2.2vw, 28px);
+  /* Reduced max from 28 to 24 to align with category card h3 hierarchy at 4-col viewport. */
+  font-size: clamp(20px, 1.9vw, 24px);
   font-weight: 400;
   color: var(--bone);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.18;
+  letter-spacing: -0.012em;
   font-variation-settings: "opsz" 72, "SOFT" 50;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 .pillar p {
   font-size: 14.5px;
@@ -944,8 +951,9 @@ section h2 em {
   color: var(--paper-ink);
 }
 .panel-light .section-label {
-  color: var(--gold-deep);
+  color: var(--gold-darkest);
 }
+/* Decorative bar; not text, contrast rule does not apply. */
 .panel-light .section-label::before { background: var(--gold-deep); }
 .panel-light h2, .panel-light h3 {
   color: var(--paper-ink);
@@ -1147,7 +1155,7 @@ section h2 em {
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--gold-darkest);
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -1197,11 +1205,11 @@ section h2 em {
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--gold-darkest);
   margin-bottom: 12px;
 }
 .intake-form label .req {
-  color: var(--gold-deep);
+  color: var(--gold-darkest);
   margin-left: 2px;
 }
 .intake-form label .optional {
@@ -1239,9 +1247,9 @@ section h2 em {
 .intake-form input:focus,
 .intake-form select:focus,
 .intake-form textarea:focus {
-  border-color: var(--gold-deep);
+  border-color: var(--gold-darkest);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(168, 134, 62, 0.12);
+  box-shadow: 0 0 0 3px rgba(107, 83, 32, 0.18);
   background: rgba(255,255,255,0.4);
 }
 
@@ -1271,8 +1279,8 @@ section h2 em {
   overflow: hidden;
 }
 .submit:hover {
-  background: var(--gold-deep);
-  border-color: var(--gold-deep);
+  background: var(--gold-darkest);
+  border-color: var(--gold-darkest);
   color: var(--paper);
 }
 .submit-note {
