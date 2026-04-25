@@ -777,15 +777,22 @@
         }
       }
 
-      triggers.forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var lane = btn.closest('.lane');
-          if (lane) setFlipped(lane, true);
+      // Click anywhere on the front face flips the card. The Read-the-detail
+      // button inside the front bubbles to this handler too, so keyboard
+      // (Tab + Enter / Space) still works for assistive tech. When the card
+      // is already flipped, the front is `inert` so this listener cannot fire.
+      document.querySelectorAll('.lane-front').forEach(function(front){
+        front.addEventListener('click', function(){
+          var lane = front.closest('.lane');
+          if (lane && !lane.classList.contains('is-flipped')) setFlipped(lane, true);
         });
       });
 
+      // Back face: only the explicit "Back" button flips back, so users can
+      // read / select body text without accidentally closing the card.
       document.querySelectorAll('.lane-flip-back').forEach(function(btn){
-        btn.addEventListener('click', function(){
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
           var lane = btn.closest('.lane');
           if (lane) setFlipped(lane, false);
         });

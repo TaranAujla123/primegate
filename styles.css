@@ -528,7 +528,7 @@ section h2 em {
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
   }
-  /* All four categories now treated co-equally in 2x2 grid */
+  /* Tablet / small desktop: 2x2 grid keeps each card readable. */
 }
 
 /* 3D card flip structure.
@@ -604,6 +604,7 @@ section h2 em {
   inset: 0;
   z-index: 2;
   justify-content: space-between;
+  cursor: pointer;
 }
 .lane-back {
   position: relative;
@@ -615,7 +616,6 @@ section h2 em {
 .lane:not(.is-flipped) .lane-front:hover {
   border-color: rgba(201, 169, 97, 0.35);
   background: #121722;
-  cursor: default;
 }
 .lane:not(.is-flipped) .lane-front:hover::before { opacity: 1; }
 .lane.is-flipped .lane-back::before { opacity: 1; }
@@ -712,6 +712,42 @@ section h2 em {
   font-size: 15px;
   line-height: 1.7;
   font-weight: 300;
+}
+
+/* Wide desktop: four cards in a single horizontal row, each taller than wide.
+   Placed after all default .lane-* rules so the cascade picks these up at >=1200px. */
+@media (min-width: 1200px) {
+  .lanes {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .lane-front,
+  .lane-back {
+    padding: 30px 26px;
+    gap: 20px;
+  }
+  .lane-num {
+    font-size: clamp(48px, 5vw, 76px);
+  }
+  .lane h3 {
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
+  }
+  .lane-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    padding: 6px 12px;
+  }
+  .lane p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .lane-flip-trigger,
+  .lane-flip-back {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+  }
 }
 
 /* Lane-card accent — subtle gold ambient glow on hover only (no single-lead treatment now that there are four) */
