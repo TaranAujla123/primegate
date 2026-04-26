@@ -397,14 +397,26 @@ h1 em, h2 em, h3 em {
   color: var(--bone);
   font-weight: 300;
 }
-.hero h1 .h1-line2 {
+/* Lines 2 and 3 are paired refined accents at ~40-50% of Line 1's scale.
+   Each phrase ("Reviewed carefully." / "Handled calmly.") sits on its own
+   line. The italic gold treatment on "carefully" / "calmly" comes from the
+   shared .hero h1 em rule. */
+.hero h1 .h1-line2,
+.hero h1 .h1-line3 {
   display: block;
   color: var(--bone);
   font-weight: 300;
-  /* Approximately 75-80% of Line 1's clamp(44px, 9vw, 132px) scale. */
-  font-size: clamp(32px, 7vw, 96px);
-  letter-spacing: -0.025em;
-  margin-top: 0.18em;
+  font-size: clamp(20px, 4vw, 56px);
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+}
+.hero h1 .h1-line2 {
+  /* Breathing room from the dominant Line 1. */
+  margin-top: clamp(12px, 1.2vw, 22px);
+}
+.hero h1 .h1-line3 {
+  /* Tight pairing with Line 2 (these two read as one beat). */
+  margin-top: clamp(2px, 0.3vw, 6px);
 }
 .hero h1 em {
   font-style: italic;
