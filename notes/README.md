@@ -1,5 +1,10 @@
 # Notes. Publishing workflow.
 
+> **Quickest path to publish a new note:** drop your markdown + optional PDF
+> into `_inbox/` and ask Claude Code to `publish [slug]`. See
+> [`_inbox/README.md`](_inbox/README.md) for the format and steps. The rest of
+> this file documents the underlying file structure for maintainers.
+
 This folder is the Primegate **Notes** section. Two levels:
 
 - **Level 1. Index** (`index.html`). The public list of published notes, organized into three groups: Technical Walkthroughs, File Reviews, Market Notes.
