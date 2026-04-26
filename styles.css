@@ -607,15 +607,42 @@ section h2 em {
   position: absolute;
   inset: 0;
   z-index: 2;
-  /* Header sits at the top; remaining space is editorial breathing room. No
-     bottom-anchored CTA now that the entire front face is the click target. */
-  justify-content: flex-start;
+  /* Header at top, "Read the detail" cue at bottom. The cue is decorative
+     (pointer-events: none, aria-hidden); the entire front face is the
+     interactive target via role=button + tabindex=0 on .lane-front itself. */
+  justify-content: space-between;
   cursor: pointer;
 }
 /* Keyboard focus indicator: the front IS the button now (role=button, tabindex=0). */
 .lane-front:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: -2px;
+}
+
+/* Visual flip-cue affordance: tells users the card responds to a click,
+   without itself being a clickable element. Click events pass through to
+   .lane-front via pointer-events: none. */
+.lane-flip-cue {
+  align-self: flex-start;
+  margin-bottom: 4px;
+  padding: 0 0 4px 0;
+  font-family: var(--ff-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  transition: gap .25s ease, color .25s ease, border-color .25s ease;
+}
+.lane:not(.is-flipped) .lane-front:hover .lane-flip-cue {
+  gap: 14px;
+  color: var(--gold-deep);
+  border-bottom-color: var(--gold-deep);
 }
 .lane-back {
   position: relative;
@@ -738,9 +765,10 @@ section h2 em {
      vertical dimension and the front never looks half-empty. */
   .lane {
     min-height: 0;
-    /* Bumped from (460, 38vw, 520) to (480, 42vw, 560) so the trimmed Cat 02
-       body fits without any scroll at 1280-1440px viewports. */
-    height: clamp(480px, 42vw, 560px);
+    /* Tightened so the front face has less empty space.
+       Cat 02 / Cat 04 backs are slightly longer than the card and will
+       scroll a small amount inside the back face (thin gold scrollbar). */
+    height: clamp(440px, 38vw, 500px);
     flex-direction: column;
   }
   .lane-inner {
@@ -753,10 +781,10 @@ section h2 em {
     gap: 18px;
   }
 
-  /* Front: header tight at the top; the rest is editorial breathing room
-     (no bottom-anchored button now that the whole front is clickable). */
+  /* Front: header at top, "Read the detail" cue anchored at bottom via
+     space-between (matches the base .lane-front rule). */
   .lane-front {
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   /* Back: scrolls if content exceeds card height. Thin champagne scrollbar. */
