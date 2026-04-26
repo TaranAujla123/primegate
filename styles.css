@@ -401,8 +401,8 @@ h1 em, h2 em, h3 em {
   display: block;
   color: var(--bone);
   font-weight: 300;
-  /* Approximately 60-70% of Line 1's clamp(44px, 9vw, 132px) scale. */
-  font-size: clamp(28px, 6vw, 86px);
+  /* Approximately 75-80% of Line 1's clamp(44px, 9vw, 132px) scale. */
+  font-size: clamp(32px, 7vw, 96px);
   letter-spacing: -0.025em;
   margin-top: 0.18em;
 }
