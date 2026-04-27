@@ -348,9 +348,19 @@ h1 em, h2 em, h3 em {
   letter-spacing: -0.01em;
 }
 @media (max-width: 820px) {
-  .topbar nav { display: none; }
+  /* Hide ONLY the desktop nav inside .topbar-inner. The mobile nav lives
+     as a sibling of .topbar-inner and must stay reachable so the JS
+     toggle can show it when the hamburger is tapped. The previous
+     selector (.topbar nav) was hitting both. */
+  .topbar-inner nav { display: none; }
   .nav-toggle { display: inline-flex; }
-  .brand-sub { display: none; }
+  /* Brand subtitle stays visible on mobile so 'A personal practice of
+     Taran Aujla' reads under the wordmark. Slightly tighter scale to
+     keep the topbar from cramping at 375px. */
+  .brand-sub {
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+  }
 }
 
 /* ---------- Hero ---------- */
