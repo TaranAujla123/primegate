@@ -562,6 +562,7 @@
                 Submissions are reviewed personally.
               </p>
             </div>
+            <p class="form-error" role="alert" hidden></p>
           </form>
         </article>
 
@@ -640,6 +641,7 @@
                 Submissions are reviewed personally. No automated follow-up, no newsletter subscription, no resale of your information.
               </p>
             </div>
+            <p class="form-error" role="alert" hidden></p>
           </form>
         </article>
 
@@ -836,6 +838,65 @@
         if (e.key !== 'Escape') return;
         document.querySelectorAll('.lane.is-flipped').forEach(function(lane){
           setFlipped(lane, false);
+        });
+      });
+    })();
+
+    // Intake form: AJAX submission to Formspree, manual redirect to /thanks/.
+    // We submit via fetch() with `Accept: application/json` so Formspree
+    // returns JSON instead of redirecting to its default thank-you page.
+    // On success we redirect to our branded /thanks/ page. This works on
+    // the Formspree free tier (the _next field is paid-only). If JS is
+    // disabled, the form falls back to a standard POST and shows
+    // Formspree's default page -- graceful degradation.
+    (function(){
+      var forms = document.querySelectorAll('.intake-form');
+      if (!forms.length) return;
+      var THANKS_URL = '/thanks/';
+
+      forms.forEach(function(form){
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var btn = form.querySelector('.submit');
+          var errorEl = form.querySelector('.form-error');
+          var originalBtnText = btn.textContent;
+
+          // Hide any prior error and set loading state
+          if (errorEl) {
+            errorEl.setAttribute('hidden', '');
+            errorEl.textContent = '';
+          }
+          btn.disabled = true;
+          btn.textContent = 'Sending\u2026';
+
+          var data = new FormData(form);
+          fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(function(response){
+            if (response.ok) {
+              window.location.href = THANKS_URL;
+              return;
+            }
+            return response.json().then(function(body){
+              var msg = (body && body.errors && body.errors.length)
+                ? body.errors.map(function(e){ return e.message; }).join(', ')
+                : 'Submission failed. Please try again.';
+              throw new Error(msg);
+            });
+          })
+          .catch(function(err){
+            btn.disabled = false;
+            btn.textContent = originalBtnText;
+            if (errorEl) {
+              errorEl.textContent = err && err.message
+                ? err.message
+                : 'Network error. Please check your connection and try again.';
+              errorEl.removeAttribute('hidden');
+            }
+          });
         });
       });
     })();

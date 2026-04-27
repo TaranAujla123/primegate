@@ -1316,6 +1316,21 @@ section h2 em {
   font-style: italic;
 }
 
+/* Inline error after AJAX submission failure. Hidden by default via the
+   [hidden] HTML attribute; JS removes [hidden] and populates textContent
+   when Formspree returns an error. */
+.form-error {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(168, 134, 62, 0.08);
+  border-left: 2px solid var(--gold-darkest);
+  font-family: var(--ff-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--paper-ink);
+  max-width: 480px;
+}
+
 /* ---------- Footer ---------- */
 footer {
   background: #060810;
