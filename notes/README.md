@@ -181,14 +181,24 @@ The CSS auto-hide rule keeps the group invisible until that first entry is added
 
 ## Categories
 
-Four permitted category tags (exact casing matters for consistency):
+Five permitted category tags (exact casing matters for consistency):
 
 - `Pre-Construction`
 - `Land`
 - `Business`
 - `Private Client`
+- `All Categories` (use only for technical pieces that span all four; see below)
 
-These match the four categories described on the main page. If a note does not fit one of these four, it probably should not be published.
+The first four match the four categories described on the main
+page. If a note does not fit one of these four, it probably
+should not be published.
+
+Use **`All Categories`** only when a piece is genuinely
+cross-cutting (e.g. a technical walkthrough on something that
+applies equally to pre-construction, land, businesses, and
+private representation). The eyebrow on the article and the
+pill on the index entry will both read "All Categories" in
+small caps.
 
 ---
 
