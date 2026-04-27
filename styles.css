@@ -1024,6 +1024,19 @@ section h2 em {
   height: 100%;
   object-fit: cover;
 }
+/* Portrait placeholder caption: shown beneath the editorial mark while
+   the commissioned photograph is in preparation. Remove the figcaption
+   from index.html when the actual photo is wired in. */
+.portrait-caption {
+  margin-top: 14px;
+  font-family: var(--ff-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper-muted);
+  text-align: center;
+}
 
 .about-body h3 {
   font-size: clamp(36px, 4.5vw, 56px);
@@ -1601,6 +1614,29 @@ footer {
   font-family: var(--ff-display);
   font-weight: 300;
   font-variation-settings: "opsz" 72, "SOFT" 80, "WONK" 1;
+}
+
+/* Notes "coming soon" indicator. Sits beneath the intro paragraph, above
+   the (currently empty) groups area. Subtle, italic, gold to signal "this
+   page will populate" without resembling marketing urgency copy. */
+.notes-coming-soon {
+  margin-top: 28px;
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.notes-coming-soon::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  display: inline-block;
 }
 
 /* Empty-state logic: a group is hidden whenever its entry list contains
