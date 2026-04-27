@@ -35,7 +35,7 @@
   <text x="110" y="370" font-family="'Fraunces', 'Cormorant Garamond', Georgia, serif" font-size="96" font-weight="400" fill="#EDE8DC" letter-spacing="-1">Primegate</text>
 
   <!-- Italic tagline -->
-  <text x="110" y="440" font-family="'Fraunces', 'Cormorant Garamond', Georgia, serif" font-size="38" font-style="italic" font-weight="300" fill="#C9A961" letter-spacing="-0.5">Real estate for serious transactions.</text>
+  <text x="110" y="440" font-family="'Fraunces', 'Cormorant Garamond', Georgia, serif" font-size="38" font-style="italic" font-weight="300" fill="#C9A961" letter-spacing="-0.5">Real estate where the details matter.</text>
 
   <!-- Hairline separator -->
   <line x1="110" y1="480" x2="260" y2="480" stroke="#C9A961" stroke-width="1"/>
