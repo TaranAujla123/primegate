@@ -407,7 +407,7 @@ h1 em, h2 em, h3 em {
   color: var(--bone);
   font-weight: 300;
 }
-/* Lines 2 and 3 are paired refined accents at ~40-50% of Line 1's scale.
+/* Lines 2 and 3 are paired refined accents at ~46-48% of Line 1's scale.
    Each phrase ("Reviewed carefully." / "Handled calmly.") sits on its own
    line. The italic gold treatment on "carefully" / "calmly" comes from the
    shared .hero h1 em rule. */
@@ -416,7 +416,7 @@ h1 em, h2 em, h3 em {
   display: block;
   color: var(--bone);
   font-weight: 300;
-  font-size: clamp(20px, 4vw, 56px);
+  font-size: clamp(22px, 4.2vw, 60px);
   letter-spacing: -0.018em;
   line-height: 1.2;
 }
