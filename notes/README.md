@@ -68,7 +68,37 @@ This means: if no articles have been published yet, the index page renders the h
    - `.article-pdf-link` (leave commented out for now. Uncomment in Step 3 after generating the PDF.)
    - `.article-body`
 
-### Step 2. Generate the PDF
+### Step 2a. Generate the cover image
+
+Each note gets a brand-consistent SVG + PNG cover (1200x630, dark
+ink + champagne gold, Fraunces serif). The cover is used as the
+note's `og:image` for social shares and can optionally appear
+inside the article page or on the index thumbnail.
+
+Run the cover generator from the build-v2 root:
+
+```bash
+node scripts/generate-note-cover.mjs \
+  slug=reading-the-assignment-clause \
+  title="Reading the assignment clause" \
+  category="Pre-Construction" \
+  date="2026-04-27"
+```
+
+Outputs:
+- `notes/assets/covers/[slug].svg`
+- `notes/assets/covers/[slug].png`
+
+The script auto-wraps long titles to 1-3 lines and picks the
+font-size that keeps the layout clean. No design work required
+per note.
+
+> **Sharp dependency.** The PNG export needs `sharp`. If
+> `node_modules/sharp` is not present in build-v2, install it
+> once: `npm install sharp`. Or run the script from a directory
+> where sharp is already installed (the script is portable).
+
+### Step 2b. Generate the PDF
 
 1. Open `notes/pdf-template.html` in a browser.
 2. Fill the five TODO slots (category, title, publication date, URL, body content). The body content is the same prose you placed in the article HTML, copied between the title page and the disclaimer.
