@@ -5,17 +5,18 @@
   See notes/README.md for the full publishing workflow.
 
   Slots to fill (marked with TODO):
-    1. title                            (browser tab title)
-    2. meta description                 (one-line description, ~150 chars)
-    3. og:title                         (same as title)
-    4. og:description                   (same as meta description)
-    5. og:url                           (absolute URL of this article)
-    6. canonical                        (absolute URL of this article)
-    7. .article-eyebrow                 (category: Pre-Construction / Land / Business / Private Client)
-    8. .article-title                   (the note title)
-    9. .article-date                    (publication date, e.g. "2026-06-14")
-    10. .article-pdf-link               (uncomment AFTER generating the PDF and uploading to /notes/assets/pdf/[slug].pdf)
-    11. .article-body                   (the prose)
+    1.  title                           (browser tab title)
+    2.  meta description                (one-line description, ~150 chars — ALSO used as the PDF cover kicker)
+    3.  og:title                        (same as title)
+    4.  og:description                  (same as meta description)
+    5.  og:url                          (absolute URL of this article)
+    6.  canonical                       (absolute URL of this article)
+    7.  .article-eyebrow                (category: Pre-Construction / Land / Business / Private Client / All Categories)
+    8.  .article-title                  (the note title — wrap a tail fragment in <em>...</em> to control the gold italic accent on the PDF cover; if omitted, the script auto-italicises the last 1-2 words)
+    9.  .article-date                   (publication date displayed on the article, e.g. "27 Apr 2026")
+    10. .article-byline                 (defaults to "By Taran Aujla, Salesperson" — change only if a different byline is needed)
+    11. .article-pdf-link               (the build script generates the PDF; uncomment the link block after running scripts/generate-note-pdf.mjs)
+    12. .article-body                   (the prose)
   ============================================================
 -->
 <html lang="en">
@@ -93,66 +94,94 @@
 
   <main id="main">
     <article class="article">
-      <div class="article-container">
 
-        <a href="./" class="article-return">&larr; Return to Notes</a>
+      <!-- Hero band: dark page, holds the meta block (eyebrow / title / date / byline / PDF link). -->
+      <div class="article-hero">
+        <div class="article-container">
 
-        <header class="article-meta">
-          <!-- TODO: category (one of: Pre-Construction / Land / Business / Private Client) -->
-          <p class="article-eyebrow">[Category]</p>
+          <a href="./" class="article-return">&larr; Return to Notes</a>
 
-          <!-- TODO: title -->
-          <h1 class="article-title">[Note Title]</h1>
+          <header class="article-meta">
+            <!-- TODO: category (one of: Pre-Construction / Land / Business / Private Client / All Categories) -->
+            <p class="article-eyebrow">[Category]</p>
 
-          <!-- TODO: publication date -->
-          <p class="article-date">[YYYY-MM-DD]</p>
+            <!-- TODO: title — wrap the gold-italic accent fragment in <em>...</em>. -->
+            <h1 class="article-title">[Note Title]</h1>
 
-          <!--
-            PDF DOWNLOAD LINK
-            Uncomment this block AFTER generating the PDF and placing it at:
-              /notes/assets/pdf/[slug].pdf
-            Replace [slug] in the href with the actual filename stem.
-            If no PDF exists, leave this block commented and no link will display.
+            <!-- TODO: publication date -->
+            <p class="article-date">[YYYY-MM-DD]</p>
 
-          <p class="article-pdf-link">
-            <a href="assets/pdf/[slug].pdf" download>Download as PDF</a>
-          </p>
-          -->
-        </header>
+            <p class="article-byline">By Taran Aujla, Salesperson</p>
 
-        <hr class="article-divider" aria-hidden="true" />
+            <!--
+              PDF DOWNLOAD LINK
+              Uncomment AFTER running:  node scripts/generate-note-pdf.mjs slug=[slug]
+              That writes /notes/assets/pdf/[slug].pdf. Replace [slug] in the href.
+              If no PDF exists yet, leave the block commented and the link is hidden.
 
-        <div class="article-body">
-
-          <!-- TODO: replace everything below with the real note body.
-               Supported elements:
-                 - Paragraphs
-                 - H2 subheadings
-                 - H3 sub-subheadings
-                 - Unordered lists (ul, li)
-                 - Ordered lists (ol, li)
-                 - Blockquotes
-                 - Inline strong and em
-                 - Inline links
-                 - Note callout:     <div class="callout"><span class="callout-label">Note</span><p>...</p></div>
-                 - Caution callout:  <div class="callout callout-caution"><span class="callout-label">Caution</span><p>...</p></div>
-          -->
-
-          <p>[First paragraph.]</p>
-
-          <p>[Second paragraph.]</p>
+            <p class="article-pdf-link">
+              <a href="assets/pdf/[slug].pdf" download>Download as PDF</a>
+            </p>
+            -->
+          </header>
 
         </div>
-
-        <hr class="article-divider is-full" aria-hidden="true" />
-
-        <p class="article-disclaimer">
-          This piece is a written observation from the practice. Not legal advice. Legal opinions stay with your lawyer.
-        </p>
-
-        <a href="./" class="article-return article-return-bottom">&larr; Return to Notes</a>
-
       </div>
+
+      <!-- Body band: cream paper panel for legibility. The .article-body
+           styling auto-switches to dark-on-paper inside .article-paper.
+           At >= 1024px the paper splits into a sticky-TOC rail (dark card,
+           gold links) on the left + the prose column on the right. The TOC
+           is auto-built from <h2> headings by the script at the bottom of
+           the page; remove it by leaving zero <h2>s in the body. -->
+      <div class="article-paper panel-light">
+        <div class="article-paper-inner">
+
+          <aside class="article-toc" aria-label="Sections in this note" data-toc>
+            <p class="article-toc-label">Contents</p>
+            <ol class="article-toc-list" data-toc-list></ol>
+          </aside>
+
+          <div class="article-body-wrap">
+          <div class="article-body">
+
+            <!-- TODO: replace everything below with the real note body.
+                 Supported elements:
+                   - Paragraphs
+                   - H2 subheadings
+                   - H3 sub-subheadings
+                   - Unordered lists (ul, li)
+                   - Ordered lists (ol, li)
+                   - Blockquotes
+                   - Inline strong and em
+                   - Inline links
+                   - Note callout:     <div class="callout"><span class="callout-label">Note</span><p>...</p></div>
+                   - Caution callout:  <div class="callout callout-caution"><span class="callout-label">Caution</span><p>...</p></div>
+            -->
+
+            <p>[First paragraph.]</p>
+
+            <p>[Second paragraph.]</p>
+
+          </div>
+
+          <hr class="article-divider is-full" aria-hidden="true" />
+
+          <p class="article-disclaimer">
+            This piece is a written observation from the practice. Not legal advice. Legal opinions stay with your lawyer.
+          </p>
+
+          </div><!-- /.article-body-wrap -->
+
+        </div>
+      </div>
+
+      <div class="article-tail">
+        <div class="article-container">
+          <a href="./" class="article-return article-return-bottom">&larr; Return to Notes</a>
+        </div>
+      </div>
+
     </article>
   </main>
 
@@ -242,6 +271,73 @@
       apply();
       window.addEventListener('scroll', apply, { passive: true });
       window.addEventListener('resize', apply, { passive: true });
+    })();
+
+    // Article TOC: see notes/deals-between-signing-and-closing.html for the
+    // full annotated version. Keeps the dark left rail in sync with the
+    // section currently in view, smooth-scrolls on click, hides itself if
+    // the article has fewer than two H2 headings.
+    (function(){
+      var toc = document.querySelector('[data-toc]');
+      var list = document.querySelector('[data-toc-list]');
+      if (!toc || !list) return;
+      var headings = Array.prototype.slice.call(document.querySelectorAll('.article-body h2'));
+      if (headings.length < 2) return;
+
+      var used = Object.create(null);
+      function slugify(text){
+        var s = String(text).toLowerCase()
+          .replace(/[\u2018\u2019\u201C\u201D]/g, '')
+          .replace(/[^a-z0-9\s-]/g, '').trim()
+          .replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
+        if (!s) s = 'section';
+        var base = s, n = 1;
+        while (used[s]) { s = base + '-' + (++n); }
+        used[s] = true;
+        return s;
+      }
+
+      var anchors = [];
+      headings.forEach(function(h, i){
+        if (!h.id) h.id = slugify(h.textContent || ('section-' + (i + 1)));
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = (h.textContent || '').trim();
+        a.dataset.tocTarget = h.id;
+        a.addEventListener('click', function(ev){
+          ev.preventDefault();
+          var t = document.getElementById(h.id);
+          if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); history.replaceState(null, '', '#' + h.id); }
+        });
+        li.appendChild(a);
+        list.appendChild(li);
+        anchors.push(a);
+      });
+      toc.classList.add('is-ready');
+
+      var current = null;
+      function setCurrent(id){
+        if (current === id) return;
+        current = id;
+        anchors.forEach(function(a){
+          if (a.dataset.tocTarget === id) a.classList.add('is-current'); else a.classList.remove('is-current');
+        });
+      }
+
+      var offset = 120, ticking = false;
+      function pickActive(){
+        ticking = false;
+        var picked = headings[0];
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top - offset <= 0) picked = headings[i]; else break;
+        }
+        if (picked) setCurrent(picked.id);
+      }
+      function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(pickActive); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      pickActive();
     })();
   </script>
 

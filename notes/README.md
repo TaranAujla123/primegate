@@ -100,26 +100,33 @@ per note.
 
 ### Step 2b. Generate the PDF
 
-1. Open `notes/pdf-template.html` in a browser.
-2. Fill the five TODO slots (category, title, publication date, URL, body content). The body content is the same prose you placed in the article HTML, copied between the title page and the disclaimer.
-3. Open the browser Print dialog (Ctrl+P or Cmd+P). Use these settings:
-   - Destination: **Save as PDF**
-   - Paper size: **Letter**
-   - Margins: **Default**
-   - Headers and footers: **off** (the template draws its own)
-   - Background graphics: **on** (so the gold rule and accent background render)
-4. Save the resulting PDF to `notes/assets/pdf/[slug].pdf` (use the same slug as the article HTML).
-5. Restore the `pdf-template.html` placeholders if you intend to reuse the file for the next note (or just keep an unedited copy in version control and edit a working copy each time).
+PDF generation is automated. From the build-v2 root:
 
-The PDF is intentionally manual. There is no automatic PDF generation. The template is built so a single browser print produces a clean, brand-consistent document on Letter paper.
+```bash
+node scripts/generate-note-pdf.mjs slug=reading-the-assignment-clause
+```
+
+Output: `notes/assets/pdf/[slug].pdf`.
+
+The script (Puppeteer + headless Chromium):
+
+1. Loads `notes/[slug].html` via `file://`.
+2. Pulls the title (with any `<em>` accent), category, date, byline, and the `<meta name="description">` kicker from the article DOM.
+3. Injects them into `notes/pdf-template.html`, replacing the body section between the body opener and the disclaimer with the article's full body HTML.
+4. Renders to PDF using the template's `@page` rules (Letter, brand-aware running header/footer, dark cover with gold italic title accent, cream body pages, gold hairline above each `<h2>`, gold drop-cap on first paragraph of each section).
+
+> **Title accent.** Wrap a tail fragment of `.article-title` in `<em>...</em>` to control the italic gold accent on the cover. Example: `<h1 class="article-title">Reading the <em>assignment clause</em></h1>`. If no `<em>` is present, the script auto-italicises the last 1-2 words.
+
+> **Puppeteer dependency.** The generator needs `puppeteer` (~150 MB Chromium download). It looks for `node_modules/puppeteer` inside `build-v2/` first; if it's not there, you can either `npm install puppeteer` in build-v2 or symlink/junction `node_modules` to a directory where puppeteer is already installed. On Windows, PowerShell's `New-Item -ItemType Junction -Path ... -Target ...` works without admin rights.
 
 ### Step 3. Wire up the PDF download link
 
-In the article's HTML (the one you created in Step 1), find the commented PDF block:
+In the article's HTML (the one you created in Step 1), find the commented PDF block inside `.article-meta`:
 
 ```html
 <!--
   PDF DOWNLOAD LINK
+  Uncomment AFTER running:  node scripts/generate-note-pdf.mjs slug=[slug]
   ...
 <p class="article-pdf-link">
   <a href="assets/pdf/[slug].pdf" download>Download as PDF</a>
@@ -201,6 +208,18 @@ pill on the index entry will both read "All Categories" in
 small caps.
 
 ---
+
+## Article shell anatomy (web)
+
+Each article has three full-width bands:
+
+1. **`.article-hero`** (dark navy). Holds the eyebrow / title / date / byline / "Download as PDF" link. Matches the brand's editorial header treatment.
+2. **`.article-paper.panel-light`** (cream). The reading column, with two children:
+   - **`.article-toc`** (sticky dark card with gold links). Auto-built from `<h2>` headings inside `.article-body`. Hidden below 1024px viewport. Hidden entirely if the article has fewer than two `<h2>`s. Highlights the active section as the reader scrolls.
+   - **`.article-body-wrap`** containing the prose, the closing divider, and the disclaimer.
+3. **`.article-tail`** (dark). Bottom return-to-Notes link.
+
+The cream-paper styles in `styles.css` (search for `.article-paper .article-body`) override the body's bone-on-ink colors with paper-ink and reduce `<strong>` to weight 500 so prose doesn't read as visually bold. Each `<h2>` automatically gets a short gold hairline above it and a gold serif drop-cap on the first paragraph after it (search for `.article-paper .article-body h2`).
 
 ## PDF template specifications
 

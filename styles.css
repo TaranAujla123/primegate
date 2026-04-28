@@ -1649,13 +1649,119 @@ footer {
 }
 
 /* ---------- Individual note page (Level 2 article template) ---------- */
-.article {
-  padding: clamp(120px, 14vw, 180px) 0 clamp(80px, 10vw, 140px);
-}
+.article { padding: 0; }
 .article-container {
   max-width: 720px;
   margin: 0 auto;
   padding: 0 var(--pad-x-wide);
+}
+
+/* Hero band: dark, holds eyebrow/title/date/byline/PDF link. */
+.article-hero {
+  background: var(--ink);
+  color: var(--bone);
+  padding: clamp(120px, 14vw, 180px) 0 clamp(56px, 7vw, 96px);
+}
+
+/* Paper band: cream panel that wraps the body for legibility. */
+.article-paper {
+  background: var(--paper);
+  color: var(--paper-ink);
+  padding: clamp(56px, 7vw, 96px) 0 clamp(48px, 6vw, 80px);
+}
+
+/* Inner two-column wrapper. Mobile-first: single column, TOC hidden.
+   At >= 1024px, splits into a sticky-TOC rail + prose column. */
+.article-paper-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--pad-x-wide);
+  display: block;
+}
+.article-paper-inner .article-body-wrap { min-width: 0; }
+@media (min-width: 1024px) {
+  .article-paper-inner {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 720px);
+    gap: clamp(40px, 5vw, 72px);
+    align-items: start;
+    justify-content: center;
+  }
+}
+
+/* ---------- Sticky table of contents ---------- */
+.article-toc {
+  display: none; /* hidden < 1024px; built/shown by JS only when there are H2s */
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  background: var(--ink);
+  color: var(--bone);
+  padding: 22px 22px 24px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  border: 1px solid rgba(201, 169, 97, 0.18);
+}
+.article-toc.is-ready { display: block; }
+.article-toc-label {
+  margin: 0 0 16px;
+  font-family: var(--ff-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.article-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+}
+.article-toc-list li {
+  counter-increment: toc;
+  margin: 0;
+}
+.article-toc-list a {
+  display: block;
+  padding: 8px 0 8px 14px;
+  border-left: 1px solid rgba(201, 169, 97, 0.22);
+  font-family: var(--ff-display);
+  font-size: 13.5px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--gold-soft);
+  text-decoration: none;
+  transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+  font-variation-settings: "opsz" 14, "SOFT" 30;
+}
+.article-toc-list a:hover {
+  color: var(--bone);
+  border-left-color: var(--gold);
+}
+.article-toc-list a.is-current {
+  color: var(--bone);
+  border-left-color: var(--gold);
+  border-left-width: 2px;
+  padding-left: 13px; /* compensate so text doesn't shift */
+  font-weight: 500;
+}
+
+/* Smooth-scroll target offset so anchored sections land below the topbar. */
+.article-body h2 {
+  scroll-margin-top: 96px;
+}
+@media (min-width: 1024px) {
+  .article-body h2 { scroll-margin-top: 112px; }
+}
+@media (max-width: 1023px) {
+  .article-toc { display: none !important; }
+}
+
+.article-tail {
+  padding: clamp(48px, 6vw, 72px) 0 clamp(80px, 10vw, 140px);
+  background: var(--ink);
 }
 .article-return {
   display: inline-flex;
@@ -1872,6 +1978,117 @@ footer {
   font-weight: 300;
   max-width: 62ch;
   font-variation-settings: "opsz" 72, "SOFT" 80, "WONK" 1;
+}
+
+/* Author byline. Sits beneath the date in the hero meta. */
+.article-byline {
+  margin-top: 14px;
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--bone-muted);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  font-variation-settings: "opsz" 14, "SOFT" 80, "WONK" 1;
+}
+
+/* Italic gold accent on the meta title. Authors mark the accent fragment
+   of the title with <em>...</em> in the article HTML; the same markup is
+   re-used by the PDF cover for the gold italic moment. */
+.article-meta .article-title em {
+  font-style: italic;
+  color: var(--gold);
+  font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+}
+
+/* When the body sits inside the cream paper panel, switch all colors to
+   dark-on-paper. This is what fixes the "perceived bold" issue caused by
+   bright bone-on-ink body type, and what gives the page reading-grade
+   contrast (matches the reference PDF body-page treatment). */
+.article-paper .article-body {
+  color: var(--paper-ink);
+  counter-reset: article-section;
+}
+.article-paper .article-body h2,
+.article-paper .article-body h3 {
+  color: var(--paper-ink);
+}
+
+/* Section design rhythm. Each H2 gets a short gold hairline above it as a
+   visual divider so the page reads as a sequence of moments rather than
+   one continuous wall of prose. The first paragraph of each section gets
+   a serif drop-cap in gold-deep — quiet editorial flourish that lifts the
+   page without crowding the type. The first H2 keeps the rule but the
+   margin is reduced because the divider above the body already separates
+   it from the title. */
+.article-paper .article-body h2 {
+  counter-increment: article-section;
+  position: relative;
+  padding-top: clamp(36px, 4vw, 52px);
+  margin-top: clamp(64px, 7vw, 96px);
+}
+.article-paper .article-body h2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 1px;
+  background: var(--gold-deep);
+}
+.article-paper .article-body h2 + p::first-letter {
+  font-family: var(--ff-display);
+  font-size: 4em;
+  line-height: 0.85;
+  font-weight: 300;
+  color: var(--gold-deep);
+  float: left;
+  padding: 6px 14px 0 0;
+  margin-top: 4px;
+  font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+}
+.article-paper .article-body h2:first-of-type {
+  margin-top: clamp(40px, 4vw, 56px);
+}
+
+/* Closing summary H2 ("What this list is, and what it is not.") — no
+   number prefix in source, treated like a regular section. */
+.article-paper .article-body blockquote {
+  color: var(--paper-ink);
+  border-left-color: var(--gold-deep);
+}
+.article-paper .article-body strong,
+.article-paper .article-body b {
+  color: var(--paper-ink);
+  font-weight: 500; /* a notch above body, well below 600 — avoids the bold-on-bold effect */
+}
+.article-paper .article-body em,
+.article-paper .article-body i {
+  color: var(--paper-ink);
+}
+.article-paper .article-body a {
+  color: var(--gold-deep);
+  text-decoration-color: rgba(168, 134, 62, 0.45);
+}
+.article-paper .article-body a:hover { color: var(--gold-darkest); }
+.article-paper .article-body ul li::before { background: var(--gold-deep); }
+.article-paper .article-body ol li::before { color: var(--gold-deep); }
+.article-paper .callout {
+  background: rgba(168, 134, 62, 0.08);
+  border-left-color: var(--gold-deep);
+}
+.article-paper .callout p { color: var(--paper-ink); }
+.article-paper .callout-label { color: var(--gold-deep); }
+.article-paper .callout-caution { background: rgba(168, 134, 62, 0.14); }
+.article-paper .article-disclaimer {
+  color: var(--paper-muted);
+  border-top: 1px solid var(--paper-rule);
+  padding-top: 24px;
+}
+.article-paper .article-divider.is-full {
+  background: var(--paper-rule);
+  opacity: 1;
 }
 
 /* Article-specific print overrides (main print block handles the rest) */

@@ -77,31 +77,39 @@
 
   <main id="main">
     <article class="article">
-      <div class="article-container">
 
-        <a href="./" class="article-return">&larr; Return to Notes</a>
+      <div class="article-hero">
+        <div class="article-container">
 
-        <header class="article-meta">
-          <p class="article-eyebrow">All Categories</p>
+          <a href="./" class="article-return">&larr; Return to Notes</a>
 
-          <h1 class="article-title">What actually breaks deals between signing and closing.</h1>
+          <header class="article-meta">
+            <p class="article-eyebrow">All Categories</p>
 
-          <p class="article-date">27 Apr 2026</p>
+            <h1 class="article-title">What actually breaks deals between signing and closing.</h1>
 
-          <!--
-            PDF DOWNLOAD LINK
-            Uncomment after generating the PDF and placing it at:
-              /notes/assets/pdf/deals-between-signing-and-closing.pdf
+            <p class="article-date">27 Apr 2026</p>
 
-          <p class="article-pdf-link">
-            <a href="assets/pdf/deals-between-signing-and-closing.pdf" download>Download as PDF</a>
-          </p>
-          -->
-        </header>
+            <p class="article-byline">By Taran Aujla, Salesperson</p>
 
-        <hr class="article-divider" aria-hidden="true" />
+            <p class="article-pdf-link">
+              <a href="assets/pdf/deals-between-signing-and-closing.pdf" download>Download as PDF</a>
+            </p>
+          </header>
 
-        <div class="article-body">
+        </div>
+      </div>
+
+      <div class="article-paper panel-light">
+        <div class="article-paper-inner">
+
+          <aside class="article-toc" aria-label="Sections in this note" data-toc>
+            <p class="article-toc-label">Contents</p>
+            <ol class="article-toc-list" data-toc-list></ol>
+          </aside>
+
+          <div class="article-body-wrap">
+          <div class="article-body">
 
           <p>The most stressful period in a real estate transaction is rarely the negotiation. It is the gap between firm and close.</p>
 
@@ -191,17 +199,25 @@
 
           <p>The contract is the rulebook for the gap. The work in the gap is what determines whether the closing happens on the original date, on a renegotiated date, or not at all.</p>
 
+          </div>
+
+          <hr class="article-divider is-full" aria-hidden="true" />
+
+          <p class="article-disclaimer">
+            This piece is a written observation from the practice. Not legal advice. Legal opinions stay with your lawyer.
+          </p>
+
+          </div><!-- /.article-body-wrap -->
+
         </div>
-
-        <hr class="article-divider is-full" aria-hidden="true" />
-
-        <p class="article-disclaimer">
-          This piece is a written observation from the practice. Not legal advice. Legal opinions stay with your lawyer.
-        </p>
-
-        <a href="./" class="article-return article-return-bottom">&larr; Return to Notes</a>
-
       </div>
+
+      <div class="article-tail">
+        <div class="article-container">
+          <a href="./" class="article-return article-return-bottom">&larr; Return to Notes</a>
+        </div>
+      </div>
+
     </article>
   </main>
 
@@ -291,6 +307,102 @@
       apply();
       window.addEventListener('scroll', apply, { passive: true });
       window.addEventListener('resize', apply, { passive: true });
+    })();
+
+    // -------------------- Article TOC (auto-built from <h2>) --------------------
+    // Behaviour:
+    //   * Scans .article-body h2 headings.
+    //   * Slugifies each heading's text and assigns it as the heading's id
+    //     (skipped if the heading already has an id, so manual ids win).
+    //   * Builds a list of links inside [data-toc-list].
+    //   * Reveals the TOC panel only when there are 2+ H2s (a single-section
+    //     note doesn't need a contents column).
+    //   * Highlights the section currently in view via IntersectionObserver.
+    //   * On click, smooth-scrolls to the section (CSS scroll-margin-top
+    //     handles the topbar offset).
+    (function(){
+      var toc = document.querySelector('[data-toc]');
+      var list = document.querySelector('[data-toc-list]');
+      if (!toc || !list) return;
+
+      var headings = Array.prototype.slice.call(document.querySelectorAll('.article-body h2'));
+      if (headings.length < 2) return; // not worth a TOC
+
+      var used = Object.create(null);
+      function slugify(text){
+        var s = String(text)
+          .toLowerCase()
+          .replace(/[\u2018\u2019\u201C\u201D]/g, '')
+          .replace(/[^a-z0-9\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .slice(0, 60);
+        if (!s) s = 'section';
+        var base = s, n = 1;
+        while (used[s]) { s = base + '-' + (++n); }
+        used[s] = true;
+        return s;
+      }
+
+      var anchors = [];
+      headings.forEach(function(h, i){
+        if (!h.id) h.id = slugify(h.textContent || ('section-' + (i + 1)));
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = (h.textContent || '').trim();
+        a.dataset.tocTarget = h.id;
+        a.addEventListener('click', function(ev){
+          ev.preventDefault();
+          var target = document.getElementById(h.id);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + h.id);
+          }
+        });
+        li.appendChild(a);
+        list.appendChild(li);
+        anchors.push(a);
+      });
+
+      toc.classList.add('is-ready');
+
+      // Active-section highlight. Pick whichever heading's top is closest to
+      // (but not below) the topbar offset. IntersectionObserver gives us
+      // O(1) updates per scroll without rebinding scroll listeners.
+      var current = null;
+      function setCurrent(id){
+        if (current === id) return;
+        current = id;
+        anchors.forEach(function(a){
+          if (a.dataset.tocTarget === id) a.classList.add('is-current');
+          else a.classList.remove('is-current');
+        });
+      }
+
+      // Active-section tracker. Every paint, pick the heading whose top
+      // is closest to (but not below) the topbar offset line. A scroll
+      // listener is more reliable than IntersectionObserver here because
+      // jump-scrolls (anchor clicks, address-bar nav) skip the IO band
+      // entirely and leave the TOC frozen on the previous section.
+      var offset = 120; // distance from viewport top below which a heading counts as active
+      var ticking = false;
+      function pickActive(){
+        ticking = false;
+        var picked = headings[0];
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top - offset <= 0) picked = headings[i];
+          else break;
+        }
+        if (picked) setCurrent(picked.id);
+      }
+      function onScroll(){
+        if (!ticking) { ticking = true; requestAnimationFrame(pickActive); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      pickActive();
     })();
   </script>
 
