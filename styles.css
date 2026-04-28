@@ -636,6 +636,14 @@ section h2 em {
   backface-visibility: hidden;
   transition: border-color .35s ease, background .35s ease;
 }
+/* Permanent soft gold frame on the FRONT face only. Gives every card the
+   brand accent at rest so the four-up grid reads as a deliberate set
+   rather than dark voids on dark. The BACK face keeps the quiet ink-rule
+   border, since the gold top-accent line (.lane-back::before) is the
+   active visual on the flipped state. */
+.lane-front {
+  border-color: rgba(201, 169, 97, 0.38);
+}
 .lane-front::before,
 .lane-back::before {
   content: '';
@@ -696,7 +704,7 @@ section h2 em {
 }
 
 .lane:not(.is-flipped) .lane-front:hover {
-  border-color: rgba(201, 169, 97, 0.35);
+  border-color: rgba(201, 169, 97, 0.75);
   background: #121722;
 }
 .lane:not(.is-flipped) .lane-front:hover::before { opacity: 1; }
