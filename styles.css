@@ -251,6 +251,27 @@ h1 em, h2 em, h3 em {
   transition: color .25s ease;
 }
 .brand:hover .brand-mark { color: var(--gold); }
+
+/* Two-tone brand mark. Outer L-frame renders in champagne gold so the mark
+   carries the brand accent everywhere it appears; inner detail renders in
+   bone for the dark-ink topbar/footer or in paper-ink for the cream
+   over-light topbar state. CSS `fill` overrides the inline
+   `fill="currentColor"` on each polygon. */
+.brand-mark polygon:first-of-type,
+.footer-mark polygon:first-of-type {
+  fill: var(--gold);
+}
+.brand-mark polygon:last-of-type,
+.footer-mark polygon:last-of-type {
+  fill: var(--bone);
+  opacity: 1;
+}
+.topbar.over-light .brand-mark polygon:first-of-type {
+  fill: var(--gold-deep);
+}
+.topbar.over-light .brand-mark polygon:last-of-type {
+  fill: var(--paper-ink);
+}
 .brand-wordmark {
   display: inline-flex;
   flex-direction: column;
