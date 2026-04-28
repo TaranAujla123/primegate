@@ -1723,17 +1723,23 @@ footer {
   counter-increment: toc;
   margin: 0;
 }
+/* Resting state: every section reads clearly so the reader sees the full
+   shape of the article. Bone at ~78% opacity keeps it bright and legible
+   against the dark card without competing with the active row.
+   Active state: full bone + a thicker gold left border + slight weight bump
+   makes the current section unmistakable, while the unread sections still
+   look like a real list of forthcoming content rather than greyed-out filler. */
 .article-toc-list a {
   display: block;
   padding: 8px 0 8px 14px;
-  border-left: 1px solid rgba(201, 169, 97, 0.22);
+  border-left: 1px solid rgba(201, 169, 97, 0.30);
   font-family: var(--ff-display);
   font-size: 13.5px;
   line-height: 1.4;
   font-weight: 400;
-  color: var(--gold-soft);
+  color: rgba(237, 232, 220, 0.82);
   text-decoration: none;
-  transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+  transition: color .2s ease, border-color .2s ease, border-left-width .2s ease, padding-left .2s ease;
   font-variation-settings: "opsz" 14, "SOFT" 30;
 }
 .article-toc-list a:hover {
@@ -1744,7 +1750,7 @@ footer {
   color: var(--bone);
   border-left-color: var(--gold);
   border-left-width: 2px;
-  padding-left: 13px; /* compensate so text doesn't shift */
+  padding-left: 13px; /* compensate so text doesn't shift on activation */
   font-weight: 500;
 }
 
