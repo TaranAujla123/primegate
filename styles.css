@@ -17,12 +17,15 @@
   /* Bumped from 0.42 to 0.58 to clear WCAG AA on dark ink (was 3.54:1, now ~5.1:1). */
   --bone-faint:   rgba(237, 232, 220, 0.58);
 
-  --gold:         #C9A961;   /* Champagne signature, used on dark ink. */
-  --gold-deep:    #A8863E;   /* Decorative use only on paper (rules, bars, dividers). */
-  /* Gold dark enough to clear WCAG AA when used as TEXT on the paper panel.
-     Used on .panel-light for section labels, form labels, intake-path labels. */
-  --gold-darkest: #6B5320;
-  --gold-soft:    rgba(201, 169, 97, 0.18);
+  /* v3 Direction A — Burnished Bronze.
+     Semantic names retained as --gold-* so call sites do not need to be
+     rewritten. Visually the brand accent is now warmer, more masculine,
+     more "Sotheby's contemporary" than "champagne wedding band". */
+  --gold:         #B8732D;   /* Burnished bronze, used on dark ink. */
+  --gold-deep:    #8E5520;   /* Deeper bronze, used on paper (rules, bars, dividers). */
+  /* Bronze dark enough to clear WCAG AA when used as TEXT on the paper panel. */
+  --gold-darkest: #5C3A14;
+  --gold-soft:    rgba(184, 115, 45, 0.16);
 
   /* Light panel (About, Intake) */
   --paper:        #F2ECDE;
@@ -34,8 +37,12 @@
   /* Brand-blue (logo) — used ONLY inside the icon when coloured variant is shown */
   --brand-blue:   #078ED1;
 
-  /* Typography */
-  --ff-display:   'Fraunces', 'Cormorant Garamond', 'Times New Roman', serif;
+  /* Typography — v3 Direction A.
+     Display: Source Serif 4 (Adobe). Free Google Fonts analog of GT Sectra
+     Display / Tiempos Headline. Modern editorial serif with sharp terminals,
+     less literary than Fraunces. opsz axis from 8 to 60.
+     Body: Inter (kept) — neutral grotesque, well-paired with the new serif. */
+  --ff-display:   'Source Serif 4', 'Tiempos Headline', 'GT Sectra', 'Iowan Old Style', Georgia, serif;
   --ff-sans:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   /* Layout */
@@ -150,12 +157,18 @@ h1 em, h2 em, h3 em {
   font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
 }
 
+/* v3 eyebrow treatment: lowercase italic in the display serif with a
+   short bronze hairline. Replaces the uppercase letterspaced sans-serif
+   used in v2 — that pattern read as "lawyer's eyebrow" / regulatory
+   small-caps; the italic kicker reads as "editor's note" / quietly
+   confident. Used for .eyebrow and .section-label site-wide. */
 .eyebrow, .section-label {
-  font-family: var(--ff-sans);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+  font-family: var(--ff-display);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--gold);
   display: inline-flex;
   align-items: center;
@@ -164,14 +177,14 @@ h1 em, h2 em, h3 em {
 }
 .section-label::before {
   content: '';
-  width: 32px;
+  width: 28px;
   height: 1px;
   background: var(--gold);
   display: inline-block;
 }
 
 .eyebrow-rule {
-  width: 32px;
+  width: 28px;
   height: 1px;
   background: var(--gold);
   display: inline-block;
@@ -450,12 +463,14 @@ h1 em, h2 em, h3 em {
      widths. The H1 still caps Line 1 at 15ch via its own max-width. */
   max-width: 100%;
 }
+/* v3: italic-gold title accent removed. <em> in the H1 now reads as
+   plain italic in bone, no colour shift. The hierarchy moment moves to
+   weight + size + the subhead below, not ornamentation on the headline. */
 .hero h1 em {
   font-style: italic;
   font-weight: 300;
-  color: var(--gold);
-  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-  letter-spacing: -0.04em;
+  color: var(--bone);
+  letter-spacing: -0.018em;
 }
 
 .hero-subhead {
@@ -544,11 +559,12 @@ section h2 {
   max-width: 14ch;
   font-variation-settings: "opsz" 144, "SOFT" 30;
 }
+/* v3: H2 italic accent moves from gold to bone. */
 section h2 em {
-  color: var(--gold);
+  color: var(--bone);
   font-style: italic;
   font-weight: 300;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.018em;
 }
 
 .section-lede {
@@ -781,17 +797,21 @@ section h2 em {
   letter-spacing: -0.015em;
   font-variation-settings: "opsz" 72, "SOFT" 50;
 }
+/* v3: lane tag pill switches from tracked uppercase sans to italic
+   serif. Bronze ring kept; reads as an editorial caption, not a
+   regulatory badge. */
 .lane-tag {
   display: inline-block;
   align-self: flex-start;
-  font-family: var(--ff-sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--ff-display);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--gold);
-  padding: 7px 14px;
-  border: 1px solid rgba(201, 169, 97, 0.35);
+  padding: 6px 14px;
+  border: 1px solid rgba(184, 115, 45, 0.35);
   border-radius: 999px;
 }
 .lane p {
@@ -942,14 +962,11 @@ section h2 em {
   flex-direction: column;
   gap: 18px;
 }
+/* v3: pillar Roman numerals hidden. The pillar grid (3+3) reads cleanly
+   without the I-VI ornament, which was reading as legal/regulatory rather
+   than confident-practitioner. */
 .pillar-num {
-  font-family: var(--ff-display);
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  font-variation-settings: "opsz" 72, "WONK" 1;
-  font-weight: 500;
+  display: none;
 }
 .pillar h4 {
   font-family: var(--ff-display);
@@ -1013,8 +1030,11 @@ section h2 em {
 .panel-light h2, .panel-light h3 {
   color: var(--paper-ink);
 }
+/* v3: italic em on cream panels stays paper-ink — no bronze on the
+   headline itself, headlines should hold their own typographically. */
 .panel-light h2 em, .panel-light h3 em {
-  color: var(--gold-deep);
+  color: var(--paper-ink);
+  font-style: italic;
 }
 .panel-light .section-lede { color: var(--paper-muted); }
 
@@ -1574,15 +1594,17 @@ footer {
 .notes-entry:hover { border-top-color: rgba(201, 169, 97, 0.35); }
 .notes-entry:hover + .notes-entry { border-top-color: rgba(201, 169, 97, 0.35); }
 
+/* v3: notes index entry tag — italic serif pill, matches lane-tag. */
 .notes-entry-tag {
-  font-family: var(--ff-sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--ff-display);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--gold);
-  padding: 6px 12px;
-  border: 1px solid rgba(201, 169, 97, 0.35);
+  padding: 5px 12px;
+  border: 1px solid rgba(184, 115, 45, 0.35);
   border-radius: 999px;
   white-space: nowrap;
   align-self: center;
@@ -2028,12 +2050,12 @@ footer {
   font-variation-settings: "opsz" 14, "SOFT" 80, "WONK" 1;
 }
 
-/* Italic gold accent on the meta title. Authors mark the accent fragment
-   of the title with <em>...</em> in the article HTML; the same markup is
-   re-used by the PDF cover for the gold italic moment. */
+/* v3: italic em on the article title stays plain bone (no bronze).
+   The PDF cover keeps its own gold italic via pdf-template.html — print
+   has the room for the flourish, the website doesn't need it twice. */
 .article-meta .article-title em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--bone);
   font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
 }
 
