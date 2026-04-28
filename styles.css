@@ -286,9 +286,6 @@ h1 em, h2 em, h3 em {
   font-variation-settings: "opsz" 72, "SOFT" 30;
 }
 .brand-sub {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
   font-family: var(--ff-sans);
   font-size: 9.5px;
   font-weight: 400;
@@ -296,25 +293,6 @@ h1 em, h2 em, h3 em {
   text-transform: uppercase;
   color: var(--bone-muted);
   margin-top: 6px;
-  line-height: 1.4;
-}
-/* Two-line subline: practice attribution above, brokerage attribution
-   below in champagne gold. Brokerage line carries the RECO prominence
-   requirement at every scroll position; the gold treatment lifts it
-   from compliance-footnote to designed brand element. */
-.brand-sub-line2 {
-  color: var(--gold);
-}
-.topbar.over-light .brand-sub-line2 {
-  color: var(--gold-deep);
-}
-/* Mobile: the brand wordmark column is too narrow to fit both subline
-   strings without each one wrapping to two visual lines. Drop line 1
-   below 600px and keep only the brokerage line — that's the line the
-   compliance requirement attaches to, and the gold accent keeps it
-   visually anchored under the Primegate wordmark. */
-@media (max-width: 600px) {
-  .brand-sub-line1 { display: none; }
 }
 
 .topbar nav ul {
