@@ -42,9 +42,14 @@
   --paper-ink:   oklch(15% 0.006 250);
   --paper-muted: oklch(40% 0.010 80);
 
-  /* Type stacks — variable fonts loaded via Google Fonts CDN */
-  --ff-display:  'Bricolage Grotesque', 'Helvetica Neue', system-ui, sans-serif;
-  --ff-body:     'Onest', 'Helvetica Neue', system-ui, sans-serif;
+  /* Type stacks — variable fonts loaded via Google Fonts CDN.
+     Archivo (Omnibus-Type) replaces the earlier Bricolage Grotesque pick.
+     Bricolage's rounded terminals read cartoonish at display scale;
+     Archivo is a sharper neo-grotesque with proper architectural
+     proportions. Black weight (900) carries the brutalist signature;
+     Regular (400) handles body prose. */
+  --ff-display:  'Archivo', 'Helvetica Neue', system-ui, sans-serif;
+  --ff-body:     'Archivo', 'Helvetica Neue', system-ui, sans-serif;
   --ff-mono:     'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
 
   /* Spacing — 4pt scale with semantic names. */
