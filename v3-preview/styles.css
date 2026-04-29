@@ -31,8 +31,16 @@
   --bone-faint:  oklch(58% 0.014 80);
 
   /* Signal — the rare moment of brightness. Pure-ish but warm. Used
-     for the H1 manifesto only. Everywhere else is bone. */
+     for the H1 manifesto only. */
   --signal:      oklch(98% 0.004 80);
+
+  /* Accent — burnished cognac. Warm, low-saturation, masculine.
+     The page was reading too austere as pure bone-on-ink; this
+     introduces a single brand temperature without going back to
+     champagne wedding gold. Used sparingly: hairline above eyebrows,
+     hover states, accent rules. NOT used on body text. */
+  --accent:      oklch(63% 0.115 55);
+  --accent-soft: oklch(63% 0.115 55 / 0.20);
 
   /* Paper panel — for long-form article body only. Cream with a
      brand-tinted warmth. */
@@ -82,7 +90,7 @@
   --t-xs:        0.6875rem;   /* 11px caption */
   --t-mono-tag:  0.6875rem;   /* 11px tag */
 
-  --t-display-1: clamp(48px, 10vw, 152px);  /* hero manifesto — sized so 3 lines fit in 100vh on common desktop heights */
+  --t-display-1: clamp(44px, 8.5vw, 124px);  /* hero manifesto — sized so 3 lines fit comfortably in 100vh and lines never bleed off screen */
   --t-display-2: clamp(40px, 7vw, 96px);    /* section H1 */
   --t-display-3: clamp(28px, 4vw, 56px);    /* subsection H2 */
   --t-display-4: clamp(22px, 2.4vw, 32px);  /* H3 */
@@ -128,10 +136,10 @@ a {
   transition: color .2s ease, border-color .2s ease;
 }
 
-::selection { background: var(--signal); color: var(--ink); }
+::selection { background: var(--accent); color: var(--ink); }
 
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -204,9 +212,9 @@ p { font-family: var(--ff-body); }
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 18px var(--pad-x);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-xl);
 }
 .brand {
@@ -214,6 +222,8 @@ p { font-family: var(--ff-body); }
   align-items: center;
   gap: 12px;
   color: var(--bone);
+  flex: 0 0 auto;
+  min-width: 0;
 }
 .brand-mark {
   width: 28px; height: 28px;
@@ -250,16 +260,25 @@ p { font-family: var(--ff-body); }
 }
 
 /* Primary nav */
-.topbar nav { justify-self: center; display: none; }
-@media (min-width: 880px) {
-  .topbar nav { display: block; }
+.topbar > nav,
+.topbar-inner > nav {
+  display: none;
+  flex: 0 1 auto;
+  min-width: 0;
 }
-.topbar nav ul {
+@media (min-width: 960px) {
+  .topbar > nav,
+  .topbar-inner > nav { display: block; }
+}
+.topbar > nav ul,
+.topbar-inner > nav ul {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: clamp(20px, 2vw, 36px);
+  flex-wrap: nowrap;
 }
-.topbar nav a {
+.topbar > nav a,
+.topbar-inner > nav a {
   font-family: var(--ff-mono);
   font-size: var(--t-mono-tag);
   font-weight: 500;
@@ -268,11 +287,14 @@ p { font-family: var(--ff-body); }
   color: var(--bone-muted);
   padding-block: 6px;
   border-bottom: 1px solid transparent;
+  white-space: nowrap;
 }
-.topbar nav a:hover,
-.topbar nav a[aria-current="page"] {
+.topbar > nav a:hover,
+.topbar-inner > nav a:hover,
+.topbar > nav a[aria-current="page"],
+.topbar-inner > nav a[aria-current="page"] {
   color: var(--bone);
-  border-bottom-color: var(--bone);
+  border-bottom-color: var(--accent);
 }
 .nav-cta {
   font-family: var(--ff-mono);
@@ -284,11 +306,14 @@ p { font-family: var(--ff-body); }
   background: var(--bone);
   padding: 12px 22px;
   border: 1px solid var(--bone);
-  transition: background-color .2s ease, color .2s ease;
+  white-space: nowrap;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
 }
-.nav-cta:hover { background: var(--signal); border-color: var(--signal); }
-.topbar nav a.nav-cta { color: var(--ink); border-bottom-color: transparent; }
-.topbar nav a.nav-cta:hover { color: var(--ink); border-bottom-color: transparent; }
+.nav-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.topbar > nav a.nav-cta,
+.topbar-inner > nav a.nav-cta { color: var(--ink); border-bottom-color: transparent; }
+.topbar > nav a.nav-cta:hover,
+.topbar-inner > nav a.nav-cta:hover { color: var(--ink); border-bottom-color: transparent; }
 
 /* Mobile nav toggle */
 .nav-toggle {
@@ -298,8 +323,9 @@ p { font-family: var(--ff-body); }
   width: 28px;
   height: 18px;
   padding: 0;
+  flex: 0 0 auto;
 }
-@media (min-width: 880px) {
+@media (min-width: 960px) {
   .nav-toggle { display: none; }
 }
 .nav-toggle span {
@@ -315,6 +341,11 @@ p { font-family: var(--ff-body); }
   border-top: 1px solid var(--ink-rule);
   padding: var(--space-xl) var(--pad-x);
   z-index: 99;
+}
+@media (min-width: 960px) {
+  /* Hard-hide on desktop so the panel cannot leak even if the
+     hidden attribute is removed by a script. */
+  .mobile-nav { display: none !important; }
 }
 .mobile-nav ul {
   display: flex;
@@ -345,13 +376,23 @@ p { font-family: var(--ff-body); }
   padding: clamp(120px, 16vh, 200px) var(--pad-x) clamp(60px, 8vh, 96px);
 }
 .hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   font-family: var(--ff-mono);
   font-size: var(--t-mono-tag);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bone-faint);
+  color: var(--accent);
   margin-bottom: clamp(48px, 6vw, 88px);
+}
+.hero-tag::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
 }
 
 /* The manifesto — three lines at display scale, ragged-right.
@@ -373,9 +414,12 @@ p { font-family: var(--ff-body); }
   color: var(--signal);
   font-variation-settings: "opsz" 96, "wdth" 95;
 }
-.hero-manifesto-line:nth-child(1) { font-weight: 700; }
-.hero-manifesto-line:nth-child(2) { font-weight: 500; color: var(--bone); }
-.hero-manifesto-line:nth-child(3) { font-weight: 800; }
+.hero-manifesto-line:nth-child(1) { font-weight: 700; color: var(--bone); }
+.hero-manifesto-line:nth-child(2) { font-weight: 500; color: var(--bone-muted); }
+.hero-manifesto-line:nth-child(3) { font-weight: 800; color: var(--signal); }
+/* The third line lands as the page's brightest moment — the conclusion
+   of the manifesto. The single accent moment in the manifesto is held
+   for hover/interaction states elsewhere. */
 
 /* Tiny editorial caption — the contrast moment. 11px next to 200px. */
 .hero-caption {
@@ -410,6 +454,7 @@ p { font-family: var(--ff-body); }
   text-align: end;
 }
 .hero-meta span { display: block; }
+.hero-meta span:last-child { color: var(--accent); }
 
 /* ---------- Section primitives ---------- */
 
@@ -424,9 +469,9 @@ p { font-family: var(--ff-body); }
   font-family: var(--ff-mono);
   font-size: var(--t-mono-tag);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bone-faint);
+  color: var(--accent);
   margin-bottom: var(--space-2xl);
 }
 .section-eyebrow::before {
@@ -436,8 +481,8 @@ p { font-family: var(--ff-body); }
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0;
-  color: var(--bone);
-  border: 1px solid var(--bone-faint);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   padding: 3px 7px;
 }
 body { counter-reset: section; }
@@ -599,7 +644,7 @@ body { counter-reset: section; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-style: normal;
-  color: var(--bone-faint);
+  color: var(--accent);
   text-align: center;
 }
 
@@ -744,13 +789,13 @@ body { counter-reset: section; }
   text-transform: uppercase;
   color: var(--bone);
   padding-block: 14px;
-  border-bottom: 1px solid var(--bone);
+  border-bottom: 1px solid var(--accent);
   align-self: flex-start;
   transition: color .2s ease, border-color .2s ease, gap .2s ease;
 }
 .button-line:hover {
-  color: var(--signal);
-  border-bottom-color: var(--signal);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
   gap: 18px;
 }
 .button-line .arrow { display: inline-block; transition: transform .2s ease; }
@@ -822,7 +867,7 @@ body { counter-reset: section; }
 }
 .field input:focus,
 .field select:focus,
-.field textarea:focus { outline: none; border-bottom-color: var(--signal); }
+.field textarea:focus { outline: none; border-bottom-color: var(--accent); }
 .field textarea { resize: vertical; min-height: 120px; line-height: 1.55; }
 .field select {
   appearance: none;
@@ -847,7 +892,7 @@ body { counter-reset: section; }
   align-self: flex-start;
   transition: background-color .2s ease, color .2s ease;
 }
-.submit:hover { background: var(--signal); border-color: var(--signal); }
+.submit:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
 .submit-note {
   font-family: var(--ff-body);
   font-size: 13px;
@@ -938,10 +983,10 @@ footer[role="contentinfo"] {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--bone);
+  color: var(--accent);
   margin-top: var(--space-sm);
 }
-.footer-cta:hover { color: var(--signal); }
+.footer-cta:hover { color: var(--bone); }
 
 .disclosure-block { display: flex; flex-direction: column; gap: var(--space-md); }
 .disclosure-block p {
