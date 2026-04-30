@@ -113,7 +113,7 @@ type.
 Notes section, two-path intake form, branded `/thanks/` page, sticky
 TOC on long-form articles, cream paper panel for article body, auto
 PDF generation pipeline (Puppeteer), four practice categories, six
-commitment headings as content.
+standard headings as content.
 
 ### What's up for reconsideration
 
