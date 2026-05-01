@@ -17,12 +17,12 @@
   /* Bumped from 0.42 to 0.58 to clear WCAG AA on dark ink (was 3.54:1, now ~5.1:1). */
   --bone-faint:   rgba(237, 232, 220, 0.58);
 
-  --gold:         #C9A961;   /* Champagne signature, used on dark ink. */
+  --gold:         #B8972E;   /* TEST A — burnished/darker gold, deal-maker weight. */
   --gold-deep:    #A8863E;   /* Decorative use only on paper (rules, bars, dividers). */
   /* Gold dark enough to clear WCAG AA when used as TEXT on the paper panel.
      Used on .panel-light for section labels, form labels, intake-path labels. */
   --gold-darkest: #6B5320;
-  --gold-soft:    rgba(201, 169, 97, 0.18);
+  --gold-soft:    rgba(184, 151, 46, 0.18);
 
   /* Light panel (About, Intake) */
   --paper:        #F2ECDE;
@@ -399,7 +399,7 @@ h1 em, h2 em, h3 em {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(1200px 600px at 85% 20%, rgba(201, 169, 97, 0.10), transparent 70%),
+    radial-gradient(1200px 600px at 85% 20%, rgba(184, 151, 46, 0.10), transparent 70%),
     radial-gradient(900px 500px at 10% 90%, rgba(7, 142, 209, 0.06), transparent 70%);
   z-index: 0;
 }
@@ -642,7 +642,7 @@ section h2 em {
    border, since the gold top-accent line (.lane-back::before) is the
    active visual on the flipped state. */
 .lane-front {
-  border-color: rgba(201, 169, 97, 0.38);
+  border-color: rgba(184, 151, 46, 0.38);
 }
 .lane-front::before,
 .lane-back::before {
@@ -704,7 +704,7 @@ section h2 em {
 }
 
 .lane:not(.is-flipped) .lane-front:hover {
-  border-color: rgba(201, 169, 97, 0.75);
+  border-color: rgba(184, 151, 46, 0.75);
   background: #121722;
 }
 .lane:not(.is-flipped) .lane-front:hover::before { opacity: 1; }
@@ -791,7 +791,7 @@ section h2 em {
   text-transform: uppercase;
   color: var(--gold);
   padding: 7px 14px;
-  border: 1px solid rgba(201, 169, 97, 0.35);
+  border: 1px solid rgba(184, 151, 46, 0.35);
   border-radius: 999px;
 }
 .lane p {
@@ -845,16 +845,16 @@ section h2 em {
     height: 100%;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(201, 169, 97, 0.4) transparent;
+    scrollbar-color: rgba(184, 151, 46, 0.4) transparent;
   }
   .lane-back::-webkit-scrollbar { width: 6px; }
   .lane-back::-webkit-scrollbar-track { background: transparent; }
   .lane-back::-webkit-scrollbar-thumb {
-    background: rgba(201, 169, 97, 0.35);
+    background: rgba(184, 151, 46, 0.35);
     border-radius: 3px;
   }
   .lane-back::-webkit-scrollbar-thumb:hover {
-    background: rgba(201, 169, 97, 0.6);
+    background: rgba(184, 151, 46, 0.6);
   }
 
   /* Typography scaled for the narrower 4-col cards. */
@@ -893,7 +893,7 @@ section h2 em {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(900px 500px at 50% 100%, rgba(201, 169, 97, 0.05), transparent 70%);
+  background: radial-gradient(900px 500px at 50% 100%, rgba(184, 151, 46, 0.05), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -1571,8 +1571,8 @@ footer {
   transition: border-color .25s ease;
 }
 .notes-entry:last-of-type { border-bottom: 1px solid var(--ink-rule); }
-.notes-entry:hover { border-top-color: rgba(201, 169, 97, 0.35); }
-.notes-entry:hover + .notes-entry { border-top-color: rgba(201, 169, 97, 0.35); }
+.notes-entry:hover { border-top-color: rgba(184, 151, 46, 0.35); }
+.notes-entry:hover + .notes-entry { border-top-color: rgba(184, 151, 46, 0.35); }
 
 .notes-entry-tag {
   font-family: var(--ff-sans);
@@ -1582,7 +1582,7 @@ footer {
   text-transform: uppercase;
   color: var(--gold);
   padding: 6px 12px;
-  border: 1px solid rgba(201, 169, 97, 0.35);
+  border: 1px solid rgba(184, 151, 46, 0.35);
   border-radius: 999px;
   white-space: nowrap;
   align-self: center;
@@ -1730,7 +1730,7 @@ footer {
   padding: 22px 22px 24px;
   max-height: calc(100vh - 130px);
   overflow-y: auto;
-  border: 1px solid rgba(201, 169, 97, 0.18);
+  border: 1px solid rgba(184, 151, 46, 0.18);
 }
 .article-toc.is-ready { display: block; }
 .article-toc-label {
@@ -1761,7 +1761,7 @@ footer {
 .article-toc-list a {
   display: block;
   padding: 8px 0 8px 14px;
-  border-left: 1px solid rgba(201, 169, 97, 0.30);
+  border-left: 1px solid rgba(184, 151, 46, 0.30);
   font-family: var(--ff-display);
   font-size: 13.5px;
   line-height: 1.4;
@@ -1882,7 +1882,7 @@ footer {
 }
 .article-divider.is-full {
   width: 100%;
-  background: rgba(201, 169, 97, 0.3);
+  background: rgba(184, 151, 46, 0.3);
 }
 
 .article-body {
@@ -1975,7 +1975,7 @@ footer {
 .callout {
   margin: clamp(32px, 4vw, 48px) 0;
   padding: 24px 28px;
-  background: rgba(201, 169, 97, 0.06);
+  background: rgba(184, 151, 46, 0.06);
   border-left: 2px solid var(--gold);
   max-width: 68ch;
 }
