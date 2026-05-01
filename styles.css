@@ -487,6 +487,34 @@ h1 em, h2 em, h3 em {
   color: var(--bone-muted);
 }
 
+/* Hero CTA — quiet italic-gold inline link to intake */
+.hero .hero-cta {
+  margin: 0 0 clamp(36px, 4.5vw, 56px);
+}
+.hero .hero-cta a {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 22px);
+  letter-spacing: -0.005em;
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
+  transition: text-decoration-color 0.3s ease;
+}
+.hero .hero-cta a:hover,
+.hero .hero-cta a:focus-visible {
+  text-decoration-color: currentColor;
+}
+.hero .hero-cta-arrow {
+  display: inline-block;
+  font-style: normal;
+  margin-left: 0.05em;
+}
+
 .hero .disclosure-inline {
   max-width: 560px;
   padding-top: 28px;
