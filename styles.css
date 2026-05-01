@@ -970,7 +970,10 @@ section h2 em {
   flex-direction: column;
   gap: 18px;
 }
-.pillar-num {
+/* Selector bumped from .pillar-num to .pillar .pillar-num so the gold colour
+   beats the later .pillar p { color: var(--bone-muted) } rule on specificity
+   (2 classes > 1 class + 1 element). */
+.pillar .pillar-num {
   font-family: var(--ff-display);
   font-size: 13px;
   font-style: italic;
