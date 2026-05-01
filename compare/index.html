@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Comparison — Champagne vs A vs D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #0A0D14;
+      color: #EDE8DC;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page-head {
+      max-width: 1700px;
+      margin: 0 auto;
+      padding: 48px 40px 32px;
+      border-bottom: 1px solid rgba(237,232,220,0.08);
+    }
+    .page-head h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 300;
+      font-size: 38px;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+    .page-head p {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(237,232,220,0.62);
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1700px;
+      margin: 0 auto;
+    }
+
+    .col {
+      padding: 40px 32px;
+      border-right: 1px solid rgba(237,232,220,0.08);
+      min-width: 0;
+    }
+    .col:last-child { border-right: none; }
+
+    /* Per-column gold token */
+    .col[data-gold="champagne"] { --gold: #C9A961; --gold-rgb: 201, 169, 97; --label: "Current — Champagne"; }
+    .col[data-gold="A"]         { --gold: #B8972E; --gold-rgb: 184, 151,  46; --label: "A — Burnished"; }
+    .col[data-gold="D"]         { --gold: #C8A84B; --gold-rgb: 200, 168,  75; --label: "D — Sharpened"; }
+
+    .col-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(237,232,220,0.08);
+      margin-bottom: 28px;
+    }
+    .col-name {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin: 0;
+    }
+    .col-hex {
+      font-family: "JetBrains Mono", "Menlo", monospace;
+      font-size: 11.5px;
+      color: rgba(237,232,220,0.42);
+      letter-spacing: 0.04em;
+    }
+
+    /* Big swatch */
+    .swatch {
+      height: 80px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .row {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(237,232,220,0.05);
+    }
+    .row:last-child { border-bottom: none; }
+
+    .row-label {
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(237,232,220,0.34);
+      font-weight: 500;
+      margin: 0 0 14px;
+    }
+
+    /* Hero italic at scale */
+    .hero-sample {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(40px, 4.6vw, 64px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.022em;
+      margin: 0;
+    }
+    .hero-sample em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    /* Eyebrow */
+    .eyebrow-sample {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin: 0;
+    }
+    .eyebrow-sample::before {
+      content: "";
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      flex: 0 0 48px;
+    }
+
+    /* Lane meta dashes */
+    .lane-meta {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+    .lane-meta li {
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(237,232,220,0.78);
+      position: relative;
+      padding-left: 14px;
+      font-weight: 500;
+    }
+    .lane-meta li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* Begin button outline */
+    .btn-sample {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: transparent;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* About SVG quotation glyph */
+    .quote-frame {
+      background: #0A0D14;
+      border: 1px solid rgba(237,232,220,0.10);
+      aspect-ratio: 4 / 5;
+      max-width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-frame svg { width: 100%; height: 100%; display: block; }
+
+    /* Brand mark "P" two-tone */
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand-mark-large {
+      width: 56px;
+      height: 56px;
+      color: var(--gold);
+    }
+    .brand-mark-small {
+      width: 28px;
+      height: 28px;
+      color: var(--gold);
+    }
+
+    /* Section heading em sample */
+    .heading-sample {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 300;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.018em;
+      margin: 0;
+    }
+    .heading-sample em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* Section label (cool gold uppercase eyebrow used in section heads) */
+    .section-label-sample {
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .footnote {
+      max-width: 1700px;
+      margin: 0 auto;
+      padding: 32px 40px 80px;
+      color: rgba(237,232,220,0.42);
+      font-size: 13px;
+      line-height: 1.6;
+      border-top: 1px solid rgba(237,232,220,0.08);
+    }
+    .footnote strong { color: rgba(237,232,220,0.78); font-weight: 500; }
+    .footnote code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      background: rgba(237,232,220,0.06);
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: 1fr; }
+      .col { border-right: none; border-bottom: 1px solid rgba(237,232,220,0.08); }
+      .col:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-head">
+    <h1>Gold comparison</h1>
+    <p>Three options at identical scale, on identical navy. The same mark, the same italic, the same eyebrow rule, the same hairline dashes — rendered three times.</p>
+  </header>
+
+  <section class="grid">
+
+    <!-- ============== CHAMPAGNE (CURRENT) ============== -->
+    <div class="col" data-gold="champagne">
+      <header class="col-head">
+        <p class="col-name">Current — Champagne</p>
+        <span class="col-hex">#C9A961</span>
+      </header>
+      <div class="swatch"></div>
+
+      <div class="row">
+        <p class="row-label">Brand mark · two scales</p>
+        <div class="brand-row">
+          <svg class="brand-mark-large" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+          <svg class="brand-mark-small" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Hero italic · "won"</p>
+        <p class="hero-sample">are <em>won</em> before</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Eyebrow rule</p>
+        <p class="eyebrow-sample">Ontario · By Referral</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section label</p>
+        <p class="section-label-sample">— The Practice</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section heading em</p>
+        <p class="heading-sample">Four categories. <em>Deliberately chosen.</em></p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Lane meta dashes</p>
+        <ul class="lane-meta">
+          <li>Builder track record</li>
+          <li>Deposit structure</li>
+          <li>Exit liquidity</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Begin button outline</p>
+        <a class="btn-sample">Begin <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="row">
+        <p class="row-label">About — opening glyph &amp; rules</p>
+        <div class="quote-frame">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="500" fill="#0A0D14"/>
+            <rect x="28" y="28" width="344" height="444" fill="none" stroke="#EDE8DC" stroke-opacity="0.10" stroke-width="1"/>
+            <path d="M 46 46 L 46 64 M 46 46 L 64 46" stroke="#C9A961" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 46 L 354 64 M 354 46 L 336 46" stroke="#C9A961" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 46 454 L 46 436 M 46 454 L 64 454" stroke="#C9A961" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 454 L 354 436 M 354 454 L 336 454" stroke="#C9A961" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <text x="86" y="232" font-family="Fraunces, Georgia, serif" font-size="220" font-style="italic" font-weight="300" fill="#C9A961" fill-opacity="0.92" letter-spacing="-0.04em">&#x201C;</text>
+            <line x1="68" y1="364" x2="332" y2="364" stroke="#C9A961" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="120" y1="364" x2="120" y2="372" stroke="#C9A961" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="200" y1="364" x2="200" y2="374" stroke="#C9A961" stroke-width="1"/>
+            <line x1="280" y1="364" x2="280" y2="372" stroke="#C9A961" stroke-opacity="0.85" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== A — BURNISHED ============== -->
+    <div class="col" data-gold="A">
+      <header class="col-head">
+        <p class="col-name">A — Burnished</p>
+        <span class="col-hex">#B8972E</span>
+      </header>
+      <div class="swatch"></div>
+
+      <div class="row">
+        <p class="row-label">Brand mark · two scales</p>
+        <div class="brand-row">
+          <svg class="brand-mark-large" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+          <svg class="brand-mark-small" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Hero italic · "won"</p>
+        <p class="hero-sample">are <em>won</em> before</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Eyebrow rule</p>
+        <p class="eyebrow-sample">Ontario · By Referral</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section label</p>
+        <p class="section-label-sample">— The Practice</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section heading em</p>
+        <p class="heading-sample">Four categories. <em>Deliberately chosen.</em></p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Lane meta dashes</p>
+        <ul class="lane-meta">
+          <li>Builder track record</li>
+          <li>Deposit structure</li>
+          <li>Exit liquidity</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Begin button outline</p>
+        <a class="btn-sample">Begin <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="row">
+        <p class="row-label">About — opening glyph &amp; rules</p>
+        <div class="quote-frame">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="500" fill="#0A0D14"/>
+            <rect x="28" y="28" width="344" height="444" fill="none" stroke="#EDE8DC" stroke-opacity="0.10" stroke-width="1"/>
+            <path d="M 46 46 L 46 64 M 46 46 L 64 46" stroke="#B8972E" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 46 L 354 64 M 354 46 L 336 46" stroke="#B8972E" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 46 454 L 46 436 M 46 454 L 64 454" stroke="#B8972E" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 454 L 354 436 M 354 454 L 336 454" stroke="#B8972E" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <text x="86" y="232" font-family="Fraunces, Georgia, serif" font-size="220" font-style="italic" font-weight="300" fill="#B8972E" fill-opacity="0.92" letter-spacing="-0.04em">&#x201C;</text>
+            <line x1="68" y1="364" x2="332" y2="364" stroke="#B8972E" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="120" y1="364" x2="120" y2="372" stroke="#B8972E" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="200" y1="364" x2="200" y2="374" stroke="#B8972E" stroke-width="1"/>
+            <line x1="280" y1="364" x2="280" y2="372" stroke="#B8972E" stroke-opacity="0.85" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== D — SHARPENED ============== -->
+    <div class="col" data-gold="D">
+      <header class="col-head">
+        <p class="col-name">D — Sharpened</p>
+        <span class="col-hex">#C8A84B</span>
+      </header>
+      <div class="swatch"></div>
+
+      <div class="row">
+        <p class="row-label">Brand mark · two scales</p>
+        <div class="brand-row">
+          <svg class="brand-mark-large" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+          <svg class="brand-mark-small" viewBox="73 243 108 108" aria-hidden="true">
+            <polygon fill="currentColor" points="73.33 243.48 73.33 350.14 82.88 350.14 82.88 253.04 170.42 253.04 170.42 340.58 104.57 340.58 95.01 350.14 179.98 350.14 179.98 243.48 73.33 243.48"/>
+            <polygon fill="currentColor" opacity="0.55" points="104.57 274.73 148.74 274.73 148.74 318.89 115.81 318.89 115.81 328.45 158.29 328.45 158.29 265.17 95.01 265.17 95.01 350.14 104.57 340.58 104.57 274.73"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Hero italic · "won"</p>
+        <p class="hero-sample">are <em>won</em> before</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Eyebrow rule</p>
+        <p class="eyebrow-sample">Ontario · By Referral</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section label</p>
+        <p class="section-label-sample">— The Practice</p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Section heading em</p>
+        <p class="heading-sample">Four categories. <em>Deliberately chosen.</em></p>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Lane meta dashes</p>
+        <ul class="lane-meta">
+          <li>Builder track record</li>
+          <li>Deposit structure</li>
+          <li>Exit liquidity</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <p class="row-label">Begin button outline</p>
+        <a class="btn-sample">Begin <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="row">
+        <p class="row-label">About — opening glyph &amp; rules</p>
+        <div class="quote-frame">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="500" fill="#0A0D14"/>
+            <rect x="28" y="28" width="344" height="444" fill="none" stroke="#EDE8DC" stroke-opacity="0.10" stroke-width="1"/>
+            <path d="M 46 46 L 46 64 M 46 46 L 64 46" stroke="#C8A84B" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 46 L 354 64 M 354 46 L 336 46" stroke="#C8A84B" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 46 454 L 46 436 M 46 454 L 64 454" stroke="#C8A84B" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <path d="M 354 454 L 354 436 M 354 454 L 336 454" stroke="#C8A84B" stroke-opacity="0.75" stroke-width="1" fill="none"/>
+            <text x="86" y="232" font-family="Fraunces, Georgia, serif" font-size="220" font-style="italic" font-weight="300" fill="#C8A84B" fill-opacity="0.92" letter-spacing="-0.04em">&#x201C;</text>
+            <line x1="68" y1="364" x2="332" y2="364" stroke="#C8A84B" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="120" y1="364" x2="120" y2="372" stroke="#C8A84B" stroke-opacity="0.85" stroke-width="1"/>
+            <line x1="200" y1="364" x2="200" y2="374" stroke="#C8A84B" stroke-width="1"/>
+            <line x1="280" y1="364" x2="280" y2="372" stroke="#C8A84B" stroke-opacity="0.85" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footnote">
+    <p>
+      <strong>How to read this.</strong> Each column renders the same elements at the same scale on the same navy background. The only thing that changes column-to-column is the gold hex value. Background <code>#0A0D14</code> matches the live site. Type is Fraunces (display italic) and Inter (labels), same as production.
+    </p>
+    <p>
+      <strong>Where to look.</strong> The <em>brand mark</em> at small scale (the right-hand "P" in the first row) and the <em>eyebrow rule</em> + <em>lane dashes</em> (rows 3 and 7) are the toughest tests. If the gold dies on those, it will die on the live site too. The <em>About glyph</em> (last row) is the most theatrical use and shows where the gold sits emotionally — quiet/refined or weighty/decisive.
+    </p>
+    <p>
+      <strong>Hex chips:</strong>
+      Champagne <code>#C9A961</code> · A Burnished <code>#B8972E</code> · D Sharpened <code>#C8A84B</code>.
+    </p>
+  </footer>
+
+</body>
+</html>
