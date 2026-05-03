@@ -271,6 +271,21 @@ h1 em, h2 em, h3 em {
 }
 .topbar.over-light .brand-mark polygon:last-of-type {
   fill: var(--paper-ink);
+  /* Override the inline opacity="0.55" attribute on the second polygon
+     so the inner detail reads cleanly as dark navy on cream. Without this
+     override the polygon renders at 55% opacity which on the cream panel
+     looks like washed-out gray and effectively makes the wordmark icon
+     disappear. */
+  opacity: 0.85;
+}
+/* Wordmark text: explicit, high-contrast inversion when topbar is over a
+   cream panel. Selectors duplicated here at slightly higher specificity
+   so the rule wins against any later default-state overrides. */
+.topbar.over-light .brand .brand-name {
+  color: var(--paper-ink);
+}
+.topbar.over-light .brand .brand-sub {
+  color: var(--paper-muted);
 }
 .brand-wordmark {
   display: inline-flex;
@@ -1078,6 +1093,15 @@ section h2 em {
   .about-grid {
     grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
     gap: clamp(56px, 7vw, 96px);
+  }
+  /* Sticky portrait on desktop: photo stays in view as the bio text scrolls.
+     Top offset = brokerage-bar (60px) + topbar (~80px) + breathing room.
+     align-items: start on .about-grid is required for sticky to work in
+     the grid track (already set above at line ~1074). */
+  .about-grid .portrait-figure {
+    position: sticky;
+    top: calc(var(--brokerage-bar-h, 60px) + 80px + 24px);
+    align-self: start;
   }
 }
 .portrait-figure { margin: 0; }
