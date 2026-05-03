@@ -787,10 +787,12 @@ section h2 em {
 .lane-header {
   display: flex;
   flex-direction: column;
-  /* Bumped from 16px (cramped at top of card) to a fluid gap so the
-     numeral, the title, and the oval tag each get visible breathing
-     room. clamp gives 22px on narrow viewports and 32px on wide. */
-  gap: clamp(22px, 1.6vw, 32px);
+  /* Bumped from 16px and then again from 22-32 because the cluster
+     was reading as a tight block hugging the top of the card with a
+     vast empty middle below. Now: 40-64px between elements so the
+     numeral, title, and oval tag visibly *expand* to fill more of
+     the card's vertical territory rather than huddling. */
+  gap: clamp(40px, 3.6vw, 64px);
   margin-bottom: 4px;
 }
 .lane-num {
