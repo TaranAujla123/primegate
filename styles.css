@@ -266,36 +266,41 @@ h1 em, h2 em, h3 em {
   fill: var(--bone);
   opacity: 1;
 }
+/* Inner brand-mark polygon also uses mix-blend-mode so it adapts to
+   both dark and cream backgrounds without needing the JS-driven
+   over-light class. White + difference gives the inverse of whatever
+   is behind it. Keeps the existing .topbar.over-light overrides as
+   belt-and-suspenders, but no longer depends on them. */
+.topbar .brand-mark polygon:last-of-type {
+  fill: #FFFFFF;
+  mix-blend-mode: difference;
+  opacity: 1;
+}
+/* Outer L-frame switches to deeper gold when over a cream panel — keeps
+   the brand-mark legible on both palettes. Inner polygon is handled by
+   the mix-blend-mode rule on .topbar .brand-mark polygon:last-of-type
+   above, which auto-adapts and supersedes any over-light override. */
 .topbar.over-light .brand-mark polygon:first-of-type {
   fill: var(--gold-deep) !important;
-}
-.topbar.over-light .brand-mark polygon:last-of-type {
-  fill: var(--paper-ink) !important;
-  /* Override the inline opacity="0.55" attribute on the second polygon.
-     CSS opacity here cannot beat an inline SVG attribute without
-     !important on certain renderers, so we force it. */
-  opacity: 0.85 !important;
-}
-/* Wordmark text: redundant high-specificity restatement of the
-   inversion. Belt-and-suspenders against any later default-state
-   cascade quirks. */
-.topbar.over-light .brand .brand-name {
-  color: var(--paper-ink) !important;
-}
-.topbar.over-light .brand .brand-sub {
-  color: var(--paper-muted) !important;
 }
 .brand-wordmark {
   display: inline-flex;
   flex-direction: column;
   line-height: 1;
 }
+/* Brand wordmark text uses mix-blend-mode: difference so the colour
+   automatically inverts based on whatever is behind the topbar — works
+   on dark navy hero, on cream About/Intake panels, AND if the JS-based
+   .over-light class fails to apply for any reason. White + difference
+   gives black on white backgrounds and white on black, so it adapts
+   cleanly to the cream/navy palette without any JS dependency. */
 .brand-name {
   font-family: var(--ff-display);
   font-weight: 400;
   font-size: 28px;
   letter-spacing: 0.005em;
-  color: var(--bone);
+  color: #FFFFFF;
+  mix-blend-mode: difference;
   font-variation-settings: "opsz" 72, "SOFT" 30;
 }
 .brand-sub {
@@ -304,7 +309,8 @@ h1 em, h2 em, h3 em {
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--bone-muted);
+  color: rgba(255, 255, 255, 0.78);
+  mix-blend-mode: difference;
   margin-top: 6px;
 }
 
