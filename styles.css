@@ -905,11 +905,12 @@ section h2 em {
   .lane-tag {
     font-size: 9.5px;
     letter-spacing: 0.18em;
-    /* Padding bumped from 6→9 vertical and line-height 1.7 so multi-
-       line tags get visible separation between wrapped lines (e.g.
-       card 04 wraps to 3 lines). */
-    padding: 9px 14px;
-    line-height: 1.7;
+    /* Card 04 ("Principals · Executives · Family-Held Assets ·
+       Sensitive Transactions") wraps to 3 lines. line-height 1.9
+       and padding 12 vertical gives visible separation between
+       wrapped lines so the pill reads as deliberate, not stuffed. */
+    padding: 12px 16px;
+    line-height: 1.9;
   }
   .lane p {
     font-size: 14px;
