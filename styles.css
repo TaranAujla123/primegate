@@ -203,10 +203,10 @@ h1 em, h2 em, h3 em {
 .topbar.over-light .brand-name,
 .topbar.over-light .brand-mark,
 .topbar.over-light nav a {
-  color: var(--paper-ink);
+  color: var(--paper-ink) !important;
 }
 .topbar.over-light .brand-sub {
-  color: var(--paper-muted);
+  color: var(--paper-muted) !important;
 }
 .topbar.over-light nav a::after {
   background: var(--gold-deep);
@@ -267,25 +267,23 @@ h1 em, h2 em, h3 em {
   opacity: 1;
 }
 .topbar.over-light .brand-mark polygon:first-of-type {
-  fill: var(--gold-deep);
+  fill: var(--gold-deep) !important;
 }
 .topbar.over-light .brand-mark polygon:last-of-type {
-  fill: var(--paper-ink);
-  /* Override the inline opacity="0.55" attribute on the second polygon
-     so the inner detail reads cleanly as dark navy on cream. Without this
-     override the polygon renders at 55% opacity which on the cream panel
-     looks like washed-out gray and effectively makes the wordmark icon
-     disappear. */
-  opacity: 0.85;
+  fill: var(--paper-ink) !important;
+  /* Override the inline opacity="0.55" attribute on the second polygon.
+     CSS opacity here cannot beat an inline SVG attribute without
+     !important on certain renderers, so we force it. */
+  opacity: 0.85 !important;
 }
-/* Wordmark text: explicit, high-contrast inversion when topbar is over a
-   cream panel. Selectors duplicated here at slightly higher specificity
-   so the rule wins against any later default-state overrides. */
+/* Wordmark text: redundant high-specificity restatement of the
+   inversion. Belt-and-suspenders against any later default-state
+   cascade quirks. */
 .topbar.over-light .brand .brand-name {
-  color: var(--paper-ink);
+  color: var(--paper-ink) !important;
 }
 .topbar.over-light .brand .brand-sub {
-  color: var(--paper-muted);
+  color: var(--paper-muted) !important;
 }
 .brand-wordmark {
   display: inline-flex;
