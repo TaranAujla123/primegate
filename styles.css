@@ -787,10 +787,10 @@ section h2 em {
 .lane-header {
   display: flex;
   flex-direction: column;
-  /* Sweet spot after iterations: 16px was cramped, 22-32 was too
-     subtle, 40-64 was too airy. Settled at 28-40px — visible
-     breathing room without the cluster feeling spread thin. */
-  gap: clamp(28px, 2.4vw, 40px);
+  /* Iterations: 16px (original, cramped), 52px (too airy), 35px
+     (still too airy). Landed at ~22px at desktop — modest bump
+     from original, breathes a touch without feeling spread out. */
+  gap: clamp(20px, 1.5vw, 24px);
   margin-bottom: 4px;
 }
 .lane-num {
