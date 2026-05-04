@@ -1083,7 +1083,7 @@ section h2 em {
 }
 @media (min-width: 780px) {
   .about-grid {
-    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
     gap: clamp(56px, 7vw, 96px);
   }
   /* Sticky portrait on desktop: photo stays in view as the bio text scrolls.
@@ -2296,7 +2296,11 @@ a.thanks-return:hover {
    the bar on first paint.
 */
 :root {
-  --brokerage-bar-h: 60px;
+  /* Bumped from 60 -> 76 in v3.1.21 to give the larger HomeLife G1
+     lockup room to breathe at parity with the Primegate brand-mark
+     below. Sticky-portrait offset reads this var, no other change
+     needed downstream. */
+  --brokerage-bar-h: 76px;
 }
 body {
   padding-top: var(--brokerage-bar-h);
@@ -2342,7 +2346,7 @@ body {
 }
 .brokerage-bar-link:hover { color: var(--gold); }
 .brokerage-bar-logo {
-  height: 36px;
+  height: 50px;
   width: auto;
   flex: 0 0 auto;
   display: block;
@@ -2353,19 +2357,19 @@ body {
   line-height: 1.2;
 }
 .brokerage-bar-name {
-  font-size: 11.5px;
+  font-size: 13.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: inherit;
 }
 .brokerage-bar-sub {
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--bone-muted);
-  margin-top: 3px;
+  margin-top: 4px;
 }
 .brokerage-bar-meta {
   display: inline-flex;
@@ -2390,8 +2394,8 @@ body {
   .brokerage-bar-inner { grid-template-columns: 1fr; }
   .brokerage-bar-link { grid-column: 1; }
   .brokerage-bar-meta { display: none; }
-  .brokerage-bar-logo { height: 30px; }
-  .brokerage-bar-name { font-size: 10.5px; }
+  .brokerage-bar-logo { height: 40px; }
+  .brokerage-bar-name { font-size: 11.5px; }
   .brokerage-bar-sub { font-size: 8.5px; letter-spacing: 0.14em; }
 }
 
