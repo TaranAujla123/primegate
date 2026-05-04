@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Technical walkthroughs and short observations on the four categories Primegate handles. Published when there is something worth saying. No newsletter." />
+  <meta name="description" content="Practice guides, technical walkthroughs, and field notes on deal-making in Ontario real estate. Published when there is something worth saying. No newsletter." />
   <meta name="robots" content="index,follow" />
 
   <title>Notes. Primegate. Taran Aujla &middot; Salesperson.</title>
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Notes. Primegate." />
-  <meta property="og:description" content="Technical walkthroughs and short observations on the four categories Primegate handles. No newsletter." />
+  <meta property="og:description" content="Practice guides, technical walkthroughs, and field notes on deal-making in Ontario real estate. No newsletter." />
   <meta property="og:url" content="https://prime-gate.ca/notes/" />
   <meta property="og:image" content="https://prime-gate.ca/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=3.4.0" />
 </head>
 <body>
 
@@ -74,25 +74,60 @@
         <p class="section-label">Notes</p>
         <h1>Written pieces from the practice.</h1>
         <p class="notes-intro">
-          Technical walkthroughs and short observations on the four categories this practice handles. Published when there is something worth saying. No newsletter, no subscription, no promotional content. Read what is useful.
+          Practice guides, technical walkthroughs, and field notes on deal-making in Ontario real estate. Published when there is something worth saying. No newsletter, no subscription, no promotional content. Read what is useful.
         </p>
       </div>
 
+      <!-- ============================== ANCHOR QUOTE ==============================
+        Editorial quote that anchors the Notes index. Hairline gold rule above
+        and below, oversized italic gold opening glyph, attribution in small
+        uppercase. Sets tone for the page before the categories begin. -->
+      <figure class="notes-anchor-quote" role="figure" aria-label="Editorial anchor quote">
+        <span class="notes-anchor-quote-rule" aria-hidden="true"></span>
+        <span class="notes-anchor-quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote class="notes-anchor-quote-text">
+          He who has anticipated the coming of troubles takes away their power when they arrive.
+        </blockquote>
+        <figcaption class="notes-anchor-quote-attr">Seneca</figcaption>
+        <span class="notes-anchor-quote-rule" aria-hidden="true"></span>
+      </figure>
+
       <div class="notes-groups">
 
-        <!-- ============================== GROUP A: TECHNICAL WALKTHROUGHS ============================== -->
-        <!--
-          Empty-state behaviour. A group is shown only when its
-          .notes-entry-list contains at least one real <a class="notes-entry">.
-          The CSS `:has()` rule in styles.css handles auto-hiding.
-          To publish the first technical walkthrough:
-            1. Place the article HTML in /notes/[slug].html (from _template.html)
-            2. Add ONE <a class="notes-entry"> entry inside the .notes-entry-list below
-               using the pattern documented in notes/README.md.
-        -->
+        <!-- ============================== GROUP A: THE PRACTICE ==============================
+          Deep guides on the four named practice categories. Empty at launch
+          - shown with a coming-soon placeholder card. To publish the first
+          piece: replace the placeholder div with a real <a class="notes-entry">
+          entry following the pattern in the Walkthroughs group below. -->
+        <section class="notes-group" aria-labelledby="group-practice">
+          <header class="notes-group-head">
+            <h2 id="group-practice">The Practice</h2>
+            <p class="notes-group-desc">
+              Deeper guides on the four categories this practice serves. Pre-construction at $1M+, investment and development property, businesses sold with their real estate, and private client representation.
+            </p>
+          </header>
+
+          <div class="notes-entry-list">
+            <div class="notes-entry is-coming-soon" aria-label="Coming soon — The Practice">
+              <span class="notes-entry-tag">The Practice</span>
+              <div class="notes-entry-text">
+                <h3>First piece in development.</h3>
+                <p class="notes-entry-desc">Adding when it is ready to publish.</p>
+              </div>
+              <span class="notes-entry-date">&mdash;</span>
+            </div>
+          </div>
+        </section>
+
+        <span class="notes-group-divider" aria-hidden="true"></span>
+
+        <!-- ============================== GROUP B: WALKTHROUGHS ==============================
+          Active group. Contains the first published article. To add more:
+          insert another <a class="notes-entry"> block above or below the
+          existing entry, sorted newest-first. -->
         <section class="notes-group" aria-labelledby="group-walkthroughs">
           <header class="notes-group-head">
-            <h2 id="group-walkthroughs">Technical Walkthroughs</h2>
+            <h2 id="group-walkthroughs">Walkthroughs</h2>
             <p class="notes-group-desc">
               Deep reviews of specific clauses, structures, and mechanics that decide outcomes.
             </p>
@@ -100,52 +135,42 @@
 
           <div class="notes-entry-list">
             <a class="notes-entry" href="deals-between-signing-and-closing.html">
-              <span class="notes-entry-tag">All Categories</span>
+              <span class="notes-entry-tag">Walkthroughs</span>
               <div class="notes-entry-text">
                 <h3>What actually breaks deals between signing and closing.</h3>
                 <p class="notes-entry-desc">A working list of the failure modes that surface between firm and close in Ontario real estate, with the early signal and practical handling for each.</p>
               </div>
-              <span class="notes-entry-date">27 Apr 2026</span>
+              <span class="notes-entry-date">
+                27 Apr 2026
+                <span class="notes-entry-readtime">13 min read</span>
+              </span>
             </a>
           </div>
         </section>
 
-        <!--
-          ============================== GROUP B: TRANSACTION REVIEWS ==============================
-          Hidden until the first Transaction Review article is published. To activate,
-          remove the surrounding HTML comment wrapper, then add the first real
-          entry inside the .notes-entry-list. See notes/README.md.
+        <span class="notes-group-divider" aria-hidden="true"></span>
 
-        <section class="notes-group" aria-labelledby="group-reviews">
+        <!-- ============================== GROUP C: FIELD NOTES ==============================
+          Empty at launch - shown with a coming-soon placeholder card. -->
+        <section class="notes-group" aria-labelledby="group-field">
           <header class="notes-group-head">
-            <h2 id="group-reviews">Transaction Reviews</h2>
+            <h2 id="group-field">Field Notes</h2>
             <p class="notes-group-desc">
-              Anonymized walkthroughs of transactions where the review changed the outcome. Names and identifying details removed.
+              Observations from the dealmaker&rsquo;s seat. Negotiation, preparation, judgment under uncertainty, and what years of transactional work teach about pressure and timing.
             </p>
           </header>
+
           <div class="notes-entry-list">
-            (Insert the first real notes-entry block here)
+            <div class="notes-entry is-coming-soon" aria-label="Coming soon — Field Notes">
+              <span class="notes-entry-tag">Field Notes</span>
+              <div class="notes-entry-text">
+                <h3>First piece in development.</h3>
+                <p class="notes-entry-desc">Adding when it is ready to publish.</p>
+              </div>
+              <span class="notes-entry-date">&mdash;</span>
+            </div>
           </div>
         </section>
-        -->
-
-        <!--
-          ============================== GROUP C: MARKET NOTES ==============================
-          Hidden until the first Market Note is published. Same activation
-          procedure as Group B above.
-
-        <section class="notes-group" aria-labelledby="group-market">
-          <header class="notes-group-head">
-            <h2 id="group-market">Market Notes</h2>
-            <p class="notes-group-desc">
-              Short observations on what is moving across the four categories.
-            </p>
-          </header>
-          <div class="notes-entry-list">
-            (Insert the first real notes-entry block here)
-          </div>
-        </section>
-        -->
 
       </div>
 

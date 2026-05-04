@@ -1767,12 +1767,121 @@ footer {
 }
 
 /* Empty-state logic: a group is hidden whenever its entry list contains
-   zero real <a class="notes-entry"> children. The `:has()` selector
-   is supported in all modern evergreen browsers (Chrome/Edge/Safari/Firefox).
-   The HTML also comments out groups B and C entirely at launch as a
-   belt-and-suspenders fallback. */
-.notes-group:not(:has(.notes-entry-list a.notes-entry)) {
+   ZERO entries (no real <a class="notes-entry"> AND no placeholder card).
+   v3.4.0 update: changed selector from `a.notes-entry` to `.notes-entry`
+   so coming-soon placeholder <div class="notes-entry is-coming-soon">
+   counts as a non-empty group and the group stays visible.
+   The `:has()` selector is supported in all modern evergreen browsers. */
+.notes-group:not(:has(.notes-entry-list .notes-entry)) {
   display: none;
+}
+
+/* ---------- Notes index v3.4.0 — three-category layout ---------- */
+
+/* Editorial anchor quote that sits between the page lede and the
+   category groups. Hairline gold rules above and below, oversized
+   italic gold opening glyph centered above the quote, attribution
+   in small uppercase. */
+.notes-anchor-quote {
+  max-width: var(--maxw-prose);
+  padding: clamp(56px, 7vw, 96px) var(--pad-x-wide);
+  margin: 0 auto clamp(64px, 8vw, 112px);
+  display: grid;
+  justify-items: center;
+  gap: clamp(20px, 2.4vw, 32px);
+  text-align: center;
+}
+.notes-anchor-quote-rule {
+  width: clamp(72px, 8vw, 120px);
+  height: 1px;
+  background: var(--gold);
+  display: block;
+}
+.notes-anchor-quote-mark {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(72px, 8vw, 110px);
+  color: var(--gold);
+  line-height: 0.6;
+  letter-spacing: -0.05em;
+  margin-top: 8px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.notes-anchor-quote-text {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  color: var(--bone);
+  max-width: 720px;
+  margin: 0;
+  font-variation-settings: "opsz" 72, "SOFT" 80;
+}
+.notes-anchor-quote-attr {
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-muted);
+  margin-top: 4px;
+}
+
+/* Subtle hairline divider between category groups. Centered, restrained,
+   draws visual rhythm without becoming an ornament. */
+.notes-group-divider {
+  display: block;
+  width: clamp(48px, 5vw, 80px);
+  height: 1px;
+  background: rgba(201, 169, 97, 0.35);
+  margin: 0 auto;
+  justify-self: center;
+}
+
+/* Reading-time pill that sits below the date in the .notes-entry-date
+   column. Smaller, lower visual weight than the date itself. */
+.notes-entry-readtime {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--ff-sans);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+
+/* Coming-soon placeholder. Same row layout as a real .notes-entry but
+   reduced opacity, italic title, em-dash date, no pointer interaction.
+   Distinct from the older .is-placeholder utility (which was used for a
+   different purpose) — this is specifically the editorial "coming soon"
+   pattern for the v3.4.0 three-category notes index. */
+.notes-entry.is-coming-soon {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+}
+.notes-entry.is-coming-soon h3 {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--bone-muted);
+}
+.notes-entry.is-coming-soon .notes-entry-date {
+  color: var(--bone-faint);
+  font-style: italic;
+}
+
+/* Article-page reading-time (next to date in the article hero). */
+.article-readtime {
+  font-family: var(--ff-sans);
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  color: inherit;
 }
 
 /* ---------- Individual note page (Level 2 article template) ---------- */
