@@ -266,12 +266,18 @@ h1 em, h2 em, h3 em {
   fill: var(--bone);
   opacity: 1;
 }
-/* Outer L-frame switches to deeper gold when over a cream panel — keeps
-   the brand-mark legible on both palettes. Inner polygon is handled by
-   the mix-blend-mode rule on .topbar .brand-mark polygon:last-of-type
-   above, which auto-adapts and supersedes any over-light override. */
+/* Over-light state — when the topbar is floating above a cream panel
+   (About / Intake), both polygons of the brand-mark switch to dark tones
+   so the icon stays legible on the cream surface. Outer L-frame goes
+   to deeper gold; inner detail goes to the same dark navy as the
+   "Primegate" wordmark text. The inline SVG attribute `opacity="0.55"`
+   on the inner polygon is overridden to full so the detail reads cleanly. */
 .topbar.over-light .brand-mark polygon:first-of-type {
   fill: var(--gold-deep) !important;
+}
+.topbar.over-light .brand-mark polygon:last-of-type {
+  fill: var(--paper-ink) !important;
+  opacity: 1 !important;
 }
 .brand-wordmark {
   display: inline-flex;
