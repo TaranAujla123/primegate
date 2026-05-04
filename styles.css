@@ -2514,7 +2514,11 @@ body {
 .footer-divider {
   width: 1px;
   height: 44px;
-  background: var(--ink-rule);
+  /* Gold separator between brokerage (left, primary) and Primegate trade
+     name (right, secondary). Order signals deference to the regulated
+     entity per RECO 5.3 / 5.5 — brokerage attribution leads the lockup. */
+  background: var(--gold);
+  opacity: 0.7;
   flex: 0 0 1px;
 }
 .footer-brokerage {
