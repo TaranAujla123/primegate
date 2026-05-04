@@ -1083,7 +1083,7 @@ section h2 em {
 }
 @media (min-width: 780px) {
   .about-grid {
-    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
     gap: clamp(56px, 7vw, 96px);
   }
   /* Sticky portrait on desktop: photo stays in view as the bio text scrolls.
