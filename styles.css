@@ -450,12 +450,26 @@ h1 em, h2 em, h3 em {
   font-size: clamp(22px, 4.2vw, 60px);
   letter-spacing: -0.018em;
   line-height: 1.2;
-  /* Breathing room from the dominant Line 1. */
-  margin-top: clamp(12px, 1.2vw, 22px);
+  /* Breathing room from the dominant Line 1, plus a thin gold rule above
+     that echoes the eyebrow-rule treatment at the top of the hero. The
+     rule provides editorial separation between the H1 statement and the
+     supporting phrase without adding markup. */
+  margin-top: clamp(28px, 2.6vw, 44px);
+  padding-top: clamp(20px, 2vw, 32px);
+  position: relative;
   /* Allow the supporting line to extend wider than Line 1's 15ch cap so
      "Reviewed carefully. Handled calmly." fits on a single line at desktop
      widths. The H1 still caps Line 1 at 15ch via its own max-width. */
   max-width: 100%;
+}
+.hero h1 .h1-line2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
 }
 .hero h1 em {
   font-style: italic;
