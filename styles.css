@@ -1637,6 +1637,15 @@ footer {
   display: grid;
   gap: clamp(40px, 5vw, 72px);
 }
+/* v3.4.2-fix — .notes-group is a <section> element which inherits the
+   global `section { padding: var(--section-pad) 0 }` rule (~180px each
+   side). That was silently adding ~360px of vertical padding inside
+   every group, making each group render at ~624px instead of ~264px.
+   Reset to zero so the .notes-groups grid `gap` is the only between-
+   group spacing, as intended. */
+.notes-group {
+  padding: 0;
+}
 
 /* v3.4.1 — head-to-list gap reduced ~30% (was clamp 32-48px). */
 .notes-group-head {
