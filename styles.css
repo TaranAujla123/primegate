@@ -1604,10 +1604,13 @@ footer {
   max-width: var(--maxw);
   margin: 0 auto;
 }
+/* v3.4.1 — notes-head bottom margin reduced ~35% (was clamp 64-112px)
+   since the head is no longer the page opener; the anchor quote above
+   it absorbs the "first impression" work. */
 .notes-head {
   max-width: var(--maxw-prose);
   padding: 0 var(--pad-x-wide);
-  margin: 0 auto clamp(64px, 8vw, 112px);
+  margin: 0 auto clamp(40px, 5vw, 72px);
 }
 .notes-head h1 {
   font-size: clamp(40px, 5.5vw, 76px);
@@ -1626,15 +1629,19 @@ footer {
   font-weight: 300;
 }
 
+/* v3.4.1 — between-group gap reduced ~45% (was clamp 72-128px) so each
+   group reads as a tighter editorial section. The .notes-group-divider
+   element in the markup sits in this gap and gives it visible rhythm. */
 .notes-groups {
   padding: 0 var(--pad-x-wide);
   display: grid;
-  gap: clamp(72px, 9vw, 128px);
+  gap: clamp(40px, 5vw, 72px);
 }
 
+/* v3.4.1 — head-to-list gap reduced ~30% (was clamp 32-48px). */
 .notes-group-head {
   max-width: var(--maxw-prose);
-  margin-bottom: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(22px, 2.8vw, 34px);
 }
 .notes-group-head h2 {
   font-size: clamp(24px, 2.6vw, 32px);
@@ -1778,14 +1785,17 @@ footer {
 
 /* ---------- Notes index v3.4.0 — three-category layout ---------- */
 
-/* Editorial anchor quote that sits between the page lede and the
-   category groups. Hairline gold rules above and below, oversized
-   italic gold opening glyph centered above the quote, attribution
-   in small uppercase. */
+/* Editorial anchor quote — page opener (v3.4.1, repositioned above
+   .notes-head). Hairline gold rules above and below, oversized italic
+   gold opening glyph centered above the quote, attribution in small
+   uppercase. The .notes-page already provides generous top padding
+   from the topbar, so the quote's own vertical padding stays modest.
+   Bottom margin reduced ~50% so the transition to .notes-head reads
+   as intentional, not disconnected. */
 .notes-anchor-quote {
   max-width: var(--maxw-prose);
-  padding: clamp(56px, 7vw, 96px) var(--pad-x-wide);
-  margin: 0 auto clamp(64px, 8vw, 112px);
+  padding: clamp(36px, 4.5vw, 64px) var(--pad-x-wide);
+  margin: 0 auto clamp(28px, 3.5vw, 48px);
   display: grid;
   justify-items: center;
   gap: clamp(20px, 2.4vw, 32px);
@@ -1882,6 +1892,16 @@ footer {
   letter-spacing: inherit;
   text-transform: uppercase;
   color: inherit;
+}
+
+/* v3.4.1 — single-entry list tightening. When an entry-list contains
+   only one entry (real OR coming-soon placeholder), the visible
+   "wasted space" below the entry made the section feel airy. Reduce
+   the entry's own bottom padding when it's the only child. Uses
+   :has() (Chrome/Edge/Safari/Firefox modern evergreen, same support
+   tier as our other :has() rules above). */
+.notes-entry-list:has(.notes-entry:only-child) .notes-entry {
+  padding-bottom: 18px;
 }
 
 /* ---------- Individual note page (Level 2 article template) ---------- */
