@@ -343,54 +343,96 @@
     })();
 
     // -------------------- Article TOC (auto-built from <h2>) --------------------
+    // Behaviour:
+    //   * Scans .article-body h2 headings.
+    //   * Slugifies each heading's text and assigns it as the heading's id
+    //     (skipped if the heading already has an id, so manual ids win).
+    //   * Builds a list of links inside [data-toc-list].
+    //   * Reveals the TOC panel only when there are 2+ H2s (a single-section
+    //     note doesn't need a contents column).
+    //   * Highlights the section currently in view via a scroll-tracker.
+    //   * On click, smooth-scrolls to the section (CSS scroll-margin-top
+    //     handles the topbar offset).
     (function(){
       var toc = document.querySelector('[data-toc]');
       var list = document.querySelector('[data-toc-list]');
       if (!toc || !list) return;
 
       var headings = Array.prototype.slice.call(document.querySelectorAll('.article-body h2'));
-      if (headings.length < 2) return;
+      if (headings.length < 2) return; // not worth a TOC
 
-      function slugify(text) {
-        return text.toLowerCase()
-          .replace(/[‘’]/g, "'")
-          .replace(/[“”]/g, '"')
+      var used = Object.create(null);
+      function slugify(text){
+        var s = String(text)
+          .toLowerCase()
+          .replace(/[‘’“”]/g, '')
           .replace(/[^a-z0-9\s-]/g, '')
           .trim()
           .replace(/\s+/g, '-')
-          .replace(/-+/g, '-');
+          .replace(/-+/g, '-')
+          .slice(0, 60);
+        if (!s) s = 'section';
+        var base = s, n = 1;
+        while (used[s]) { s = base + '-' + (++n); }
+        used[s] = true;
+        return s;
       }
 
-      var items = headings.map(function(h){
-        if (!h.id) h.id = slugify(h.textContent);
+      var anchors = [];
+      headings.forEach(function(h, i){
+        if (!h.id) h.id = slugify(h.textContent || ('section-' + (i + 1)));
         var li = document.createElement('li');
         var a = document.createElement('a');
         a.href = '#' + h.id;
-        a.textContent = h.textContent.replace(/\.$/, '');
+        a.textContent = (h.textContent || '').trim();
+        a.dataset.tocTarget = h.id;
+        a.addEventListener('click', function(ev){
+          ev.preventDefault();
+          var target = document.getElementById(h.id);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + h.id);
+          }
+        });
         li.appendChild(a);
         list.appendChild(li);
-        return { heading: h, link: a };
+        anchors.push(a);
       });
 
-      toc.removeAttribute('hidden');
-      toc.classList.add('is-active');
+      toc.classList.add('is-ready');
 
-      if ('IntersectionObserver' in window) {
-        var current = null;
-        var io = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if (e.isIntersecting) {
-              if (current) current.link.classList.remove('is-current');
-              var match = items.find(function(it){ return it.heading === e.target; });
-              if (match) {
-                match.link.classList.add('is-current');
-                current = match;
-              }
-            }
-          });
-        }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-        headings.forEach(function(h){ io.observe(h); });
+      // Active-section highlight. Pick whichever heading's top is closest to
+      // (but not below) the topbar offset. A scroll listener is more reliable
+      // than IntersectionObserver here because jump-scrolls (anchor clicks,
+      // address-bar nav) skip the IO band entirely and leave the TOC frozen
+      // on the previous section.
+      var current = null;
+      function setCurrent(id){
+        if (current === id) return;
+        current = id;
+        anchors.forEach(function(a){
+          if (a.dataset.tocTarget === id) a.classList.add('is-current');
+          else a.classList.remove('is-current');
+        });
       }
+
+      var offset = 120; // distance from viewport top below which a heading counts as active
+      var ticking = false;
+      function pickActive(){
+        ticking = false;
+        var picked = headings[0];
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top - offset <= 0) picked = headings[i];
+          else break;
+        }
+        if (picked) setCurrent(picked.id);
+      }
+      function onScroll(){
+        if (!ticking) { ticking = true; requestAnimationFrame(pickActive); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      pickActive();
     })();
   </script>
 
