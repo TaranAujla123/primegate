@@ -14,6 +14,9 @@ desktop.ini
 .cache/
 node_modules/
 
+# Local Claude Code dev tooling (preview server config)
+.claude/
+
 # Portrait pipeline working files (45 MB of FAL.AI variants, cutouts, scripts).
 # The final output ships as assets/portrait.jpg — source artefacts stay local.
 assets/portrait-source/

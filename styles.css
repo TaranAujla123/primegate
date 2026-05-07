@@ -1675,7 +1675,7 @@ footer {
 }
 .notes-entry {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: clamp(150px, 16vw, 180px) 1fr auto;
   gap: clamp(16px, 2.5vw, 32px);
   align-items: baseline;
   padding: 28px 0;
@@ -1698,7 +1698,8 @@ footer {
   padding: 6px 12px;
   border: 1px solid rgba(201, 169, 97, 0.35);
   border-radius: 999px;
-  white-space: nowrap;
+  text-align: center;
+  line-height: 1.4;
   align-self: center;
 }
 .notes-entry-text h3 {
