@@ -37,6 +37,11 @@
   <meta property="og:description" content="[One-line description]" />
   <meta property="og:url" content="https://prime-gate.ca/notes/[slug]" />
   <meta property="og:image" content="https://prime-gate.ca/assets/og-image.png" />
+  <meta property="og:locale" content="en_CA" />
+  <!-- TODO: replace [tag] with article-specific keywords; duplicate the
+       line for each tag. Examples: "premium pre-construction", "cap rate",
+       "going concern", "private representation", "Ontario real estate". -->
+  <meta property="article:tag" content="[tag]" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -66,6 +71,15 @@
       "name": "Taran Aujla",
       "jobTitle": "Salesperson",
       "url": "https://prime-gate.ca/",
+      "description": "Salesperson with HomeLife G1 Realty Inc., Brokerage. Practice covers premium pre-construction, investment and development property, businesses sold with their real estate, and private client representation in Ontario.",
+      "knowsAbout": [
+        "Premium pre-construction",
+        "Real estate investment and development",
+        "Going concern transactions",
+        "Private client representation",
+        "Ontario real estate transactions",
+        "TRESA compliance"
+      ],
       "worksFor": {
         "@type": "RealEstateAgent",
         "name": "HomeLife G1 Realty Inc., Brokerage"
@@ -85,6 +99,20 @@
       "@id": "https://prime-gate.ca/notes/[slug]"
     },
     "articleSection": "[Category]",
+    "about": [
+      {"@type": "Thing", "name": "[Topic 1]"},
+      {"@type": "Thing", "name": "[Topic 2]"},
+      {"@type": "Thing", "name": "[Topic 3]"}
+    ],
+    "isPartOf": {
+      "@type": "Blog",
+      "name": "Primegate Notes",
+      "url": "https://prime-gate.ca/notes/"
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-title", ".article-body > p:first-of-type"]
+    },
     "inLanguage": "en-CA"
   }
   </script>
