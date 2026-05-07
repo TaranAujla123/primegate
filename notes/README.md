@@ -188,17 +188,16 @@ The CSS auto-hide rule keeps the group invisible until that first entry is added
 
 ## Categories
 
-Five permitted category tags (exact casing matters for consistency):
+Six permitted category tags (exact casing matters for consistency):
 
 - `Pre-Construction`
+- `Investment & Development`
 - `Land`
 - `Business`
 - `Private Client`
 - `All Categories` (use only for technical pieces that span all four; see below)
 
-The first four match the four categories described on the main
-page. If a note does not fit one of these four, it probably
-should not be published.
+The first five match the four lanes described on the main page. `Investment & Development` and `Land` both relate to Lane 02 — `Investment & Development` covers income-producing property and small-development files, `Land` is reserved for bare-land severance and infill pieces specifically. If a note does not fit one of these five, it probably should not be published.
 
 Use **`All Categories`** only when a piece is genuinely
 cross-cutting (e.g. a technical walkthrough on something that
