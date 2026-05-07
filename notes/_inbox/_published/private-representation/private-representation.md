@@ -55,7 +55,22 @@ What I look at when advising on the quiet-versus-public question:
 
 A quiet listing is a tool. Used in the right file, it preserves value. Used in the wrong file, it costs the seller a price they would otherwise have received.
 
-## 4. **Pricing a trophy asset.** The variables conventional pricing models leave out.
+## 4. **The buy-side mandate.** How representation works for a private acquisition.
+
+A buyer at the premium tier often engages a representative on a buy-side mandate. The representative is briefed on what the buyer is looking for, given the parameters (price band, location, asset class, timing, finish, off-market preference), and then sources and runs the acquisition end to end. The buy-side mandate is the mirror of the seller's quiet listing. Where the seller wants discretion in marketing, the buyer often wants discretion in acquisition.
+
+What I do on a buy-side mandate:
+
+- **Source against the brief.** The brief covers location, asset class, price band, condition, finish, timing, and any specific exclusions. Sourcing draws on the practice's relationships with builders, owner-operators, lawyers, and accountants who hold off-market opportunities, plus the public market filtered tightly against the brief.
+- **Curate, not flood.** A buyer on a private mandate does not want a feed of every possible match. The work is in narrowing to the small number of opportunities that genuinely fit the brief, with the reasoning attached to each.
+- **Run diligence as the buyer's representative.** Title review coordinated with the buyer's lawyer, comparable analysis, valuation read, condition assessment, lease review where applicable, zoning and permit verification, and the surfacing of any structural issues that would change the buyer's offer or pricing.
+- **Negotiate from the buyer's position.** Including the structuring of conditional terms, deposit terms, closing dates, and the trade-offs that make an offer competitive without overpaying.
+- **Coordinate the buyer's team.** Lawyer, accountant, banker, and where applicable wealth manager and family office. The representative provides the transactional context each professional needs and keeps the timeline aligned across the team.
+- **Maintain discretion on the acquisition.** Some buyers do not want other parties (current owners, neighbours, competitors, advisors outside the engaged team) knowing they are in the market. The mandate is run quietly, the offer is made through the right channels, and the acquisition is handled with the same discretion as a quiet sale.
+
+A buy-side mandate is most useful for clients with a clear acquisition thesis: a specific neighbourhood, a specific asset type, a specific price band, and the time horizon to do the work properly. Buyers who want to see everything on the market and decide as they go are usually better served by a different model.
+
+## 5. **Pricing a trophy asset.** The variables conventional pricing models leave out.
 
 Standard pricing models work well in the middle of the market. They draw on a deep pool of recent comparables and a stable buyer pool. The price emerges from the data.
 
@@ -71,7 +86,7 @@ What I look at on a premium pricing engagement:
 
 A pricing decision on a premium asset is a strategic decision, not an arithmetic one. It deserves to be treated that way at the front of the engagement.
 
-## 5. **The private client's team.** How a real estate representative fits in.
+## 6. **The private client's team.** How a real estate representative fits in.
 
 A private client typically already has a professional team. Lawyer for the trade and for adjacent matters. Accountant for tax structuring. Wealth manager for capital allocation. Insurance broker for coverage. Mortgage broker or private banker for financing. Often a family office coordinating across the others.
 
@@ -87,7 +102,7 @@ What this looks like in practice:
 
 Private representation does not displace the team. It strengthens it.
 
-## 6. **The transaction lifecycle.** Where most file failure happens, and where attention pays.
+## 7. **The transaction lifecycle.** Where most file failure happens, and where attention pays.
 
 Most real estate transactions that fail at closing do not fail because of dramatic, late-stage problems. They fail because of small items that were unaddressed at the front end and compounded over time.
 
@@ -100,13 +115,12 @@ Where I see files break:
 
 The work that prevents these failures is not glamorous. It is the careful tracking of dates, documents, and confirmations through the file. The representative who does this work is the difference between a clean closing and a contested one.
 
-## 7. **What private representation does not do.**
+## 8. **What private representation does not do.**
 
 Naming what the practice is not is part of naming what it is.
 
 - **It is not exclusivity.** New clients are welcome in any of the four practice categories. The roster is small because attention requires it, not because access is restricted by status, wealth, or relationship.
-- **It is not a higher commission.** The standard cooperating commission structure applies. The trade is the same fee allocated differently — toward depth and continuity, not toward marketing reach.
-- **It is not a faster sale.** Quiet processes and careful pricing sometimes take longer than a public listing maximised for speed. Clients who need a fast sale are better served by a different mode of practice.
+- **It is not a higher commission.** The standard cooperating commission structure applies. The trade is the same fee allocated differently: toward depth and continuity, not toward marketing reach.
 - **It is not legal, tax, or financial advice.** The representative coordinates with the client's professional team. The legal opinion stays with the lawyer. The tax view stays with the accountant. The capital plan stays with the wealth manager. Private representation is a transactional service, not a substitute for professional advice in those domains.
 - **It is not a guarantee of off-market access.** Off-market opportunities flow from the practice's network and the willingness of that network to introduce. Some files surface through it. Others do not. A representative who promises specific off-market access is selling something that cannot be delivered on demand.
 - **It is not gatekeeping.** The practice does not curate who deserves representation. It curates how representation is delivered.
