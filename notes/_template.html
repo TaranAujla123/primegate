@@ -48,6 +48,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../styles.css" />
+
+  <!-- TODO: Article JSON-LD. Replace [slug], [Note Title], [description],
+       [Category], and the dates with real values. Keep author/publisher
+       blocks unchanged. The mainEntityOfPage @id matches og:url. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "[Note Title]",
+    "description": "[One-line description, ~150 chars]",
+    "image": "https://prime-gate.ca/notes/assets/covers/[slug].png",
+    "datePublished": "[YYYY-MM-DD]",
+    "dateModified": "[YYYY-MM-DD]",
+    "author": {
+      "@type": "Person",
+      "name": "Taran Aujla",
+      "jobTitle": "Salesperson",
+      "url": "https://prime-gate.ca/",
+      "worksFor": {
+        "@type": "RealEstateAgent",
+        "name": "HomeLife G1 Realty Inc., Brokerage"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Primegate",
+      "url": "https://prime-gate.ca/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://prime-gate.ca/assets/og-image.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://prime-gate.ca/notes/[slug]"
+    },
+    "articleSection": "[Category]",
+    "inLanguage": "en-CA"
+  }
+  </script>
 </head>
 <body>
 
