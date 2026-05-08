@@ -1976,6 +1976,13 @@ footer {
     align-items: start;
     justify-content: center;
   }
+  /* Pages without a sticky TOC (e.g. lane landing pages): collapse the
+     grid back to a single 720px reading column so the body is not
+     squeezed into the narrow TOC rail. */
+  .article-paper-inner:not(:has(.article-toc)) {
+    display: block;
+    max-width: 720px;
+  }
 }
 
 /* ---------- Sticky table of contents ---------- */
