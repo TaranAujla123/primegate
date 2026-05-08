@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Maintainer documentation - not for indexing.
+Disallow: /README.md
+Disallow: /CLAUDE.md
+Disallow: /.impeccable.md
+Disallow: /notes/README.md
+Disallow: /notes/_inbox/
+Disallow: /scripts/
+
 Sitemap: https://prime-gate.ca/sitemap.xml
