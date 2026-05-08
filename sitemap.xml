@@ -5,29 +5,36 @@
   <url>
     <loc>https://prime-gate.ca/</loc>
     <lastmod>2026-05-07</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/</loc>
     <lastmod>2026-05-07</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/premium-pre-construction-what-decides-the-outcome</loc>
     <lastmod>2026-05-05</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/investment-property-in-ontario</loc>
     <lastmod>2026-05-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/selling-a-business-with-its-real-estate</loc>
     <lastmod>2026-05-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/private-representation</loc>
     <lastmod>2026-05-07</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://prime-gate.ca/notes/deals-between-signing-and-closing</loc>
     <lastmod>2026-04-27</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>
