@@ -26,7 +26,13 @@ directory. It carries the design context (mirrored from
   appear with the "Brokerage" descriptor on every deployed page.
 - Practitioner: **Salesperson** — never "Agent," "Sales
   Representative," or inline "Realtor®".
-- No former-legal-practice references anywhere on the public site.
+- Former-legal-practice references are permitted only in past tense,
+  descriptive of completed historical work, and only on the About
+  section. No present-tense legal capacity, no claim of currently
+  providing legal services, no holding-out language (LSO Rule 3.1).
+  The "I now work on the deal side directly" sentence in About P1
+  carries the present-capacity disclosure and must remain whenever
+  legal background is referenced.
 - No misleading-advertising language (RECO Bulletin 5.3): no
   "guaranteed return," "best deal," "exclusive access."
 - No em dashes in user-visible strings.
