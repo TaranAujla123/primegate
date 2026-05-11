@@ -591,159 +591,104 @@
         <p class="section-label">Begin</p>
         <h2 id="intake-heading">Tell me what you are working on.</h2>
         <p class="section-lede">
-          Two ways in. Choose the one that fits. Every message is read personally, usually within a business day. All transactions conducted through HomeLife G1 Realty Inc., Brokerage.
+          Use the form below. Every message is read personally, usually within a business day. All transactions conducted through HomeLife G1 Realty Inc., Brokerage.
         </p>
-      </div>
 
-      <!--
-        FORM-ENDPOINT: both forms below post to the same Formspree endpoint.
-        Replace `xqewoqdw` with your Formspree form ID at deploy time.
-        A hidden `intake_path` field lets you distinguish referred submissions from new introductions
-        in the delivered email subject / inbox. See README for full instructions.
-      -->
-      <div class="container intake-grid">
+        <!--
+          FORM-ENDPOINT: posts to Formspree.
+          Replace `xqewoqdw` with your Formspree form ID at deploy time.
+          The dropdown drives a hidden `intake_path` and `_subject` field so
+          referred submissions can be distinguished from new introductions in
+          the delivered email subject / inbox. See README for full instructions.
+        -->
+        <form
+          class="intake-form intake-form-merged"
+          name="primegate-intake"
+          method="POST"
+          action="https://formspree.io/f/xqewoqdw"
+          novalidate
+        >
+          <input type="hidden" name="intake_path" value="" id="intake-path" />
+          <input type="hidden" name="_subject" value="Primegate: New inquiry" id="intake-subject" />
+          <!-- _next URL: relative path resolves correctly under whatever canonical domain is set. Formspree will redirect to /thanks/ on the same host. -->
+          <input type="hidden" name="_next" value="/thanks/" />
 
-        <!-- PATH 1: REFERRED -->
-        <article class="intake-path" aria-labelledby="intake-referred-heading">
-          <header class="intake-path-head">
-            <p class="intake-path-label">Path 1</p>
-            <h3 id="intake-referred-heading">Referred by someone I know.</h3>
-            <p class="intake-path-lede">
-              Mention who sent you and what you are working on. Short is fine. I will get back to you, usually within a business day.
+          <div class="field">
+            <label for="i-source">How did you find the practice <span class="req" aria-hidden="true">*</span></label>
+            <select id="i-source" name="source" required>
+              <option value="">Select one&hellip;</option>
+              <option value="referred">Referred by someone I know</option>
+              <option value="new">New introduction</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="i-name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="i-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="i-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="i-email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="i-phone">Phone <span class="optional">(optional)</span></label>
+            <input type="tel" id="i-phone" name="phone" autocomplete="tel" />
+          </div>
+
+          <!-- Conditional: REFERRED. Required attribute toggled by JS so HTML5 validation only enforces visible fields. -->
+          <div class="field intake-conditional intake-conditional-referred" hidden>
+            <label for="i-referrer">Who referred you <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="i-referrer" name="referrer" autocomplete="off" placeholder="Name and how they know you, if you want" />
+          </div>
+
+          <!-- Conditional: NEW INTRODUCTION. Required attribute toggled by JS. -->
+          <div class="field-row intake-conditional intake-conditional-new" hidden>
+            <div class="field">
+              <label for="i-category">Which category <span class="req" aria-hidden="true">*</span></label>
+              <select id="i-category" name="category">
+                <option value="">Select one&hellip;</option>
+                <option>Premium Pre-Construction</option>
+                <option>Investment and Development Property</option>
+                <option>Businesses Sold With Their Real Estate</option>
+                <option>Private Client Representation</option>
+                <option>Other / Not sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="i-timeline">Timeline <span class="req" aria-hidden="true">*</span></label>
+              <select id="i-timeline" name="timeline">
+                <option value="">Select one&hellip;</option>
+                <option>0&ndash;3 months</option>
+                <option>3&ndash;6 months</option>
+                <option>6&ndash;12 months</option>
+                <option>Exploring</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="i-notes">
+              What you are working on
+              <span class="req intake-notes-req" aria-hidden="true">*</span>
+              <span class="optional intake-notes-opt" hidden>(optional)</span>
+            </label>
+            <textarea id="i-notes" name="notes" rows="5" placeholder="A sentence or two. Scope, timing, anything useful."></textarea>
+          </div>
+
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+
+          <div class="submit-row">
+            <button type="submit" class="submit">Send Message</button>
+            <p class="submit-note">
+              I read every message myself. You&rsquo;ll hear back within one business day, either way. No automated follow-up, no newsletter subscription. If we&rsquo;re a fit, let&rsquo;s talk further. If not, I&rsquo;m happy to recommend a colleague.
             </p>
-          </header>
-
-          <form
-            class="intake-form intake-form-referred"
-            name="primegate-intake-referred"
-            method="POST"
-            action="https://formspree.io/f/xqewoqdw"
-            novalidate
-          >
-            <input type="hidden" name="intake_path" value="referred" />
-            <input type="hidden" name="_subject" value="Primegate: Referred introduction" />
-            <!-- _next URL: relative path resolves correctly under whatever canonical domain is set. Formspree will redirect to /thanks/ on the same host. -->
-            <input type="hidden" name="_next" value="/thanks/" />
-
-            <div class="field-row">
-              <div class="field">
-                <label for="ref-name">Name <span class="req" aria-hidden="true">*</span></label>
-                <input type="text" id="ref-name" name="name" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="ref-email">Email <span class="req" aria-hidden="true">*</span></label>
-                <input type="email" id="ref-email" name="email" autocomplete="email" required />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="ref-phone">Phone <span class="optional">(optional)</span></label>
-              <input type="tel" id="ref-phone" name="phone" autocomplete="tel" />
-            </div>
-
-            <div class="field">
-              <label for="ref-referrer">Who referred you <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="ref-referrer" name="referrer" autocomplete="off" placeholder="Name and how they know you, if you want" required />
-            </div>
-
-            <div class="field">
-              <label for="ref-notes">What you are working on <span class="req" aria-hidden="true">*</span></label>
-              <textarea id="ref-notes" name="notes" rows="4" placeholder="A sentence or two. Scope, timing, anything useful." required></textarea>
-            </div>
-
-            <!-- Honeypot -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
-
-            <div class="submit-row">
-              <button type="submit" class="submit">Send Message</button>
-              <p class="submit-note">
-                I read every message myself. You&rsquo;ll hear back within a business day, either way. If we&rsquo;re a fit, let&rsquo;s talk further. If not, I&rsquo;m happy to point you to someone better positioned to help.
-              </p>
-            </div>
-            <p class="form-error" role="alert" hidden></p>
-          </form>
-        </article>
-
-        <!-- PATH 2: NEW INTRODUCTION -->
-        <article class="intake-path" aria-labelledby="intake-new-heading">
-          <header class="intake-path-head">
-            <p class="intake-path-label">Path 2</p>
-            <h3 id="intake-new-heading">New introduction.</h3>
-            <p class="intake-path-lede">
-              Found the practice on your own? Use the form below. I&rsquo;ll be in touch within two business days, either way.
-            </p>
-          </header>
-
-          <form
-            class="intake-form intake-form-new"
-            name="primegate-intake-new"
-            method="POST"
-            action="https://formspree.io/f/xqewoqdw"
-            novalidate
-          >
-            <input type="hidden" name="intake_path" value="new-introduction" />
-            <input type="hidden" name="_subject" value="Primegate: New introduction" />
-            <!-- _next URL: relative path resolves correctly under whatever canonical domain is set. Formspree will redirect to /thanks/ on the same host. -->
-            <input type="hidden" name="_next" value="/thanks/" />
-
-            <div class="field-row">
-              <div class="field">
-                <label for="new-name">Name <span class="req" aria-hidden="true">*</span></label>
-                <input type="text" id="new-name" name="name" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="new-email">Email <span class="req" aria-hidden="true">*</span></label>
-                <input type="email" id="new-email" name="email" autocomplete="email" required />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="new-phone">Phone <span class="optional">(optional)</span></label>
-              <input type="tel" id="new-phone" name="phone" autocomplete="tel" />
-            </div>
-
-            <div class="field-row">
-              <div class="field">
-                <label for="new-category">Which category <span class="req" aria-hidden="true">*</span></label>
-                <select id="new-category" name="category" required>
-                  <option value="">Select one&hellip;</option>
-                  <option>Premium Pre-Construction</option>
-                  <option>Investment and Development Property</option>
-                  <option>Businesses Sold With Their Real Estate</option>
-                  <option>Private Client Representation</option>
-                  <option>Other / Not sure</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="new-timeline">Timeline <span class="req" aria-hidden="true">*</span></label>
-                <select id="new-timeline" name="timeline" required>
-                  <option value="">Select one&hellip;</option>
-                  <option>0&ndash;3 months</option>
-                  <option>3&ndash;6 months</option>
-                  <option>6&ndash;12 months</option>
-                  <option>Exploring</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="new-notes">What you are working on <span class="optional">(optional)</span></label>
-              <textarea id="new-notes" name="notes" rows="5" placeholder="Describe the transaction in your own words. What you already know. What you are uncertain about. What outcome you are working toward. One or two sentences is enough."></textarea>
-            </div>
-
-            <!-- Honeypot -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
-
-            <div class="submit-row">
-              <button type="submit" class="submit">Send Inquiry</button>
-              <p class="submit-note">
-                I read every message myself. You&rsquo;ll hear back within two business days, either way. No automated follow-up, no newsletter subscription, no resale of your information.
-              </p>
-            </div>
-            <p class="form-error" role="alert" hidden></p>
-          </form>
-        </article>
-
+          </div>
+          <p class="form-error" role="alert" hidden></p>
+        </form>
       </div>
     </section>
 
@@ -964,6 +909,74 @@
           setFlipped(lane, false);
         });
       });
+    })();
+
+    // Intake form: conditional fields based on the "How did you find the
+    // practice" dropdown. Shows the relevant follow-up fields, toggles the
+    // required attribute so HTML5 validation only enforces visible fields,
+    // and syncs hidden Formspree metadata (intake_path, _subject) so
+    // referred vs. new-intro submissions land in the inbox tagged correctly.
+    // If JS is disabled, the dropdown still posts a `source` value to
+    // Formspree and all fields submit as optional from the browser's view.
+    (function(){
+      var sourceSelect = document.getElementById('i-source');
+      if (!sourceSelect) return;
+
+      var refConditional = document.querySelector('.intake-conditional-referred');
+      var newConditional = document.querySelector('.intake-conditional-new');
+      var refField       = document.getElementById('i-referrer');
+      var newCategory    = document.getElementById('i-category');
+      var newTimeline    = document.getElementById('i-timeline');
+      var notes          = document.getElementById('i-notes');
+      var notesReq       = document.querySelector('.intake-notes-req');
+      var notesOpt       = document.querySelector('.intake-notes-opt');
+      var pathInput      = document.getElementById('intake-path');
+      var subjectInput   = document.getElementById('intake-subject');
+
+      var PLACEHOLDER_REFERRED = 'A sentence or two. Scope, timing, anything useful.';
+      var PLACEHOLDER_NEW = 'Describe the transaction in your own words. What you already know. What you are uncertain about. What outcome you are working toward. One or two sentences is enough.';
+
+      function setRequired(el, on) {
+        if (!el) return;
+        if (on) el.setAttribute('required', '');
+        else el.removeAttribute('required');
+      }
+      function show(el, on) {
+        if (!el) return;
+        if (on) el.removeAttribute('hidden');
+        else el.setAttribute('hidden', '');
+      }
+
+      function update() {
+        var v = sourceSelect.value;
+        var isReferred = v === 'referred';
+        var isNew = v === 'new';
+
+        show(refConditional, isReferred);
+        show(newConditional, isNew);
+
+        setRequired(refField, isReferred);
+        setRequired(newCategory, isNew);
+        setRequired(newTimeline, isNew);
+        setRequired(notes, isReferred);
+
+        show(notesReq, !isNew);
+        show(notesOpt, isNew);
+
+        if (notes) {
+          notes.placeholder = isNew ? PLACEHOLDER_NEW : PLACEHOLDER_REFERRED;
+        }
+
+        if (pathInput) pathInput.value = v;
+        if (subjectInput) {
+          if (isReferred)  subjectInput.value = 'Primegate: Referred introduction';
+          else if (isNew)  subjectInput.value = 'Primegate: New introduction';
+          else             subjectInput.value = 'Primegate: New inquiry';
+        }
+      }
+
+      sourceSelect.addEventListener('change', update);
+      update();
     })();
 
     // Intake form: AJAX submission to Formspree, manual redirect to /thanks/.

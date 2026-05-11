@@ -1280,73 +1280,14 @@ section h2 em {
   font-variation-settings: "opsz" 72, "SOFT" 80, "WONK" 1;
 }
 
-/* ---------- Intake — two paths ---------- */
+/* ---------- Intake ---------- */
 .intake {
   padding: var(--section-pad) 0;
 }
 .intake h2 { margin-bottom: 20px; }
-.intake-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(56px, 7vw, 88px);
-  margin-top: clamp(56px, 7vw, 88px);
-}
-@media (min-width: 960px) {
-  .intake-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 5vw, 72px);
-  }
-}
-.intake-path {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  position: relative;
-}
-@media (min-width: 960px) {
-  .intake-path + .intake-path {
-    padding-left: clamp(40px, 5vw, 72px);
-    border-left: 1px solid var(--paper-rule);
-  }
-}
-.intake-path-head { display: flex; flex-direction: column; gap: 14px; }
-.intake-path-label {
-  font-family: var(--ff-sans);
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold-darkest);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-.intake-path-label::before {
-  content: '';
-  width: 24px; height: 1px;
-  background: var(--gold-deep);
-  display: inline-block;
-}
-.intake-path h3 {
-  font-family: var(--ff-display);
-  font-size: clamp(26px, 2.8vw, 34px);
-  font-weight: 400;
-  color: var(--paper-ink);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  font-variation-settings: "opsz" 72, "SOFT" 50;
-  max-width: 18ch;
-}
-.intake-path-lede {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--paper-muted);
-  max-width: 42ch;
-  font-weight: 400;
-}
 .intake-form {
-  max-width: 100%;
-  margin-top: 0;
+  max-width: 720px;
+  margin-top: clamp(40px, 5vw, 64px);
 }
 .field { margin-bottom: 28px; }
 .field-row {
