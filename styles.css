@@ -2481,7 +2481,18 @@ a.thanks-return:hover {
      lockup room to breathe at parity with the Primegate brand-mark
      below. Sticky-portrait offset reads this var, no other change
      needed downstream. */
-  --brokerage-bar-h: 76px;
+  --brokerage-bar-h: 71px;
+}
+/* The brokerage bar's rendered height shrinks at tablet + mobile breakpoints
+   (smaller padding + smaller logo). The --brokerage-bar-h variable must
+   match so the topbar's top: var(--brokerage-bar-h) sits flush with the
+   brokerage bar's bottom edge — otherwise content scrolls through the
+   gap on mobile (visible bug per 2026-05-11 phone screenshot). */
+@media (max-width: 820px) {
+  :root { --brokerage-bar-h: 67px; }
+}
+@media (max-width: 600px) {
+  :root { --brokerage-bar-h: 57px; }
 }
 body {
   padding-top: var(--brokerage-bar-h);

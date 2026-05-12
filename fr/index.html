@@ -378,7 +378,7 @@
               L&rsquo;approche est d&rsquo;abord documentaire, attentive au marché et axée sur la position. Je lis avant de recommander, je bâtis la position avant de la mettre en œuvre, et je comprends les deux côtés de la table aussi attentivement que je comprends le dossier. La force dans une transaction, c&rsquo;est faire le travail, garder son sang-froid, et arriver avec des options, pas du bruit. Le travail, c&rsquo;est la stratégie et le positionnement. Le jugement, c&rsquo;est de savoir faire la différence.
             </p>
             <p>
-              Je travaille en français, en anglais et en pendjabi.
+              Je travaille en français, en anglais et en Punjabi.
             </p>
             <p class="about-close">
               Je travaille avec un petit nombre de clients à la fois. Si nos besoins concordent, parlons-nous. Sinon, je serai heureux de vous recommander un collègue.
@@ -596,6 +596,22 @@
   </footer>
 
   <script>
+    // Sync --brokerage-bar-h to the brokerage strip's actual rendered height
+    // so the topbar always sits flush with the brokerage strip's bottom edge.
+    (function(){
+      var bb = document.querySelector('.brokerage-bar');
+      if (!bb) return;
+      function sync(){
+        var h = Math.round(bb.getBoundingClientRect().height);
+        if (h > 0) document.documentElement.style.setProperty('--brokerage-bar-h', h + 'px');
+      }
+      sync();
+      window.addEventListener('resize', sync, { passive: true });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sync);
+      }
+    })();
+
     // Mobile nav toggle
     (function(){
       var btn = document.querySelector('.nav-toggle');

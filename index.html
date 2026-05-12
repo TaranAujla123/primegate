@@ -775,6 +775,25 @@
   </footer>
 
   <script>
+    // Sync --brokerage-bar-h to the brokerage strip's actual rendered height
+    // so the topbar always sits flush with the brokerage strip's bottom edge,
+    // no matter the viewport. Closes the mobile gap where content was
+    // scrolling between the two fixed bars.
+    (function(){
+      var bb = document.querySelector('.brokerage-bar');
+      if (!bb) return;
+      function sync(){
+        var h = Math.round(bb.getBoundingClientRect().height);
+        if (h > 0) document.documentElement.style.setProperty('--brokerage-bar-h', h + 'px');
+      }
+      sync();
+      window.addEventListener('resize', sync, { passive: true });
+      // Also re-sync after fonts load (web fonts can shift line-height)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sync);
+      }
+    })();
+
     // Mobile nav toggle
     (function(){
       var btn = document.querySelector('.nav-toggle');
