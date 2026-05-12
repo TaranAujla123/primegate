@@ -131,6 +131,31 @@
 <body>
 
   <a href="#main" class="skip-link">Skip to main content</a>
+  <!-- ============================== BROKERAGE STRIP ============================== -->
+  <!--
+    Compliance note (RECO Bulletins 5.1 / 5.3):
+    Mirrors the homepage brokerage strip. Identifies HomeLife G1 Realty
+    Inc., Brokerage with the G1 logo, registered name, descriptor
+    "Brokerage", and "Independently Owned & Operated" franchise tag on
+    the first viewport of every public page. This satisfies the
+    "clearly and prominently identified" requirement on interior pages
+    where users may land via search or shared links.
+  -->
+  <div class="brokerage-bar" role="region" aria-label="Brokerage identification">
+    <div class="brokerage-bar-inner">
+      <a class="brokerage-bar-link" href="https://www.homelifeg1realty.com" rel="noopener external" aria-label="HomeLife G1 Realty Inc., Brokerage. Independently Owned and Operated.">
+        <img class="brokerage-bar-logo" src="../assets/homelife-g1-logo-white-tight.png" alt="HomeLife G1 Realty Inc., Brokerage" width="849" height="519" decoding="async" />
+        <span class="brokerage-bar-text">
+          <span class="brokerage-bar-name">HomeLife G1 Realty Inc., Brokerage</span>
+          <span class="brokerage-bar-sub">Independently Owned &amp; Operated</span>
+        </span>
+      </a>
+      <span class="brokerage-bar-meta" aria-hidden="false">
+        <a class="brokerage-bar-phone" href="tel:+19057937797">(905) 793-7797</a>
+      </span>
+    </div>
+  </div>
+
 
   <!-- ============================== TOP BAR ============================== -->
   <header class="topbar" role="banner">
@@ -510,6 +535,25 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
       pickActive();
+    })();
+  </script>
+
+  
+  <!-- Sync --brokerage-bar-h to the brokerage strip's actual rendered height
+       so the topbar sits flush with the strip's bottom edge on every viewport. -->
+  <script>
+    (function(){
+      var bb = document.querySelector('.brokerage-bar');
+      if (!bb) return;
+      function sync(){
+        var h = Math.round(bb.getBoundingClientRect().height);
+        if (h > 0) document.documentElement.style.setProperty('--brokerage-bar-h', h + 'px');
+      }
+      sync();
+      window.addEventListener('resize', sync, { passive: true });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sync);
+      }
     })();
   </script>
 

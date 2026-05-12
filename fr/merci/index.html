@@ -23,6 +23,27 @@
 <body>
 
   <a href="#main" class="skip-link">Aller au contenu principal</a>
+  <!-- ============================== BROKERAGE STRIP ============================== -->
+  <!--
+    Compliance note (RECO Bulletins 5.1 / 5.3):
+    Mirror the homepage brokerage strip so brokerage attribution shows
+    on the first viewport of every public page.
+  -->
+  <div class="brokerage-bar" role="region" aria-label="Identification du courtage immobilier">
+    <div class="brokerage-bar-inner">
+      <a class="brokerage-bar-link" href="https://www.homelifeg1realty.com" rel="noopener external" aria-label="HomeLife G1 Realty Inc., Brokerage. Indépendamment détenue et exploitée.">
+        <img class="brokerage-bar-logo" src="../../assets/homelife-g1-logo-white-tight.png" alt="HomeLife G1 Realty Inc., Brokerage" width="849" height="519" decoding="async" />
+        <span class="brokerage-bar-text">
+          <span class="brokerage-bar-name">HomeLife G1 Realty Inc., Brokerage</span>
+          <span class="brokerage-bar-sub">Indépendamment détenue et exploitée</span>
+        </span>
+      </a>
+      <span class="brokerage-bar-meta" aria-hidden="false">
+        <a class="brokerage-bar-phone" href="tel:+19057937797">(905) 793-7797</a>
+      </span>
+    </div>
+  </div>
+
 
   <!-- ============================== TOP BAR ============================== -->
   <header class="topbar" role="banner">
@@ -157,6 +178,24 @@
       };
       apply();
       window.addEventListener('scroll', apply, { passive: true });
+    })();
+  </script>
+
+  
+  <!-- Sync --brokerage-bar-h to actual brokerage strip height -->
+  <script>
+    (function(){
+      var bb = document.querySelector('.brokerage-bar');
+      if (!bb) return;
+      function sync(){
+        var h = Math.round(bb.getBoundingClientRect().height);
+        if (h > 0) document.documentElement.style.setProperty('--brokerage-bar-h', h + 'px');
+      }
+      sync();
+      window.addEventListener('resize', sync, { passive: true });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sync);
+      }
     })();
   </script>
 
