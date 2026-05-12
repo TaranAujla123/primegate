@@ -348,6 +348,51 @@ h1 em, h2 em, h3 em {
   border-color: var(--gold);
 }
 
+/* Language switcher in the topbar nav.
+   "EN | FR" pair where the current language reads as muted and the
+   alternate is a tappable link. Tracked caps, gold accent. */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+.lang-switch a {
+  color: var(--bone-muted);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.lang-switch a::after { display: none !important; }
+.lang-switch a:hover {
+  color: var(--gold);
+}
+.lang-switch .lang-sep {
+  color: var(--bone-faint);
+}
+.lang-switch .lang-current {
+  color: var(--gold);
+}
+.topbar.over-light .lang-switch a { color: var(--paper-muted); }
+.topbar.over-light .lang-switch a:hover { color: var(--gold-darkest); }
+.topbar.over-light .lang-switch .lang-sep { color: rgba(20, 23, 31, 0.20); }
+.topbar.over-light .lang-switch .lang-current { color: var(--gold-darkest); }
+
+/* Accessibility: visually hidden but read by screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Mobile toggle */
 .nav-toggle {
   display: none;
