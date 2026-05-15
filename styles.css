@@ -2866,6 +2866,18 @@ body {
    --gold tokens. No new colors.
    ===================================================================== */
 
+/* ---- Topbar override: always solid on project pages ----
+   The home page toggles .topbar.scrolled via JS based on scroll position.
+   Project pages don't include that scroll-detection JS (they don't have a
+   transparent-hero benefit), so we make the topbar solid by default here.
+   Without this, content scrolling beneath the topbar shows through. */
+.projects-page .topbar {
+  background: rgba(10, 13, 20, 0.82);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border-bottom-color: var(--ink-rule);
+}
+
 /* ---- Page shell ---- */
 .projects-main {
   max-width: var(--maxw);
