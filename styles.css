@@ -3404,3 +3404,31 @@ body {
   .project-gate-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
+/* ---- Buyer representation statement block (Intake section) ----
+   A peer element to the operational intake subline, sitting between
+   the subline and the form. Reads as a declarative statement of
+   practice, distinguished from the muted operational tone above by
+   stronger color (--paper-ink vs --paper-muted) and the fine
+   --gold-deep rule. Typographic statement only - no card, no panel,
+   no heading. */
+.buyer-rep-block {
+  margin: 2rem 0;
+  max-width: 60ch;
+}
+.buyer-rep-block::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: var(--gold-deep);
+  margin-bottom: 1rem;
+}
+.buyer-rep-block p {
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--paper-ink);
+  line-height: 1.6;
+  letter-spacing: normal;
+  margin: 0;
+}
