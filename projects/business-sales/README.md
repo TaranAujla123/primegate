@@ -17,7 +17,7 @@ README every time you add or update a file page.
    The slug is lowercase, hyphenated, no spaces, and never identifies
    the business by its trading name unless the vendor has consented to
    public naming. Use a code-name plus geography. Examples:
-   `burlington-cafe-2026.html`, `dufferin-industrial-condo-2026.html`,
+   `burlington-cafe-2026.html`, `mississauga-saas-platform-2026.html`,
    `qew-corridor-restaurant.html`.
 
 2. **Replace every token.** The template contains tokens of the form
@@ -35,9 +35,9 @@ README every time you add or update a file page.
    - `{{ LISTING_TYPE }}`. Short label, all caps. Examples:
      `FOOD SERVICE - CAFE WITH REAL ESTATE`,
      `RETAIL - PLAZA TENANCY (LEASED)`,
-     `INDUSTRIAL - OWNER-OCCUPIED CONDO UNIT`.
+     `SOFTWARE - SAAS PLATFORM (ASSET SALE)`.
    - `{{ LISTING_SECTOR }}`. Plain-language sector descriptor.
-     Examples: `Food service`, `Retail`, `Industrial`,
+     Examples: `Food service`, `Retail`, `Software`,
      `Automotive`, `Hospitality`, `Professional services`.
    - `{{ LISTING_LOCATION }}`. Geography only, no street address
      unless the vendor has consented. Example: `Burlington, Ontario`.
