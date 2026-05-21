@@ -1,8 +1,8 @@
-# Businesses For Sale. Workflow
+# Business Sales & Acquisitions. Workflow
 
-This folder holds individual business-for-sale listing pages and the
-reusable detail template (`_template.html`). Use this README every time
-you add or update a listing page.
+This folder holds individual business-sales-and-acquisitions file
+pages and the reusable detail template (`_template.html`). Use this
+README every time you add or update a file page.
 
 ---
 
@@ -197,7 +197,7 @@ folder, e.g. `assets/projects/<slug>/authorization.pdf`.
 ## Quick file map
 
 ```
-projects/businesses-for-sale/
+projects/business-sales/
   index.html               Lane landing, filter chips, listing cards
   _template.html           Reusable detail template (this file's pair)
   README.md                This file

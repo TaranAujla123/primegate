@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  BUSINESS-FOR-SALE LISTING DETAIL TEMPLATE
+  BUSINESS SALES & ACQUISITIONS - FILE DETAIL TEMPLATE
   ============================================================================
-  Copy this file to <listing-slug>.html (e.g. burlington-cafe-2026.html).
+  Copy this file to <file-slug>.html (e.g. burlington-cafe-2026.html).
   Replace every block marked {{ TOKEN }} with the listing's actual content.
   Update the form's hidden listing_name field, the breadcrumb, the title,
   meta tags, canonical URL, og:* tags, and the document slot list.
@@ -20,8 +20,8 @@
     {{ LISTING_BROKERAGE }}         listing brokerage
     {{ LISTING_SUMMARY }}           one-sentence summary
 
-  Card data attributes on the lane index also need to be set so the listing
-  appears under the right filter values. See ../businesses-for-sale/README.md.
+  Card data attributes on the lane index also need to be set so the file
+  appears under the right filter values. See ../business-sales/README.md.
 
   Names of operating businesses, vendor identities, and financial details
   should be withheld from the public page. Use a code-name and request a
@@ -36,24 +36,24 @@
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Taran Aujla" />
 
-  <title>{{ LISTING_NAME }} &middot; Business For Sale &middot; Primegate</title>
+  <title>{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions &middot; Primegate</title>
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{{ LISTING_NAME }} &middot; Business For Sale" />
+  <meta property="og:title" content="{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions" />
   <meta property="og:description" content="{{ LISTING_SUMMARY }}" />
-  <meta property="og:url" content="https://prime-gate.ca/projects/businesses-for-sale/{{ LISTING_SLUG }}.html" />
+  <meta property="og:url" content="https://prime-gate.ca/projects/business-sales/{{ LISTING_SLUG }}.html" />
   <meta property="og:image" content="https://prime-gate.ca/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Primegate" />
   <meta property="og:locale" content="en_CA" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ LISTING_NAME }} &middot; Business For Sale" />
+  <meta name="twitter:title" content="{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions" />
   <meta name="twitter:description" content="{{ LISTING_SUMMARY }}" />
   <meta name="twitter:image" content="https://prime-gate.ca/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
-  <link rel="canonical" href="https://prime-gate.ca/projects/businesses-for-sale/{{ LISTING_SLUG }}.html" />
+  <link rel="canonical" href="https://prime-gate.ca/projects/business-sales/{{ LISTING_SLUG }}.html" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,7 +121,7 @@
     <a href="/" class="projects-return-link">&larr; Primegate</a>
 
     <p class="projects-breadcrumb" aria-label="Breadcrumb">
-      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/businesses-for-sale/">Businesses For Sale</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ LISTING_NAME }}</span>
+      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/business-sales/">Business Sales &amp; Acquisitions</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ LISTING_NAME }}</span>
     </p>
 
     <!-- ============================== HERO ============================== -->
@@ -257,10 +257,10 @@
         action="https://formspree.io/f/xqewoqdw"
         novalidate
       >
-        <input type="hidden" name="_subject" value="Primegate Business-For-Sale Inquiry: {{ LISTING_NAME }}" />
+        <input type="hidden" name="_subject" value="Primegate Business Sales Inquiry: {{ LISTING_NAME }}" />
         <input type="hidden" name="_next" value="/thanks/" />
         <input type="hidden" name="listing_name" value="{{ LISTING_NAME }}" />
-        <input type="hidden" name="project_lane" value="businesses-for-sale" />
+        <input type="hidden" name="project_lane" value="business-sales" />
         <input type="hidden" name="intake_path" value="business-inquiry" />
 
         <div class="field-row">
