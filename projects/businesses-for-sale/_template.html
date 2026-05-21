@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  PRE-CONSTRUCTION PROJECT DETAIL TEMPLATE
+  BUSINESS-FOR-SALE LISTING DETAIL TEMPLATE
   ============================================================================
-  Copy this file to <project-slug>.html (e.g. marquee-condos.html).
-  Replace every block marked {{ TOKEN }} with the project's actual content.
-  Update the form's hidden project_name field, the breadcrumb, the title,
+  Copy this file to <listing-slug>.html (e.g. burlington-cafe-2026.html).
+  Replace every block marked {{ TOKEN }} with the listing's actual content.
+  Update the form's hidden listing_name field, the breadcrumb, the title,
   meta tags, canonical URL, og:* tags, and the document slot list.
 
   TOKEN INDEX:
-    {{ PROJECT_NAME }}              human readable, e.g. Marquee Condos
-    {{ PROJECT_SLUG }}              file-name slug, e.g. marquee-condos
-    {{ PROJECT_TYPE }}              e.g. PRE-CONSTRUCTION CONDOMINIUM
-    {{ PROJECT_LOCATION }}          city, neighbourhood, e.g. Mississauga, Erin Mills
-    {{ PROJECT_BUILDER }}           builder name
-    {{ PROJECT_LISTING_BROKERAGE }} listing brokerage
-    {{ PROJECT_OCCUPANCY_EST }}     e.g. Estimated 2027
-    {{ PROJECT_SUMMARY }}           one-sentence summary
+    {{ LISTING_NAME }}              human readable, e.g. Burlington Cafe (Confidential)
+    {{ LISTING_SLUG }}              file-name slug, e.g. burlington-cafe-2026
+    {{ LISTING_TYPE }}              short label, e.g. FOOD SERVICE - CAFE WITH REAL ESTATE
+    {{ LISTING_SECTOR }}            e.g. Food service. Retail. Industrial. Automotive.
+    {{ LISTING_LOCATION }}          city, geography, e.g. Burlington, Ontario
+    {{ LISTING_REAL_ESTATE }}       e.g. Building included. Lease in place. Optional.
+    {{ LISTING_STRUCTURE }}         e.g. Asset sale. Share sale. Either, vendor open.
+    {{ LISTING_ASKING_PRICE }}      e.g. Asking $2.4M (real estate and business)
+    {{ LISTING_BROKERAGE }}         listing brokerage
+    {{ LISTING_SUMMARY }}           one-sentence summary
 
-  Card data attributes on the lane index also need to be set so the project
-  appears under the right filter values. See ../pre-construction/README.md.
+  Card data attributes on the lane index also need to be set so the listing
+  appears under the right filter values. See ../businesses-for-sale/README.md.
+
+  Names of operating businesses, vendor identities, and financial details
+  should be withheld from the public page. Use a code-name and request a
+  signed NDA before releasing the deal book.
   ============================================================================
 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{ PROJECT_NAME }}. {{ PROJECT_TYPE }} in {{ PROJECT_LOCATION }}. Built by {{ PROJECT_BUILDER }}. Listed by {{ PROJECT_LISTING_BROKERAGE }}. Cooperating-brokerage representation by Taran Aujla, Salesperson, HomeLife G1 Realty Inc., Brokerage." />
+  <meta name="description" content="{{ LISTING_NAME }}. {{ LISTING_TYPE }} in {{ LISTING_LOCATION }}. Listed by {{ LISTING_BROKERAGE }}. Cooperating-brokerage representation by Taran Aujla, Salesperson, HomeLife G1 Realty Inc., Brokerage." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Taran Aujla" />
 
-  <title>{{ PROJECT_NAME }} &middot; Pre-Construction &middot; Primegate</title>
+  <title>{{ LISTING_NAME }} &middot; Business For Sale &middot; Primegate</title>
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{{ PROJECT_NAME }} &middot; Pre-Construction" />
-  <meta property="og:description" content="{{ PROJECT_SUMMARY }}" />
-  <meta property="og:url" content="https://prime-gate.ca/projects/pre-construction/{{ PROJECT_SLUG }}.html" />
+  <meta property="og:title" content="{{ LISTING_NAME }} &middot; Business For Sale" />
+  <meta property="og:description" content="{{ LISTING_SUMMARY }}" />
+  <meta property="og:url" content="https://prime-gate.ca/projects/businesses-for-sale/{{ LISTING_SLUG }}.html" />
   <meta property="og:image" content="https://prime-gate.ca/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Primegate" />
   <meta property="og:locale" content="en_CA" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ PROJECT_NAME }} &middot; Pre-Construction" />
-  <meta name="twitter:description" content="{{ PROJECT_SUMMARY }}" />
+  <meta name="twitter:title" content="{{ LISTING_NAME }} &middot; Business For Sale" />
+  <meta name="twitter:description" content="{{ LISTING_SUMMARY }}" />
   <meta name="twitter:image" content="https://prime-gate.ca/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
-  <link rel="canonical" href="https://prime-gate.ca/projects/pre-construction/{{ PROJECT_SLUG }}.html" />
+  <link rel="canonical" href="https://prime-gate.ca/projects/businesses-for-sale/{{ LISTING_SLUG }}.html" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -115,44 +121,54 @@
     <a href="/" class="projects-return-link">&larr; Primegate</a>
 
     <p class="projects-breadcrumb" aria-label="Breadcrumb">
-      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/pre-construction/">Pre-Construction</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ PROJECT_NAME }}</span>
+      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/businesses-for-sale/">Businesses For Sale</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ LISTING_NAME }}</span>
     </p>
 
     <!-- ============================== HERO ============================== -->
-    <section class="projects-hero project-detail-hero-wrap" aria-labelledby="project-hero-heading">
-      <p class="eyebrow projects-eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>{{ PROJECT_TYPE }}</p>
-      <h1 id="project-hero-heading" class="projects-h1">{{ PROJECT_NAME }}</h1>
-      <p class="projects-subhead">{{ PROJECT_BUILDER }}. {{ PROJECT_LOCATION }}. {{ PROJECT_OCCUPANCY_EST }}.</p>
+    <section class="projects-hero project-detail-hero-wrap" aria-labelledby="listing-hero-heading">
+      <p class="eyebrow projects-eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>{{ LISTING_TYPE }}</p>
+      <h1 id="listing-hero-heading" class="projects-h1">{{ LISTING_NAME }}</h1>
+      <p class="projects-subhead">{{ LISTING_SECTOR }}. {{ LISTING_LOCATION }}. {{ LISTING_ASKING_PRICE }}.</p>
 
-      <!-- 16:9 hero image slot. Replace with <img src="..." alt="..." /> per project. -->
+      <!-- 16:9 hero image slot. If the vendor requires confidentiality,
+           leave the placeholder in place rather than running an identifying
+           exterior photo. Replace with <img src="..." alt="..." /> only when
+           the vendor consents to a public image. -->
       <div class="project-detail-hero placeholder" aria-hidden="true">
-        <span class="image-slot-label">Project hero image</span>
+        <span class="image-slot-label">Image withheld per vendor instructions</span>
       </div>
     </section>
 
     <!-- ============================== OVERVIEW ============================== -->
-    <section class="project-detail-section" aria-labelledby="project-overview-heading">
-      <h2 id="project-overview-heading" class="project-detail-h2">The project.</h2>
+    <section class="project-detail-section" aria-labelledby="listing-overview-heading">
+      <h2 id="listing-overview-heading" class="project-detail-h2">The business.</h2>
       <div class="project-detail-prose placeholder">
-        <!-- BEGIN content slot: 3-4 paragraph overview -->
-        <p>Project overview paragraph 1. Replace this with the substantive
-          description of the project: what it is, where it sits, why the
-          builder is doing it.</p>
-        <p>Paragraph 2. Replace with the suite-mix and amenity context that
-          matters, in plain language.</p>
-        <p>Paragraph 3. Replace with the neighbourhood and infrastructure
-          context. Transit, schools, planned development nearby.</p>
+        <!-- BEGIN content slot: 3-4 paragraph overview. Name the business
+             only if the vendor has authorised public naming. Otherwise use
+             a code-name and describe the operation by category. -->
+        <p>Business overview paragraph 1. Replace with the substantive
+          description of the operation: what it does, where it sits in its
+          market, why the vendor is selling.</p>
+        <p>Paragraph 2. Replace with the operation profile that matters:
+          years in operation, staff count if relevant, hours, owner
+          involvement, key supplier or customer relationships in plain
+          language. Do not publish anything covered by the vendor's NDA.</p>
+        <p>Paragraph 3. Replace with the real estate context if applicable.
+          Building size, lease terms if leased, zoning, parking, and any
+          development upside. If real estate is included with the sale, say
+          so plainly and note that the real estate component of the deal is
+          conducted under TRESA.</p>
         <p>Paragraph 4. Optional fourth paragraph if there is more to say.</p>
         <!-- END content slot -->
       </div>
     </section>
 
     <!-- ============================== KEY FACTS ============================== -->
-    <section class="project-detail-section" aria-labelledby="project-keyfacts-heading">
-      <h2 id="project-keyfacts-heading" class="project-detail-h2">Key facts.</h2>
+    <section class="project-detail-section" aria-labelledby="listing-keyfacts-heading">
+      <h2 id="listing-keyfacts-heading" class="project-detail-h2">Key facts.</h2>
       <dl class="key-facts-grid">
         <div class="key-fact">
-          <dt>Builder</dt>
+          <dt>Sector</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
@@ -164,45 +180,49 @@
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Project type</dt>
+          <dt>Asking price</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Suite mix</dt>
+          <dt>Real estate</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Estimated price range</dt>
+          <dt>Deal structure</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Estimated occupancy</dt>
+          <dt>Years in operation</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Deposit structure summary</dt>
+          <dt>Staff</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Assignment rights</dt>
+          <dt>Vendor involvement post-close</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
+        </div>
+        <div class="key-fact">
+          <dt>Confidentiality</dt>
+          <dd class="placeholder-inline">NDA required before financials</dd>
         </div>
       </dl>
     </section>
 
     <!-- ============================== CONSIDERATIONS ============================== -->
-    <section class="project-detail-section" aria-labelledby="project-considerations-heading">
-      <h2 id="project-considerations-heading" class="project-detail-h2">What I&rsquo;m watching.</h2>
+    <section class="project-detail-section" aria-labelledby="listing-considerations-heading">
+      <h2 id="listing-considerations-heading" class="project-detail-h2">What I&rsquo;m watching.</h2>
       <div class="project-detail-prose placeholder">
-        <!-- BEGIN content slot: 3-4 paragraph commentary, project-specific. -->
+        <!-- BEGIN content slot: 3-4 paragraph commentary, listing-specific. -->
         <p>What I am watching, paragraph 1. Replace with the named risk
           patterns and named decisions a buyer needs to understand on this
-          specific project. No generic copy.</p>
-        <p>Paragraph 2. Builder track record. Construction-financing posture.
-          Pre-sale velocity if relevant. Deposit-structure realities.</p>
-        <p>Paragraph 3. Submarket considerations: nearby competition,
-          rentability if the buyer intends to lease at occupancy, resale
-          comparables for the unit type.</p>
+          specific business. No generic copy.</p>
+        <p>Paragraph 2. Revenue concentration, lease assignability, owner
+          dependency, key-person risk, regulatory or licensing exposure.</p>
+        <p>Paragraph 3. Where the real estate component sits in the deal
+          stack if applicable. Comparable lease and sale evidence in the
+          submarket. Redevelopment optionality.</p>
         <p>Paragraph 4. Plain summary of where I think this fits in a
           buyer's overall portfolio and where the file's natural risks sit.</p>
         <!-- END content slot -->
@@ -210,38 +230,38 @@
     </section>
 
     <!-- ============================== DOCUMENTS ============================== -->
-    <section class="project-detail-section" aria-labelledby="project-docs-heading">
-      <h2 id="project-docs-heading" class="project-detail-h2">Documents.</h2>
+    <section class="project-detail-section" aria-labelledby="listing-docs-heading">
+      <h2 id="listing-docs-heading" class="project-detail-h2">Documents.</h2>
       <ul class="project-doc-list">
-        <li><span class="placeholder-inline">Project brochure (slot)</span></li>
-        <li><span class="placeholder-inline">Floor plans (slot)</span></li>
-        <li><span class="placeholder-inline">Deposit structure (slot)</span></li>
-        <li><span class="placeholder-inline">Builder background (slot)</span></li>
+        <li><span class="placeholder-inline">Confidentiality agreement (NDA) template (slot)</span></li>
+        <li><span class="placeholder-inline">Confidential information memorandum, post-NDA (slot)</span></li>
+        <li><span class="placeholder-inline">Real estate documents if included (slot)</span></li>
+        <li><span class="placeholder-inline">Lease summary if leased (slot)</span></li>
       </ul>
       <p class="project-doc-note">
-        Full documentation available on engagement. Request through the form below.
+        Full deal book and financials available after a signed NDA. Request through the form below.
       </p>
     </section>
 
     <!-- ============================== LEAD FORM ============================== -->
-    <section class="project-detail-section project-form-section" aria-labelledby="project-form-heading">
-      <h2 id="project-form-heading" class="project-detail-h2">Request details.</h2>
+    <section class="project-detail-section project-form-section" aria-labelledby="listing-form-heading">
+      <h2 id="listing-form-heading" class="project-detail-h2">Request details.</h2>
       <p class="project-form-subhead">
         Brief introduction and the specifics you want to see. Response within two business days.
       </p>
 
       <form
         class="intake-form intake-form-merged project-form"
-        name="primegate-project-inquiry"
+        name="primegate-listing-inquiry"
         method="POST"
         action="https://formspree.io/f/xqewoqdw"
         novalidate
       >
-        <input type="hidden" name="_subject" value="Primegate Project Inquiry: {{ PROJECT_NAME }}" />
+        <input type="hidden" name="_subject" value="Primegate Business-For-Sale Inquiry: {{ LISTING_NAME }}" />
         <input type="hidden" name="_next" value="/thanks/" />
-        <input type="hidden" name="project_name" value="{{ PROJECT_NAME }}" />
-        <input type="hidden" name="project_lane" value="pre-construction" />
-        <input type="hidden" name="intake_path" value="project-inquiry" />
+        <input type="hidden" name="listing_name" value="{{ LISTING_NAME }}" />
+        <input type="hidden" name="project_lane" value="businesses-for-sale" />
+        <input type="hidden" name="intake_path" value="business-inquiry" />
 
         <div class="field-row">
           <div class="field">
@@ -261,10 +281,10 @@
 
         <div class="field">
           <label for="p-notes">
-            Tell me about your interest in this project
+            Tell me about your interest in this business
             <span class="req" aria-hidden="true">*</span>
           </label>
-          <textarea id="p-notes" name="notes" rows="5" minlength="30" required placeholder="Suite type, budget context, timing, anything useful."></textarea>
+          <textarea id="p-notes" name="notes" rows="5" minlength="30" required placeholder="Buyer profile, financing posture, timing, and what you want to verify."></textarea>
         </div>
 
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
@@ -272,17 +292,17 @@
         <div class="submit-row">
           <button type="submit" class="submit">Send inquiry</button>
           <p class="submit-note">
-            Submitting this form constitutes an inquiry, not an engagement. Representation requires a written buyer representation agreement.
+            Submitting this form constitutes an inquiry, not an engagement. Representation requires a written buyer representation agreement. Financials are released only after a signed NDA.
           </p>
         </div>
         <p class="form-error" role="alert" hidden></p>
       </form>
     </section>
 
-    <!-- ============================== PROJECT DISCLOSURE ============================== -->
-    <section class="project-disclosure" aria-label="Project disclosure">
+    <!-- ============================== LISTING DISCLOSURE ============================== -->
+    <section class="project-disclosure" aria-label="Listing disclosure">
       <p>
-        Project information on this page is provided by the listing brokerage for general reference only. Pricing, availability, suite mix, deposit structure, and occupancy estimates are subject to change by the builder without notice. HomeLife G1 Realty Inc., Brokerage acts as a cooperating brokerage and represents the buyer's interest in any transaction unless otherwise disclosed in writing. Buyers are advised to review all project documents and obtain independent legal and financial advice before entering any agreement of purchase and sale.
+        Information on this page is provided by the listing brokerage or vendor and is for general reference only. Asking price, inclusions, lease terms, and operational details are subject to change without notice. HomeLife G1 Realty Inc., Brokerage acts as a cooperating brokerage and represents the buyer's interest in any transaction unless otherwise disclosed in writing. Where the real estate is included with the business, only the real estate component of the transaction is conducted under TRESA through the brokerage. The sale of business assets, shares, or goodwill is conducted by the parties' respective counsel and is not a real estate trade. Buyers are advised to review all listing documents, conduct independent due diligence (financial, legal, environmental, lease) and obtain independent legal, accounting, and financial advice before entering any agreement.
       </p>
     </section>
 
