@@ -3432,3 +3432,67 @@ body {
   letter-spacing: normal;
   margin: 0;
 }
+
+/* ---- Who I Work With section ---- */
+/* Section deck: a subtitle that sits between the H2 and the lede,
+   smaller than the heading but larger than body. Reuses the
+   Fraunces gold-italic register established by `h2 em` so the
+   "Never the same one." line reads as a quiet continuation of
+   the "the table." accent above. */
+#who { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.section-deck {
+  font-family: var(--ff-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--bone-muted);
+  margin: clamp(8px, 0.8vw, 14px) 0 clamp(24px, 2.5vw, 36px);
+  max-width: 60ch;
+}
+.who-rows {
+  margin-top: clamp(48px, 6vw, 80px);
+  border-top: 1px solid var(--ink-rule);
+}
+.who-row {
+  padding: clamp(28px, 3vw, 44px) 0;
+  border-bottom: 1px solid var(--ink-rule);
+}
+.who-row-label {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 clamp(18px, 2vw, 28px);
+}
+.who-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 3vw, 56px);
+}
+.who-row-cell-label {
+  font-family: var(--ff-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin: 0 0 10px;
+}
+.who-row-text {
+  font-family: var(--ff-sans);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--bone);
+  margin: 0;
+  max-width: 60ch;
+}
+.who-row-full .who-row-text { max-width: 70ch; }
+@media (max-width: 720px) {
+  .who-row-grid { grid-template-columns: 1fr; gap: 24px; }
+}
