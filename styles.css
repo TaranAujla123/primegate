@@ -1570,6 +1570,23 @@ footer {
   color: rgba(237, 232, 220, 0.5);
 }
 
+/* Discreet cross-link to other businesses by the same Salesperson.
+   Stays inside disclosure-block so it inherits the muted bone, 12px, 1.8
+   line-height treatment. Link picks up the same subtle gold underline
+   used by .footer-lane-list a so it reads as a quiet meta link. */
+.disclosure-block .footer-also { margin-top: 24px; }
+.disclosure-block .footer-also a {
+  color: var(--bone);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.35);
+  transition: color .25s ease, border-color .25s ease;
+}
+.disclosure-block .footer-also a:hover,
+.disclosure-block .footer-also a:focus-visible {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
