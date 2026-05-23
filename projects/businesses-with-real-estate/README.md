@@ -1,8 +1,9 @@
-# Business Sales & Acquisitions. Workflow
+# Businesses Sold With Their Real Estate. Workflow
 
-This folder holds individual business-sales-and-acquisitions file
-pages and the reusable detail template (`_template.html`). Use this
-README every time you add or update a file page.
+This folder holds individual file pages for businesses sold together
+with the real estate they occupy, and the reusable detail template
+(`_template.html`). Use this README every time you add or update a
+file page.
 
 ---
 
@@ -17,8 +18,8 @@ README every time you add or update a file page.
    The slug is lowercase, hyphenated, no spaces, and never identifies
    the business by its trading name unless the vendor has consented to
    public naming. Use a code-name plus geography. Examples:
-   `burlington-cafe-2026.html`, `mississauga-saas-platform-2026.html`,
-   `qew-corridor-restaurant.html`.
+   `burlington-plaza-2026.html`, `qew-corridor-gas-station.html`,
+   `niagara-industrial-flex-2026.html`.
 
 2. **Replace every token.** The template contains tokens of the form
    `{{ TOKEN_NAME }}`. Replace all of them with the listing's actual
@@ -33,17 +34,18 @@ README every time you add or update a file page.
    - `{{ LISTING_SLUG }}`. The file-name slug. Used in canonical URL
      and og:url.
    - `{{ LISTING_TYPE }}`. Short label, all caps. Examples:
-     `FOOD SERVICE - CAFE WITH REAL ESTATE`,
-     `RETAIL - PLAZA TENANCY (LEASED)`,
-     `SOFTWARE - SAAS PLATFORM (ASSET SALE)`.
+     `PLAZA - OWNER-OPERATED WITH REAL ESTATE`,
+     `GAS STATION & C-STORE - OWNER-OPERATED WITH SITE`,
+     `INDUSTRIAL FLEX - OWNER-OCCUPIED WITH BUILDING`.
    - `{{ LISTING_SECTOR }}`. Plain-language sector descriptor.
-     Examples: `Food service`, `Retail`, `Software`,
-     `Automotive`, `Hospitality`, `Professional services`.
+     Examples: `Plazas`, `Gas stations & c-stores`, `Industrial & flex`,
+     `Specialty retail`, `Small hospitality`.
    - `{{ LISTING_LOCATION }}`. Geography only, no street address
      unless the vendor has consented. Example: `Burlington, Ontario`.
-   - `{{ LISTING_REAL_ESTATE }}`. Phrased as a fact. Examples:
-     `Building included with sale`, `Lease in place, assignable`,
-     `Lease in place, vendor open to either`.
+   - `{{ LISTING_TENANCY }}`. Phrased as a fact. Examples:
+     `Owner-occupied (100% used by the operating business)`,
+     `Mixed (owner-occupied with in-place tenants)`,
+     `Fully tenanted (operator manages tenancies)`.
    - `{{ LISTING_STRUCTURE }}`. Example: `Asset sale`, `Share sale`,
      `Either, vendor open`.
    - `{{ LISTING_ASKING_PRICE }}`. Phrased as the asking price.
@@ -89,9 +91,9 @@ README every time you add or update a file page.
      filter chips. These drive the filter UI:
 
      ```
-     data-sector="food-service"
+     data-sector="plazas"
      data-price="1m-3m"
-     data-realestate="included"
+     data-tenancy="mixed"
      data-structure="asset"
      ```
 
@@ -197,7 +199,7 @@ folder, e.g. `assets/projects/<slug>/authorization.pdf`.
 ## Quick file map
 
 ```
-projects/business-sales/
+projects/businesses-with-real-estate/
   index.html               Lane landing, filter chips, listing cards
   _template.html           Reusable detail template (this file's pair)
   README.md                This file

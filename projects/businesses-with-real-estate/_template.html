@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  BUSINESS SALES & ACQUISITIONS - FILE DETAIL TEMPLATE
+  BUSINESSES SOLD WITH THEIR REAL ESTATE - FILE DETAIL TEMPLATE
   ============================================================================
-  Copy this file to <file-slug>.html (e.g. burlington-cafe-2026.html).
+  Copy this file to <file-slug>.html (e.g. burlington-plaza-2026.html).
   Replace every block marked {{ TOKEN }} with the listing's actual content.
   Update the form's hidden listing_name field, the breadcrumb, the title,
   meta tags, canonical URL, og:* tags, and the document slot list.
 
   TOKEN INDEX:
-    {{ LISTING_NAME }}              human readable, e.g. Burlington Cafe (Confidential)
-    {{ LISTING_SLUG }}              file-name slug, e.g. burlington-cafe-2026
-    {{ LISTING_TYPE }}              short label, e.g. FOOD SERVICE - CAFE WITH REAL ESTATE
-    {{ LISTING_SECTOR }}            e.g. Food service. Retail. Software. Automotive.
+    {{ LISTING_NAME }}              human readable, e.g. Burlington Plaza (Confidential)
+    {{ LISTING_SLUG }}              file-name slug, e.g. burlington-plaza-2026
+    {{ LISTING_TYPE }}              short label, e.g. PLAZA - OWNER-OPERATED WITH REAL ESTATE
+    {{ LISTING_SECTOR }}            e.g. Plazas. Gas stations. Industrial. Specialty retail. Small hospitality.
     {{ LISTING_LOCATION }}          city, geography, e.g. Burlington, Ontario
-    {{ LISTING_REAL_ESTATE }}       e.g. Building included. Lease in place. Optional.
+    {{ LISTING_TENANCY }}           e.g. Owner-occupied. Mixed (owner + tenants). Fully tenanted.
     {{ LISTING_STRUCTURE }}         e.g. Asset sale. Share sale. Either, vendor open.
     {{ LISTING_ASKING_PRICE }}      e.g. Asking $2.4M (real estate and business)
     {{ LISTING_BROKERAGE }}         listing brokerage
     {{ LISTING_SUMMARY }}           one-sentence summary
 
   Card data attributes on the lane index also need to be set so the file
-  appears under the right filter values. See ../business-sales/README.md.
+  appears under the right filter values. See ../businesses-with-real-estate/README.md.
 
   Names of operating businesses, vendor identities, and financial details
   should be withheld from the public page. Use a code-name and request a
@@ -36,30 +36,30 @@
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Taran Aujla" />
 
-  <title>{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions &middot; Primegate</title>
+  <title>{{ LISTING_NAME }} &middot; Businesses Sold With Their Real Estate &middot; Primegate</title>
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions" />
+  <meta property="og:title" content="{{ LISTING_NAME }} &middot; Businesses Sold With Their Real Estate" />
   <meta property="og:description" content="{{ LISTING_SUMMARY }}" />
-  <meta property="og:url" content="https://prime-gate.ca/projects/business-sales/{{ LISTING_SLUG }}.html" />
+  <meta property="og:url" content="https://prime-gate.ca/projects/businesses-with-real-estate/{{ LISTING_SLUG }}.html" />
   <meta property="og:image" content="https://prime-gate.ca/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Primegate" />
   <meta property="og:locale" content="en_CA" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ LISTING_NAME }} &middot; Business Sales &amp; Acquisitions" />
+  <meta name="twitter:title" content="{{ LISTING_NAME }} &middot; Businesses Sold With Their Real Estate" />
   <meta name="twitter:description" content="{{ LISTING_SUMMARY }}" />
   <meta name="twitter:image" content="https://prime-gate.ca/assets/og-image.png" />
 
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
-  <link rel="canonical" href="https://prime-gate.ca/projects/business-sales/{{ LISTING_SLUG }}.html" />
+  <link rel="canonical" href="https://prime-gate.ca/projects/businesses-with-real-estate/{{ LISTING_SLUG }}.html" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../../styles.css?v=4.5.7" />
+  <link rel="stylesheet" href="../../styles.css?v=4.5.9" />
 </head>
 <body class="projects-page project-detail-page">
 
@@ -121,7 +121,7 @@
     <a href="/" class="projects-return-link">&larr; Primegate</a>
 
     <p class="projects-breadcrumb" aria-label="Breadcrumb">
-      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/business-sales/">Business Sales &amp; Acquisitions</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ LISTING_NAME }}</span>
+      <a href="/projects/">Projects</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <a href="/projects/businesses-with-real-estate/">Businesses Sold With Their Real Estate</a> <span class="projects-breadcrumb-sep" aria-hidden="true">&middot;</span> <span aria-current="page">{{ LISTING_NAME }}</span>
     </p>
 
     <!-- ============================== HERO ============================== -->
@@ -184,7 +184,7 @@
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
-          <dt>Real estate</dt>
+          <dt>Tenancy</dt>
           <dd class="placeholder-inline">[ Forthcoming ]</dd>
         </div>
         <div class="key-fact">
@@ -257,10 +257,10 @@
         action="https://formspree.io/f/xqewoqdw"
         novalidate
       >
-        <input type="hidden" name="_subject" value="Primegate Business Sales Inquiry: {{ LISTING_NAME }}" />
+        <input type="hidden" name="_subject" value="Primegate Business With Real Estate Inquiry: {{ LISTING_NAME }}" />
         <input type="hidden" name="_next" value="/thanks/" />
         <input type="hidden" name="listing_name" value="{{ LISTING_NAME }}" />
-        <input type="hidden" name="project_lane" value="business-sales" />
+        <input type="hidden" name="project_lane" value="businesses-with-real-estate" />
         <input type="hidden" name="intake_path" value="business-inquiry" />
 
         <div class="field-row">
