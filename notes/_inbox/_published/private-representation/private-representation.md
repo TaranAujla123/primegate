@@ -129,7 +129,7 @@ Naming what the practice is not is part of naming what it is.
 
 The work above is not a sales pitch. It is a description of how the practice runs, what the client receives, and where the limits sit. For some files and some clients, this mode of representation is the right fit. For others, a different mode is better.
 
-New conversations are welcome in any of the four practice categories: premium pre-construction, investment and development property, businesses sold with their real estate, and private client representation.
+New conversations are welcome in any of the four practice categories: land and development projects, income and multi-unit property, estate homes and custom builds, and private client representation.
 
 The practice is run with a deliberately limited active roster. The first conversation is an honest one about whether the fit is there.
 

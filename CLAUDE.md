@@ -47,10 +47,9 @@ without requiring `imp-impeccable` to be explicitly invoked.*
 
 High-net-worth Ontario real estate clients — HNW individuals, family
 offices, founders, executives, professionals, and counsel making
-referrals. Sophisticated buyers and sellers transacting in premium
-pre-construction (from $1M), investment and development property,
-businesses sold with their real estate (from $2M), and private
-representation.
+referrals. Sophisticated buyers and sellers transacting in land and
+development projects, income and multi-unit property, estate homes
+and custom builds, and private client representation.
 
 They have already seen every Compass / Sotheby's / Engel & Völkers
 homepage in Toronto. They are immune to drone hero footage and "MEET
