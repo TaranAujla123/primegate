@@ -1,0 +1,6 @@
+# vCard files MUST be served with CRLF line endings per RFC 2426.
+# iOS Safari and most mobile contact handlers silently reject vCards
+# with LF-only endings — the "Add to Contacts" prompt never appears.
+# Force CRLF on commit and checkout regardless of host OS or
+# core.autocrlf setting.
+*.vcf text eol=crlf
