@@ -77,16 +77,31 @@
       </a>
     </section>
 
+    <!--
+      "Enregistrer le contact" est un téléchargement Blob piloté par
+      JavaScript. Sur Android Chrome, l'attribut download de l'ancre
+      pouvait être ignoré silencieusement quand le serveur n'envoyait
+      pas Content-Disposition: attachment — et GitHub Pages ne le fait
+      pas. Le bouton ne réagissait pas.
+
+      Le texte vCard ci-dessous doit rester identique au fichier
+      taran-aujla.vcf dans /card/. Sauts de ligne CRLF (RFC 2426).
+    -->
     <section class="actions" aria-label="Actions">
-      <a class="action-btn action-btn-primary" href="../../card/taran-aujla.vcf" download>
+      <button class="action-btn action-btn-primary" type="button" id="add-contact-btn">
         Enregistrer le contact
-      </a>
+      </button>
       <a class="action-btn action-btn-secondary" href="/fr/#intake">
         Entamer une conversation
       </a>
       <a class="action-btn action-btn-secondary" href="/card/" hreflang="en-CA" lang="en">
         English version
       </a>
+      <noscript>
+        <a class="action-btn action-btn-secondary" href="../../card/taran-aujla.vcf">
+          Télécharger la vCard (sans JavaScript)
+        </a>
+      </noscript>
     </section>
 
     <footer class="card-footer">
@@ -94,6 +109,43 @@
     </footer>
 
   </main>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('add-contact-btn');
+      if (!btn) return;
+      var vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Taran Aujla',
+        'N:Aujla;Taran;;;',
+        'ORG:HomeLife G1 Realty Inc.\\, Brokerage',
+        'TITLE:Salesperson',
+        'TEL;TYPE=WORK,VOICE:+13656457332',
+        'EMAIL:taran@prime-gate.ca',
+        'URL:https://prime-gate.ca',
+        'NOTE:Select Transaction Representation. Ontario.',
+        'END:VCARD',
+        ''
+      ].join('\r\n');
+      btn.addEventListener('click', function () {
+        try {
+          var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = url;
+          link.download = 'taran-aujla.vcf';
+          link.rel = 'noopener';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+        } catch (err) {
+          window.location.href = '../../card/taran-aujla.vcf';
+        }
+      });
+    })();
+  </script>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7a8506c870314fc2aa010963344b26a2"}'></script>

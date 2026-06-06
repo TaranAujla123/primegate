@@ -105,16 +105,38 @@
     </section>
 
     <!-- ============================== ACTIONS ============================== -->
+    <!--
+      "Add to Contacts" is a JavaScript-driven Blob download. We used to
+      rely on <a href="taran-aujla.vcf" download>, but Android Chrome
+      silently suppresses the download attribute when the server does
+      not also send Content-Disposition: attachment — and GitHub Pages
+      does not. The tap appeared to do nothing.
+
+      The Blob approach builds the vCard inline at click time with an
+      explicit text/vcard MIME and an explicit filename, so the
+      browser's download pipeline is fully controlled by us rather
+      than by the server's headers or any per-browser heuristics. The
+      .vcf file on disk is kept as a no-JS fallback link below the
+      button.
+
+      The vCard text below MUST stay byte-identical to taran-aujla.vcf
+      in this folder. CRLF line endings per RFC 2426.
+    -->
     <section class="actions" aria-label="Actions">
-      <a class="action-btn action-btn-primary" href="taran-aujla.vcf" download>
+      <button class="action-btn action-btn-primary" type="button" id="add-contact-btn">
         Add to Contacts
-      </a>
+      </button>
       <a class="action-btn action-btn-secondary" href="/#intake">
         Begin a Conversation
       </a>
       <a class="action-btn action-btn-secondary" href="/fr/carte/" hreflang="fr-CA" lang="fr">
         Version fran&ccedil;aise
       </a>
+      <noscript>
+        <a class="action-btn action-btn-secondary" href="taran-aujla.vcf">
+          Download vCard (no-script fallback)
+        </a>
+      </noscript>
     </section>
 
     <!-- ============================== FOOTER ============================== -->
@@ -123,6 +145,43 @@
     </footer>
 
   </main>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('add-contact-btn');
+      if (!btn) return;
+      var vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Taran Aujla',
+        'N:Aujla;Taran;;;',
+        'ORG:HomeLife G1 Realty Inc.\\, Brokerage',
+        'TITLE:Salesperson',
+        'TEL;TYPE=WORK,VOICE:+13656457332',
+        'EMAIL:taran@prime-gate.ca',
+        'URL:https://prime-gate.ca',
+        'NOTE:Select Transaction Representation. Ontario.',
+        'END:VCARD',
+        ''
+      ].join('\r\n');
+      btn.addEventListener('click', function () {
+        try {
+          var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = url;
+          link.download = 'taran-aujla.vcf';
+          link.rel = 'noopener';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+        } catch (err) {
+          window.location.href = 'taran-aujla.vcf';
+        }
+      });
+    })();
+  </script>
 
   <!-- Cloudflare Web Analytics - matches the main site beacon -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7a8506c870314fc2aa010963344b26a2"}'></script>
