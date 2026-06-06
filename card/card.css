@@ -257,7 +257,6 @@ a {
 
 .action-btn {
   display: block;
-  width: 100%;
   text-align: center;
   padding: 17px 24px;
   border-radius: 100px;
@@ -267,24 +266,8 @@ a {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   line-height: 1;
-  cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   -webkit-tap-highlight-color: transparent;
-}
-/* Reset native <button> chrome so a button.action-btn renders identical
-   to an a.action-btn. (We use a <button> for the JS-driven "Add to
-   Contacts" CTA because Android Chrome silently suppresses the
-   <a download> attribute in some cases — see comment in index.html.) */
-button.action-btn {
-  -webkit-appearance: none;
-  appearance: none;
-  font: inherit;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  line-height: 1;
 }
 
 .action-btn-primary {
