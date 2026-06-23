@@ -1,12 +1,5 @@
+# Primegate website is currently unavailable.
+# All crawling is disallowed for the duration of this offline period.
+
 User-agent: *
-Allow: /
-
-# Maintainer documentation - not for indexing.
-Disallow: /README.md
-Disallow: /CLAUDE.md
-Disallow: /.impeccable.md
-Disallow: /notes/README.md
-Disallow: /notes/_inbox/
-Disallow: /scripts/
-
-Sitemap: https://prime-gate.ca/sitemap.xml
+Disallow: /
