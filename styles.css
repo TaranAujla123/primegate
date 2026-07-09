@@ -844,7 +844,13 @@ section h2 em {
    and mirrors the flippers' pre-hover and hover states so the four-up
    grid still reads as one uniform set at rest. */
 .lane--link .lane-inner {
-  display: block;
+  /* Match the flipping .lane-inner layout so this card takes the same
+     grid-row height as its siblings. Without display:flex here,
+     .lane-front would shrink to its content height and the "Read the
+     detail" cue would collapse against the pill list instead of
+     sitting at the bottom of the card. */
+  display: flex;
+  flex-direction: column;
   transform: none;
   -webkit-transform: none;
   transform-style: flat;
@@ -856,6 +862,7 @@ section h2 em {
 .lane--link .lane-front {
   position: relative;
   inset: auto;
+  flex: 1 1 auto;              /* stretch to fill the grid row height */
   cursor: pointer;
 }
 .lane--link .lane-inner:hover .lane-front {
