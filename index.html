@@ -635,15 +635,6 @@
           <!-- _next URL: relative path resolves correctly under whatever canonical domain is set. Formspree will redirect to /thanks/ on the same host. -->
           <input type="hidden" name="_next" value="/thanks/" />
 
-          <div class="field">
-            <label for="i-source">How did you find the practice <span class="req" aria-hidden="true">*</span></label>
-            <select id="i-source" name="source" required>
-              <option value="">Select one&hellip;</option>
-              <option value="referred">Referred by someone I know</option>
-              <option value="new">New introduction</option>
-            </select>
-          </div>
-
           <div class="field-row">
             <div class="field">
               <label for="i-name">Name <span class="req" aria-hidden="true">*</span></label>
@@ -660,16 +651,9 @@
             <input type="tel" id="i-phone" name="phone" autocomplete="tel" />
           </div>
 
-          <!-- Conditional: REFERRED. Required attribute toggled by JS so HTML5 validation only enforces visible fields. -->
-          <div class="field intake-conditional intake-conditional-referred" hidden>
-            <label for="i-referrer">Who referred you <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="i-referrer" name="referrer" autocomplete="off" placeholder="Name and how they know you, if you want" />
-          </div>
-
-          <!-- Conditional: NEW INTRODUCTION. Required attribute toggled by JS. -->
-          <div class="field-row intake-conditional intake-conditional-new" hidden>
+          <div class="field-row">
             <div class="field">
-              <label for="i-category">Which category <span class="req" aria-hidden="true">*</span></label>
+              <label for="i-category">Which category <span class="optional">(optional)</span></label>
               <select id="i-category" name="category">
                 <option value="">Select one&hellip;</option>
                 <option>Off-Market Acquisitions</option>
@@ -680,7 +664,7 @@
               </select>
             </div>
             <div class="field">
-              <label for="i-timeline">Timeline <span class="req" aria-hidden="true">*</span></label>
+              <label for="i-timeline">Timeline <span class="optional">(optional)</span></label>
               <select id="i-timeline" name="timeline">
                 <option value="">Select one&hellip;</option>
                 <option>0&ndash;3 months</option>
@@ -692,12 +676,8 @@
           </div>
 
           <div class="field">
-            <label for="i-notes">
-              What you are working on
-              <span class="req intake-notes-req" aria-hidden="true">*</span>
-              <span class="optional intake-notes-opt" hidden>(optional)</span>
-            </label>
-            <textarea id="i-notes" name="notes" rows="5" placeholder="A sentence or two. Scope, timing, anything useful."></textarea>
+            <label for="i-notes">What you are working on <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="i-notes" name="notes" rows="5" placeholder="A sentence or two. Scope, timing, anything useful." required></textarea>
           </div>
 
           <!-- Honeypot -->

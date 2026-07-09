@@ -848,9 +848,16 @@ section h2 em {
      grid-row height as its siblings. Without display:flex here,
      .lane-front would shrink to its content height and the "Read the
      detail" cue would collapse against the pill list instead of
-     sitting at the bottom of the card. */
+     sitting at the bottom of the card.
+
+     height: 100% is critical at wide-desktop (1200px+) where .lane
+     itself gets an explicit height clamp(440px, 38vw, 500px). Without
+     this, the flippers stretch to fill via `.lane-inner { flex: none;
+     height: 100%; }` in the wide-desktop rule, but our override wins
+     on specificity and would strip the height:100% otherwise. */
   display: flex;
   flex-direction: column;
+  height: 100%;
   transform: none;
   -webkit-transform: none;
   transform-style: flat;
