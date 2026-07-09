@@ -836,6 +836,47 @@ section h2 em {
 .lane:not(.is-flipped) .lane-front:hover::before { opacity: 1; }
 .lane.is-flipped .lane-back::before { opacity: 1; }
 
+/* Static (non-flipping) lane card variant. Used on Lane 01 which has
+   its own dedicated landing page (/off-market-acquisitions/) and does
+   not need the flip teaser. The whole tile is an anchor straight to
+   the detail page. Overrides the 3D flip machinery so the front
+   content flows in normal document flow (no absolute positioning),
+   and mirrors the flippers' pre-hover and hover states so the four-up
+   grid still reads as one uniform set at rest. */
+.lane--link .lane-inner {
+  display: block;
+  transform: none;
+  -webkit-transform: none;
+  transform-style: flat;
+  -webkit-transform-style: flat;
+  transition: none;
+  color: inherit;
+  text-decoration: none;
+}
+.lane--link .lane-front {
+  position: relative;
+  inset: auto;
+  cursor: pointer;
+}
+.lane--link .lane-inner:hover .lane-front {
+  border-color: rgba(201, 169, 97, 0.75);
+  background: #121722;
+}
+.lane--link .lane-inner:hover .lane-front::before { opacity: 1; }
+.lane--link .lane-inner:hover .lane-flip-cue {
+  gap: 14px;
+  color: var(--gold-deep);
+  border-bottom-color: var(--gold-deep);
+}
+.lane--link .lane-inner:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+.lane--link .lane-front:focus-visible {
+  outline: none;
+}
+
 /* Back-face "Back" button. The front-face trigger button was removed once the
    entire .lane-front became the click target (with role=button + Enter/Space
    key handlers), so we only style the back button here. */

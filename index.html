@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=4.6.0" />
+  <link rel="stylesheet" href="styles.css?v=4.7.0" />
 
   <script type="application/ld+json">
   {
@@ -270,9 +270,22 @@
 
       <div class="container lanes">
 
-        <article class="lane">
-          <div class="lane-inner">
-            <div class="lane-front" tabindex="0" role="button" aria-expanded="false" aria-controls="lane-01-back" aria-label="Off-Market Acquisitions. Press to read the detail.">
+        <!--
+          Lane 01 uses the .lane--link static variant: no flip, the
+          whole tile is an anchor straight to the dedicated
+          /off-market-acquisitions/ landing page. Justification: Lane
+          01 is the priority-promoted lane and has its own compact
+          mockup-style landing surface, so the flip-teaser mechanic
+          would be duplicate work. Lanes 02-04 still use the flip
+          because their detail pages are longer article shells and
+          the teaser back is worth reading first. The flip JS
+          selector explicitly skips .lane--link so keyboard
+          Enter/Space on this tile navigates rather than firing a
+          preventDefault-flip that would go nowhere.
+        -->
+        <article class="lane lane--link">
+          <a href="off-market-acquisitions/" class="lane-inner" aria-label="Off-Market Acquisitions. Read the detail.">
+            <div class="lane-front">
               <header class="lane-header">
                 <span class="lane-num" aria-hidden="true">01</span>
                 <h3>Off-Market Acquisitions</h3>
@@ -283,17 +296,7 @@
                 <span class="lane-flip-arrow">&rarr;</span>
               </span>
             </div>
-            <div class="lane-back" id="lane-01-back" aria-hidden="true" inert>
-              <button type="button" class="lane-flip-back">
-                <span class="lane-flip-arrow" aria-hidden="true">&larr;</span>
-                <span>Back</span>
-              </button>
-              <p>
-                Buyer representation for investors and cash-ready buyers on Ontario properties that never reach the open market. Power of sale, private sales, assignment purchases, estate dispositions, portfolio additions. The offer reflects what the file supports, not what the seller hopes for.
-              </p>
-              <!-- DEAL-SHOWCASE-SCAFFOLD: see lane pattern above -->
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="lane">
@@ -886,7 +889,11 @@
     // select body text without accidentally closing the card. Esc closes
     // any open card.
     (function(){
-      var fronts = document.querySelectorAll('.lane-front');
+      // Skip .lane--link cards (Lane 01 is a whole-tile anchor to its
+      // dedicated landing page, not a flipper). The selector below
+      // excludes them so the click/keydown handlers do not attach and
+      // do not preventDefault on Enter/Space keyboard activation.
+      var fronts = document.querySelectorAll('.lane:not(.lane--link) .lane-front');
       if (!fronts.length) return;
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var focusDelay = prefersReducedMotion ? 0 : 450;
