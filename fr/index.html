@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../styles.css?v=4.5.9" />
+  <link rel="stylesheet" href="../styles.css?v=4.7.1" />
 
   <!--
     Compliance note (RECO Bulletins 5.1 / 5.2 / 5.3, LSO Rule 3.1):
@@ -158,32 +158,26 @@
 
       <div class="container lanes">
 
-        <article class="lane">
-          <div class="lane-inner">
-            <div class="lane-front" tabindex="0" role="button" aria-expanded="false" aria-controls="lane-01-back" aria-label="Acquisitions hors marché. Cliquez pour lire le détail.">
+        <!--
+          Card 01 uses the .lane--link static variant: no flip, the
+          whole tile is an anchor to /fr/acquisitions-hors-marche/. The
+          lane-front script selector skips .lane--link so keyboard
+          activation lets the anchor navigate normally.
+        -->
+        <article class="lane lane--link">
+          <a href="acquisitions-hors-marche/" class="lane-inner" aria-label="Acquisitions hors marché. Lire le détail.">
+            <div class="lane-front">
               <header class="lane-header">
                 <span class="lane-num" aria-hidden="true">01</span>
                 <h3>Acquisitions hors march&eacute;</h3>
-                <span class="lane-tag">Vente sous pouvoir &middot; Ventes privées &middot; Achats par cession &middot; Successions &middot; Ajouts au portefeuille</span>
+                <span class="lane-tag">Vente sous pouvoir &middot; Ventes priv&eacute;es &middot; Achats par cession &middot; Successions</span>
               </header>
               <span class="lane-flip-cue" aria-hidden="true">
                 <span>Lire le détail</span>
                 <span class="lane-flip-arrow">&rarr;</span>
               </span>
             </div>
-            <div class="lane-back" id="lane-01-back" aria-hidden="true" inert>
-              <button type="button" class="lane-flip-back">
-                <span class="lane-flip-arrow" aria-hidden="true">&larr;</span>
-                <span>Retour</span>
-              </button>
-              <p>
-                Repr&eacute;sentation d&rsquo;acheteurs pour investisseurs et acheteurs comptant acqu&eacute;rant des propri&eacute;t&eacute;s ontariennes qui n&rsquo;atteignent jamais le march&eacute; ouvert. Dossiers de vente sous pouvoir, ventes priv&eacute;es entre parties, achats par cession, dispositions successorales, et ajouts au portefeuille, structur&eacute;s autour du titre, des baux, du financement, et du risque de cl&ocirc;ture.
-              </p>
-              <p>
-                Une part significative des transactions r&eacute;sidentielles et multi-logements en Ontario se conclut sans jamais para&icirc;tre au MLS. Le travail en amont consiste &agrave; lire chaque dossier correctement&nbsp;: condition du titre, usage actuel versus usage permis, cheminement de financement, et l&rsquo;&eacute;ch&eacute;ancier de cl&ocirc;ture que le dossier peut r&eacute;ellement soutenir. L&rsquo;offre refl&egrave;te ce que le dossier soutient, non ce que le vendeur esp&egrave;re.
-              </p>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="lane">
@@ -527,19 +521,9 @@
           action="https://formspree.io/f/xqewoqdw"
           novalidate
         >
-          <input type="hidden" name="intake_path" value="" id="intake-path" />
           <input type="hidden" name="intake_lang" value="fr" />
-          <input type="hidden" name="_subject" value="Primegate FR: Nouvelle demande" id="intake-subject" />
+          <input type="hidden" name="_subject" value="Primegate FR: Nouvelle demande" />
           <input type="hidden" name="_next" value="/fr/merci/" />
-
-          <div class="field">
-            <label for="i-source">Comment avez-vous trouvé la pratique <span class="req" aria-hidden="true">*</span></label>
-            <select id="i-source" name="source" required>
-              <option value="">Sélectionnez&hellip;</option>
-              <option value="referred">Référé(e) par quelqu&rsquo;un que je connais</option>
-              <option value="new">Nouvelle introduction</option>
-            </select>
-          </div>
 
           <div class="field-row">
             <div class="field">
@@ -557,14 +541,9 @@
             <input type="tel" id="i-phone" name="phone" autocomplete="tel" />
           </div>
 
-          <div class="field intake-conditional intake-conditional-referred" hidden>
-            <label for="i-referrer">Qui vous a référé(e) <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="i-referrer" name="referrer" autocomplete="off" placeholder="Nom et lien avec vous, si vous voulez" />
-          </div>
-
-          <div class="field-row intake-conditional intake-conditional-new" hidden>
+          <div class="field-row">
             <div class="field">
-              <label for="i-category">Quelle catégorie <span class="req" aria-hidden="true">*</span></label>
+              <label for="i-category">Quelle catégorie <span class="optional">(facultatif)</span></label>
               <select id="i-category" name="category">
                 <option value="">Sélectionnez&hellip;</option>
                 <option>Acquisitions hors marché</option>
@@ -575,7 +554,7 @@
               </select>
             </div>
             <div class="field">
-              <label for="i-timeline">Échéancier <span class="req" aria-hidden="true">*</span></label>
+              <label for="i-timeline">Échéancier <span class="optional">(facultatif)</span></label>
               <select id="i-timeline" name="timeline">
                 <option value="">Sélectionnez&hellip;</option>
                 <option>0&ndash;3 mois</option>
@@ -587,12 +566,8 @@
           </div>
 
           <div class="field">
-            <label for="i-notes">
-              Sur quoi vous travaillez
-              <span class="req intake-notes-req" aria-hidden="true">*</span>
-              <span class="optional intake-notes-opt" hidden>(facultatif)</span>
-            </label>
-            <textarea id="i-notes" name="notes" rows="5" placeholder="Une phrase ou deux. Portée, calendrier, tout ce qui peut être utile."></textarea>
+            <label for="i-notes">Sur quoi vous travaillez <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="i-notes" name="notes" rows="5" placeholder="Une phrase ou deux. Portée, calendrier, tout ce qui peut être utile." required></textarea>
           </div>
 
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
@@ -734,9 +709,10 @@
       window.addEventListener('resize', apply, { passive: true });
     })();
 
-    // Lane card 3D flip
+    // Lane card 3D flip. Skip .lane--link (Card 01 is a whole-tile
+    // anchor to its own landing page, not a flipper).
     (function(){
-      var fronts = document.querySelectorAll('.lane-front');
+      var fronts = document.querySelectorAll('.lane:not(.lane--link) .lane-front');
       if (!fronts.length) return;
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var focusDelay = prefersReducedMotion ? 0 : 450;
