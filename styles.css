@@ -3596,3 +3596,94 @@ body {
 @media (max-width: 720px) {
   .who-row-grid { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* ============================================================
+   MOBILE STICKY CTA BAR
+   ============================================================
+   Fixed 3-tab contact tray anchored to the viewport bottom on
+   mobile / small tablet (<= 767px). Two ghost tabs (Call, Text)
+   pointing at the direct line, one filled primary tab (Begin)
+   scrolling to the intake / register section on the current
+   page. Mirrors the persistent-contact pattern used on
+   resolveproperty.ca. Desktop hides the bar completely — the
+   topbar Begin CTA and phone links carry the same intent there.
+
+   iOS safe-area-inset padding accounts for the home-bar so the
+   tap targets never sit on top of the system indicator.
+
+   body.no-sticky-cta opts a page out (used on thanks pages
+   where a persistent Begin CTA after a fresh submission would
+   feel redundant). */
+.mobile-sticky-cta {
+  display: none;
+}
+@media (max-width: 767px) {
+  .mobile-sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+    background: rgba(10, 13, 20, 0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(201, 169, 97, 0.28);
+    font-family: var(--ff-sans);
+  }
+  .mobile-sticky-cta a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border: 1px solid rgba(201, 169, 97, 0.32);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--bone);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  }
+  .mobile-sticky-cta a svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .mobile-sticky-cta a.primary {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .mobile-sticky-cta a:active {
+    background: rgba(201, 169, 97, 0.15);
+    border-color: var(--gold);
+  }
+  .mobile-sticky-cta a.primary:active {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    color: var(--ink);
+  }
+  .mobile-sticky-cta a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  /* Reserve bottom space so the bar never covers the last line
+     of content when the page is scrolled to the very bottom. */
+  body:not(.no-sticky-cta) {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+}
