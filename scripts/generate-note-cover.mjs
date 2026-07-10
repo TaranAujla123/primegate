@@ -151,8 +151,11 @@ export async function generateCover({ title, category, date, slug, outDir }) {
 }
 
 // CLI: node scripts/generate-note-cover.mjs slug=sample title="..." category="..." date="2026-04-27"
-const isMain = import.meta.url === `file://${process.argv[1].replace(/\\/g, '/')}` ||
-               import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/'));
+const _entry = (process.argv[1] || '').replace(/\\/g, '/');
+const isMain = _entry !== '' && (
+  import.meta.url === `file://${_entry}` ||
+  import.meta.url.endsWith(_entry)
+);
 if (isMain) {
   const args = {};
   for (const arg of process.argv.slice(2)) {

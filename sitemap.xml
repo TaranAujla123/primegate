@@ -53,6 +53,13 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- FAQ -->
+  <url>
+    <loc>https://prime-gate.ca/faq/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Notes index -->
   <url>
     <loc>https://prime-gate.ca/notes/</loc>
