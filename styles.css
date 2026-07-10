@@ -726,6 +726,15 @@ section h2 em {
      card has the longest body. */
   display: flex;
   flex-direction: column;
+  /* Floor for mobile / small-tablet: on 1-col mobile, each card's height
+     is set solely by its own back content (front is absolute-positioned).
+     If a card's back is shorter than its front's natural content — Card
+     04 currently — the front overflows and `justify-content: space-between`
+     collapses to flex-start, jamming the "Read the detail" cue against the
+     bottom padding. This floor guarantees every card is at least tall
+     enough to seat the front content with proper breathing room. Wide
+     desktop (1200px+) overrides with an explicit height clamp. */
+  min-height: 340px;
 }
 
 .lane-inner {
