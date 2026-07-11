@@ -301,9 +301,16 @@
           </a>
         </article>
 
-        <article class="lane">
-          <div class="lane-inner">
-            <div class="lane-front" tabindex="0" role="button" aria-expanded="false" aria-controls="lane-02-back" aria-label="Income and Multi-Unit Property. Press to read the detail.">
+        <!--
+          Card 02 uses the .lane--link static variant: no flip, the
+          whole tile is an anchor to /income-and-multi-unit/. Matches
+          Card 01's direct-link pattern. The lane-front script
+          selector skips .lane--link so keyboard activation lets the
+          anchor navigate normally.
+        -->
+        <article class="lane lane--link">
+          <a href="income-and-multi-unit/" class="lane-inner" aria-label="Income and Multi-Unit Property. Read the detail.">
+            <div class="lane-front">
               <header class="lane-header">
                 <span class="lane-num" aria-hidden="true">02</span>
                 <h3>Income &amp; Multi-Unit Property</h3>
@@ -314,17 +321,7 @@
                 <span class="lane-flip-arrow">&rarr;</span>
               </span>
             </div>
-            <div class="lane-back" id="lane-02-back" aria-hidden="true" inert>
-              <button type="button" class="lane-flip-back">
-                <span class="lane-flip-arrow" aria-hidden="true">&larr;</span>
-                <span>Back</span>
-              </button>
-              <p>
-                Buyer representation on income property, residential and commercial. The cap rate that holds is the one that survives diligence: rent roll verified, leases abstracted, expenses normalized, financing pressure-tested. The offer reflects the income the asset actually produces.
-              </p>
-              <!-- DEAL-SHOWCASE-SCAFFOLD: see lane pattern above -->
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="lane">
